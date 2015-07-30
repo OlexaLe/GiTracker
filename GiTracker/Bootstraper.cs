@@ -1,7 +1,8 @@
 ﻿using System;
-using Prism.Unity;
+using GiTracker.Database;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
+using Prism.Unity;
 
 namespace GiTracker
 {
@@ -14,6 +15,7 @@ namespace GiTracker
 
         protected override void RegisterTypes ()
         {
+            Container.RegisterType<IDatabaseService, DatabaseService> ();
         }
     }
 }

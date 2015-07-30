@@ -14,9 +14,9 @@ namespace GiTracker.iOS.Injections
         {
             var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
             var libraryPath = Path.Combine (documentsPath, "..", "Library");
-            var path = Path.Combine(libraryPath, Constants.DatabaseName);
-            return new SQLite.SQLiteConnection(path);
-        }}
+            var path = Path.Combine (libraryPath, Constants.DatabaseName);
+            return new SQLite.SQLiteConnection (path);
+        }
     }
 }
 

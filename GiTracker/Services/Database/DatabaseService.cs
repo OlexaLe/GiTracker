@@ -65,10 +65,10 @@ namespace GiTracker.Database
             }
         }
 
-        public T FirstOrDefault<T> (Func<T, bool> predicate) where T : new()
+        public T FirstOrDefault<T> (System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : new()
         {
             using (var db = GetConnection ()) {
-                return db.Table<T> ().FirstOrDefault (predicate);
+                return db.Table<T> ().Where (predicate).FirstOrDefault ();
             }
         }
 

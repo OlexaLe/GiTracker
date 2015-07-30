@@ -19,7 +19,7 @@ namespace GiTracker.Database
 
         T FirstOrDefault<T> () where T : new();
 
-        T FirstOrDefault<T> (Func<T, bool> predicate) where T : new();
+        T FirstOrDefault<T> (System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : new();
 
         void Delete<T> (T entity);
 

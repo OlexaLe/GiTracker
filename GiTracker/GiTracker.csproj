@@ -35,7 +35,11 @@
     <Compile Include="Models\GitHubIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bootstraper.cs" />
+    <Compile Include="Services\Api\GitApiServiceFactory.cs" />
+    <Compile Include="Services\Api\GitApiServiceType.cs" />
+    <Compile Include="Services\Api\GitHubApiService.cs" />
     <Compile Include="Services\Api\IGitApiService.cs" />
+    <Compile Include="Services\Api\IGitApiServiceFactory.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

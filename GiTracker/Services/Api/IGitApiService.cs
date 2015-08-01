@@ -5,7 +5,7 @@ using GiTracker.Models;
 
 namespace GiTracker.Services.Api
 {
-    interface IGitApiService
+    public interface IGitApiService
     {
         Task<IEnumerable<GitHubIssue>> GetIssuesAsync(CancellationToken cancellationToken);
     }

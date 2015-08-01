@@ -1,5 +1,5 @@
-﻿using System;
-using GiTracker.Database;
+﻿using GiTracker.Database;
+using GiTracker.Services.Api;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
@@ -15,7 +15,8 @@ namespace GiTracker
 
         protected override void RegisterTypes ()
         {
-            Container.RegisterType<IDatabaseService, DatabaseService> ();
+            Container.RegisterType<IDatabaseService, DatabaseService>();
+            Container.RegisterType<IGitApiServiceFactory, GitApiServiceFactory>();
         }
     }
 }

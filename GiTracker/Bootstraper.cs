@@ -1,5 +1,6 @@
 ﻿using GiTracker.Database;
 using GiTracker.Services.Api;
+using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
 using Prism.Unity;

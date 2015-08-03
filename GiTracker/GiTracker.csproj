@@ -41,6 +41,7 @@
     <Compile Include="Services\Api\IGitApiService.cs" />
     <Compile Include="Services\Api\IGitApiServiceFactory.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\IssueListViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

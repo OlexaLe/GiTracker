@@ -2,21 +2,34 @@
 using Prism.Mvvm;
 using GiTracker.Database;
 using GiTracker.Services.Api;
+using Prism.Navigation;
+using Prism.Commands;
 
 namespace GiTracker.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         readonly IDatabaseService _databaseService;
-        readonly IGitApiService _gitApiService;
+        readonly INavigationService _navigationService;
 
         public MainPageViewModel (IDatabaseService databaseService,
-            IGitApiServiceFactory gitApiServiceFactory)
+            INavigationService navigationService)
         {
             _databaseService = databaseService; // JUST AN EXAMPLE!
-            _gitApiService = gitApiServiceFactory.GetApiService();  // JUST AN EXAMPLE!
+            _navigationService = navigationService;
 
             Title = "Main Page";
+        }
+
+        DelegateCommand _openIssueListCommand;
+        public DelegateCommand OpenIssueListCommand
+        {
+            get { return _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList)); }
+        }
+
+        void OpenIssueList()
+        {
+            _navigationService.Navigate<IssueListViewModel>();
         }
     }
 }

@@ -3,16 +3,20 @@ using System.Threading.Tasks;
 using GiTracker.Models;
 using GiTracker.Services.Api;
 using Prism.Commands;
+using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
     public class IssueListViewModel : BaseViewModel
     {
         readonly IGitApiService _gitApiService;
+        readonly INavigationService _navigationService;
 
-        public IssueListViewModel(IGitApiServiceFactory gitApiServiceFactory)
+        public IssueListViewModel(IGitApiServiceFactory gitApiServiceFactory,
+            INavigationService navigationService)
         {
             _gitApiService = gitApiServiceFactory.GetApiService();
+            _navigationService = navigationService;
         }
 
         ObservableCollection<IIssue> _issues;
@@ -40,6 +44,17 @@ namespace GiTracker.ViewModels
         async void UpdateIssues()
         {
             await LoadIssuesAsync();
+        }
+
+        DelegateCommand<IIssue> _openIssueDetailsCommand;
+        public DelegateCommand<IIssue> OpenIssueDetailsCommand
+        {
+            get { return _openIssueDetailsCommand ?? (_openIssueDetailsCommand = new DelegateCommand<IIssue>(OpenIssueDetails)); }
+        }
+
+        void OpenIssueDetails(IIssue issue)
+        {
+            _navigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
         }
     }
 }

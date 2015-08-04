@@ -16,6 +16,9 @@ namespace GiTracker
 
         protected override void RegisterTypes ()
         {
+            Container.RegisterTypeForNavigation<IssueList, IssueListViewModel>();
+            Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
+            
             Container.RegisterType<IDatabaseService, DatabaseService>();
             Container.RegisterType<IGitApiServiceFactory, GitApiServiceFactory>();
         }

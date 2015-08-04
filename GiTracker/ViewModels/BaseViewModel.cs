@@ -1,6 +1,7 @@
 ﻿using System;
 using GiTracker.Helpers;
 using Prism.Mvvm;
+using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
@@ -14,5 +15,14 @@ namespace GiTracker.ViewModels
             get { return _title; }
             protected set { SetProperty(ref _title, value); }
         }
+        public virtual void OnNavigatedFrom(NavigationParameters parameters)
+        {
+
+        }
+
+        public virtual void OnNavigatedTo(NavigationParameters parameters)
+        {
+            
+        }    
     }
 }

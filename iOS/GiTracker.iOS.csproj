@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>GiTracker.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>GiTrackeriOS</AssemblyName>
+    <AssemblyName>GiTracker.App</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>

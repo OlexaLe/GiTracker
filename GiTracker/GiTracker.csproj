@@ -42,7 +42,15 @@
     <Compile Include="Services\Api\IGitApiService.cs" />
     <Compile Include="Services\Api\IGitApiServiceFactory.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
+    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\IssueDetails.xaml.cs">
+      <DependentUpon>IssueDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueList.xaml.cs">
+      <DependentUpon>IssueList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -94,10 +102,21 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\IssueList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\IssueDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

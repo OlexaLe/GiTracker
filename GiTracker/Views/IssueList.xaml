@@ -6,13 +6,13 @@
   xmlns:pages="clr-namespace:GiTracker.Views;assembly=GiTracker.App"
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
   xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
-  xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
   prism:ViewModelLocator.AutowireViewModel="True">
 
   <controls:NiceListView 
     ItemsSource="{Binding Issues}"
     ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
-    IsPullToRefreshEnabled="True">
+    RefreshCommand="{Binding UpdateIssuesCommand}"
+    IsRefreshing="{Binding Loader.IsLoading}">
     
     <ListView.ItemTemplate>
       <DataTemplate>
@@ -20,9 +20,10 @@
           <StackLayout Padding="{StaticResource ListItemPadding}">
             
             <Label Text="{Binding Title}"
-                   Style="{StaticResource LargeSimpleLabelStyle}"/>
+                   Style="{StaticResource LargeSimpleLabelStyle}"
+                   LineBreakMode = "TailTruncation"/>
             
-            <Label Text="{Binding Id}"
+            <Label Text="{Binding Number}"
                    Style="{StaticResource SmallSimpleLabelStyle}"/>
           
           </StackLayout>    

@@ -8,6 +8,7 @@ namespace GiTracker.Controls
         public NiceListView() 
 		{
 			HasUnevenRows = true;
+            IsPullToRefreshEnabled = true;
             ItemTapped += NiceListView_ItemTapped;
 		}
 

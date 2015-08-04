@@ -27,6 +27,13 @@ namespace GiTracker.Services.Api
                     Title="Issue 28",
                     Body="Issue 28 body",
                 },
+                new GitHubIssue
+                {
+                    Id = 3,
+                    Number = 29,
+                    Title="Issue 29 with some long and interesting title",
+                    Body="Issue 29 body",
+                },
             }.Cast<IIssue>();
         }
     }

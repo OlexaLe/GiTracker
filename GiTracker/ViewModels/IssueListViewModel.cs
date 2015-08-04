@@ -27,7 +27,7 @@ namespace GiTracker.ViewModels
             UpdateIssues();
         }
 
-        ObservableCollection<IIssue> _issues;
+        ObservableCollection<IIssue> _issues = new ObservableCollection<IIssue>();
         public ObservableCollection<IIssue> Issues
         {
             get { return _issues; }
@@ -36,7 +36,7 @@ namespace GiTracker.ViewModels
 
         Task LoadIssuesAsync()
         {
-            return _loader.LoadAsync(async (cancellationToken) =>
+            return Loader.LoadAsync(async (cancellationToken) =>
             {
                 var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
                 Issues = new ObservableCollection<IIssue>(issues);

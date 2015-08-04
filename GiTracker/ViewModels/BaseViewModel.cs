@@ -7,7 +7,8 @@ namespace GiTracker.ViewModels
 {
     public abstract class BaseViewModel : BindableBase, INavigationAware
     {
-        protected Loader _loader = new Loader();
+        Loader _loader = new Loader();
+        public Loader Loader { get { return _loader; } }
 
         string _title;
         public string Title
@@ -22,7 +23,7 @@ namespace GiTracker.ViewModels
 
         public virtual void OnNavigatedTo(NavigationParameters parameters)
         {
-            
-        }    
+
+        }
     }
 }

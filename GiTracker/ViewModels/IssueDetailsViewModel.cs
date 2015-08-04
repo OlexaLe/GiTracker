@@ -19,7 +19,15 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            var a = (IIssue)parameters[IssueParameterName];
+            Issue = (IIssue)parameters[IssueParameterName];
         }
+
+        IIssue _issue;
+        public IIssue Issue
+        {
+            get { return _issue; }
+            private set { SetProperty(ref _issue, value); }
+        }
+        
     }
 }

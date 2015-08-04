@@ -5,22 +5,31 @@
   x:Class="GiTracker.Views.IssueList"
   xmlns:pages="clr-namespace:GiTracker.Views;assembly=GiTracker.App"
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+  xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+  xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
   prism:ViewModelLocator.AutowireViewModel="True">
 
-  <ListView ItemsSource="{Binding Issues}"
-            IsPullToRefreshEnabled="True"
-            HasUnevenRows="True">
+  <controls:NiceListView 
+    ItemsSource="{Binding Issues}"
+    ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
+    IsPullToRefreshEnabled="True">
+    
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
           <StackLayout Padding="{StaticResource ListItemPadding}">
+            
             <Label Text="{Binding Title}"
                    Style="{StaticResource LargeSimpleLabelStyle}"/>
+            
             <Label Text="{Binding Id}"
                    Style="{StaticResource SmallSimpleLabelStyle}"/>
+          
           </StackLayout>    
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
-  </ListView>
+  
+  </controls:NiceListView >
+
 </pages:BasePage>

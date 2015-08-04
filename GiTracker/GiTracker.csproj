@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Controls\NiceListView.cs" />
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\IIssue.cs" />
     <Compile Include="Models\GitHubIssue.cs" />

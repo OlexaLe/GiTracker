@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GiTracker.App">
+
+  <Application.Resources>
+    <ResourceDictionary>
+
+      <x:Double x:Key="SmallTextSize">14</x:Double>
+      <x:Double x:Key="LargeTextSize">20</x:Double>
+
+      <Color x:Key="SimpleTextColor">#dddddd</Color>
+
+      <Thickness x:Key="PagePadding">20,20,20,20</Thickness>
+      <Thickness x:Key="ListItemPadding">20,6,20,6</Thickness>
+
+      <Style x:Key="SimpleLabelStyle"
+             TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource SimpleTextColor}" />
+        <Setter Property="FontSize" Value="{StaticResource SmallTextSize}" />
+      </Style>
+
+      <Style x:Key="SmallSimpleLabelStyle"
+             TargetType="Label"
+             BaseResourceKey="SimpleLabelStyle">
+      </Style>
+
+      <Style x:Key="LargeSimpleLabelStyle"
+             TargetType="Label"
+             BaseResourceKey="SimpleLabelStyle">
+        <Setter Property="FontSize" Value="{StaticResource LargeTextSize}" />
+      </Style>
+
+    </ResourceDictionary>
+  </Application.Resources>
+  
+</Application>

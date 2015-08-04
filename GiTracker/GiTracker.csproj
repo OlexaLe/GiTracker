@@ -30,7 +30,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GiTracker.cs" />
+    <Compile Include="App.cs" />
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\IIssue.cs" />
     <Compile Include="Models\GitHubIssue.cs" />
@@ -117,6 +117,12 @@
     <EmbeddedResource Include="Views\IssueDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GiTracker.cs" />
+    <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\IIssue.cs" />
     <Compile Include="Models\GitHubIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

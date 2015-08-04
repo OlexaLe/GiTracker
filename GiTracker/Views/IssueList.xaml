@@ -7,13 +7,20 @@
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
   prism:ViewModelLocator.AutowireViewModel="True">
 
-  <StackLayout VerticalOptions="Center"
-               HorizontalOptions="Center">
-  
-    <Label Text="Issue list here"/>
-
-    <Button Text="Issue details"
-            Command="{Binding OpenIssueDetailsCommand}"/>
-
-  </StackLayout>
+  <ListView ItemsSource="{Binding Issues}"
+            IsPullToRefreshEnabled="True"
+            HasUnevenRows="True">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout Padding="{StaticResource ListItemPadding}">
+            <Label Text="{Binding Title}"
+                   Style="{StaticResource LargeSimpleLabelStyle}"/>
+            <Label Text="{Binding Id}"
+                   Style="{StaticResource SmallSimpleLabelStyle}"/>
+          </StackLayout>    
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
 </pages:BasePage>

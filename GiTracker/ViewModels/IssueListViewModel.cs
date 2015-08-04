@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GiTracker.Models;
 using GiTracker.Services.Api;
@@ -17,6 +18,13 @@ namespace GiTracker.ViewModels
         {
             _gitApiService = gitApiServiceFactory.GetApiService();
             _navigationService = navigationService;
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            UpdateIssues();
         }
 
         ObservableCollection<IIssue> _issues;
@@ -43,7 +51,12 @@ namespace GiTracker.ViewModels
 
         async void UpdateIssues()
         {
-            await LoadIssuesAsync();
+            try
+            {
+                await LoadIssuesAsync();
+            }
+            catch (Exception e)
+            { }
         }
 
         DelegateCommand<IIssue> _openIssueDetailsCommand;

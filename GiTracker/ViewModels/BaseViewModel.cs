@@ -5,7 +5,7 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    public abstract class BaseViewModel : BindableBase
+    public abstract class BaseViewModel : BindableBase, INavigationAware
     {
         protected Loader _loader = new Loader();
 

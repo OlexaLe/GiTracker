@@ -8,6 +8,7 @@
   prism:ViewModelLocator.AutowireViewModel="True">
   
   <Label Text="{Binding Issue.Title}" 
+         Style="{StaticResource LargeSimpleLabelStyle}"
          VerticalOptions="Center" 
          HorizontalOptions="Center" />
   

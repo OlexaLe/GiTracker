@@ -20,7 +20,7 @@
           <StackLayout Padding="{StaticResource ListItemPadding}">
             
             <Label Text="{Binding Title}"
-                   Style="{StaticResource LargeSimpleLabelStyle}"
+                   Style="{StaticResource MediumSimpleLabelStyle}"
                    LineBreakMode = "TailTruncation"/>
             
             <Label Text="{Binding Number}"

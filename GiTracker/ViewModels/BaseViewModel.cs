@@ -16,6 +16,7 @@ namespace GiTracker.ViewModels
             get { return _title; }
             protected set { SetProperty(ref _title, value); }
         }
+
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
 

@@ -20,11 +20,11 @@ namespace GiTracker.ViewModels
             _navigationService = navigationService;
         }
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override async void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
-            UpdateIssues();
+            await LoadIssuesAsync();
         }
 
         ObservableCollection<IIssue> _issues = new ObservableCollection<IIssue>();
@@ -34,13 +34,18 @@ namespace GiTracker.ViewModels
             private set { SetProperty(ref _issues, value); }
         }
 
-        Task LoadIssuesAsync()
+        async Task LoadIssuesAsync()
         {
-            return Loader.LoadAsync(async (cancellationToken) =>
+            try
             {
-                var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
-                Issues = new ObservableCollection<IIssue>(issues);
-            });
+                await Loader.LoadAsync(async (cancellationToken) =>
+                {
+                    var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
+                    Issues = new ObservableCollection<IIssue>(issues);
+                });
+            }
+            catch (Exception e)
+            { }
         }
 
         DelegateCommand _updateIssuesCommand;
@@ -51,12 +56,7 @@ namespace GiTracker.ViewModels
 
         async void UpdateIssues()
         {
-            try
-            {
-                await LoadIssuesAsync();
-            }
-            catch (Exception e)
-            { }
+            await LoadIssuesAsync();
         }
 
         DelegateCommand<IIssue> _openIssueDetailsCommand;

@@ -11,15 +11,13 @@ namespace GiTracker.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         readonly IDatabaseService _databaseService;
-        readonly INavigationService _navigationService;
 
 		public MainPageViewModel(Loader loader, 
 			IDatabaseService databaseService,
             INavigationService navigationService)
-			: base(loader)
+			: base(loader, navigationService)
         {
             _databaseService = databaseService; // JUST AN EXAMPLE!
-            _navigationService = navigationService;
 
             Title = "Main Page";
         }

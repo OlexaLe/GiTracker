@@ -7,10 +7,15 @@ namespace GiTracker.ViewModels
     public abstract class BaseViewModel : BindableBase, INavigationAware
     {
 		public Loader Loader { get; private set; }
-		
-		public BaseViewModel(Loader loader)
+
+		protected readonly INavigationService _navigationService;
+
+		public BaseViewModel(Loader loader,
+			INavigationService navigationService)
 		{
 			Loader = loader;
+
+			_navigationService = navigationService;
 		}
 
         string _title;

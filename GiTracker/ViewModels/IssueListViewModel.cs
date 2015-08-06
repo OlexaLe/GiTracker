@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GiTracker.Helpers;
 using GiTracker.Models;
@@ -12,15 +11,13 @@ namespace GiTracker.ViewModels
     public class IssueListViewModel : BaseViewModel
     {
         readonly IGitApiService _gitApiService;
-        readonly INavigationService _navigationService;
 
         public IssueListViewModel(Loader loader, 
 			IGitApiServiceFactory gitApiServiceFactory,
             INavigationService navigationService)
-			: base(loader)
+			: base(loader, navigationService)
         {
             _gitApiService = gitApiServiceFactory.GetApiService();
-            _navigationService = navigationService;
         }
 
         public override async void OnNavigatedTo(NavigationParameters parameters)

@@ -11,9 +11,10 @@ namespace GiTracker.ViewModels
 
         readonly IGitApiService _gitApiService;
 
-		public IssueDetailsViewModel(Loader loader, 
+		public IssueDetailsViewModel(Loader loader,
+			INavigationService navigationService,
 			IGitApiServiceFactory gitApiServiceFactory)
-			: base(loader)
+			: base(loader, navigationService)
         {
             _gitApiService = gitApiServiceFactory.GetApiService();
         }

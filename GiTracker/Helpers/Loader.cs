@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using GiTracker.Services.Dialogs;
 using Prism.Mvvm;
 
 namespace GiTracker.Helpers
 {
     public class Loader : BindableBase
     {
+		readonly IDialogService _dialogService;
+
+		public Loader(IDialogService dialogService)
+		{
+			_dialogService = dialogService;
+		}
+
         bool _isLoading;
         public bool IsLoading
         {
@@ -25,7 +33,7 @@ namespace GiTracker.Helpers
             try
             { await taskFactory(_loadingCTS.Token); }
             catch (Exception e)
-            { throw; }
+			{ _dialogService.ShowOkMessage(title: e.Message); }	
             finally
             { IsLoading = false; }
         }

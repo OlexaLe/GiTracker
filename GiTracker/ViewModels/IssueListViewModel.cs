@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GiTracker.Helpers;
 using GiTracker.Models;
 using GiTracker.Services.Api;
 using Prism.Commands;
@@ -13,8 +14,10 @@ namespace GiTracker.ViewModels
         readonly IGitApiService _gitApiService;
         readonly INavigationService _navigationService;
 
-        public IssueListViewModel(IGitApiServiceFactory gitApiServiceFactory,
+        public IssueListViewModel(Loader loader, 
+			IGitApiServiceFactory gitApiServiceFactory,
             INavigationService navigationService)
+			: base(loader)
         {
             _gitApiService = gitApiServiceFactory.GetApiService();
             _navigationService = navigationService;
@@ -34,18 +37,13 @@ namespace GiTracker.ViewModels
             private set { SetProperty(ref _issues, value); }
         }
 
-        async Task LoadIssuesAsync()
-        {
-            try
+        Task LoadIssuesAsync()
+        {                
+			return Loader.LoadAsync(async (cancellationToken) =>
             {
-                await Loader.LoadAsync(async (cancellationToken) =>
-                {
-                    var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
-                    Issues = new ObservableCollection<IIssue>(issues);
-                });
-            }
-            catch (Exception e)
-            { }
+                var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
+                Issues = new ObservableCollection<IIssue>(issues);
+            });
         }
 
         DelegateCommand _updateIssuesCommand;

@@ -4,6 +4,7 @@ using GiTracker.Database;
 using GiTracker.Services.Api;
 using Prism.Navigation;
 using Prism.Commands;
+using GiTracker.Helpers;
 
 namespace GiTracker.ViewModels
 {
@@ -12,8 +13,10 @@ namespace GiTracker.ViewModels
         readonly IDatabaseService _databaseService;
         readonly INavigationService _navigationService;
 
-        public MainPageViewModel (IDatabaseService databaseService,
+		public MainPageViewModel(Loader loader, 
+			IDatabaseService databaseService,
             INavigationService navigationService)
+			: base(loader)
         {
             _databaseService = databaseService; // JUST AN EXAMPLE!
             _navigationService = navigationService;

@@ -1,5 +1,4 @@
-﻿using System;
-using GiTracker.Helpers;
+﻿using GiTracker.Helpers;
 using Prism.Mvvm;
 using Prism.Navigation;
 
@@ -7,8 +6,12 @@ namespace GiTracker.ViewModels
 {
     public abstract class BaseViewModel : BindableBase, INavigationAware
     {
-        Loader _loader = new Loader();
-        public Loader Loader { get { return _loader; } }
+		public Loader Loader { get; private set; }
+		
+		public BaseViewModel(Loader loader)
+		{
+			Loader = loader;
+		}
 
         string _title;
         public string Title

@@ -1,4 +1,5 @@
-﻿using GiTracker.Models;
+﻿using GiTracker.Helpers;
+using GiTracker.Models;
 using GiTracker.Services.Api;
 using Prism.Navigation;
 
@@ -10,7 +11,9 @@ namespace GiTracker.ViewModels
 
         readonly IGitApiService _gitApiService;
 
-        public IssueDetailsViewModel(IGitApiServiceFactory gitApiServiceFactory)
+		public IssueDetailsViewModel(Loader loader, 
+			IGitApiServiceFactory gitApiServiceFactory)
+			: base(loader)
         {
             _gitApiService = gitApiServiceFactory.GetApiService();
         }
@@ -27,7 +30,6 @@ namespace GiTracker.ViewModels
         {
             get { return _issue; }
             private set { SetProperty(ref _issue, value); }
-        }
-        
+        }        
     }
 }

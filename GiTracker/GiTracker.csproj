@@ -37,11 +37,18 @@
     <Compile Include="Models\GitHubIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bootstraper.cs" />
+    <Compile Include="Resources\Strings\Shared.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Api\GitApiServiceFactory.cs" />
     <Compile Include="Services\Api\GitApiServiceType.cs" />
     <Compile Include="Services\Api\GitHubApiService.cs" />
     <Compile Include="Services\Api\IGitApiService.cs" />
     <Compile Include="Services\Api\IGitApiServiceFactory.cs" />
+    <Compile Include="Services\Dialogs\DialogService.cs" />
+    <Compile Include="Services\Dialogs\IDialogService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
@@ -104,6 +111,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings\Shared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\IssueList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>

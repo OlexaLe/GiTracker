@@ -5,13 +5,9 @@ namespace GiTracker
 {
     public partial class App : Application
     {
-		public static Application Instance;
-
         public App ()
         {
             InitializeComponent();
-
-			Instance = this;
 
             var bs = new Bootstraper ();
             bs.Run (this);

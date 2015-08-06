@@ -1,5 +1,6 @@
 ﻿using GiTracker.Resources.Strings;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GiTracker.Services.Dialogs
 {
@@ -7,7 +8,7 @@ namespace GiTracker.Services.Dialogs
 	{
 		public Task ShowMessageAsync(string title = "", string content = "")
 		{
-			return App.Instance.MainPage.DisplayAlert(title, content, Shared.Ok);
+			return Application.Current.MainPage.DisplayAlert(title, content, Shared.Ok);
 		}
 	}
 }

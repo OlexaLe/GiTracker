@@ -1,13 +1,14 @@
 ﻿using System;
-
 using Xamarin.Forms;
 
 namespace GiTracker
 {
-    public class App : Application
+    public partial class App : Application
     {
         public App ()
         {
+            InitializeComponent();
+
             var bs = new Bootstraper ();
             bs.Run (this);
         }

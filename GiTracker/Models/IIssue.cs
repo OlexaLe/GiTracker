@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GiTracker.Models
+﻿namespace GiTracker.Models
 {
-    interface IIssue
+    public interface IIssue
     {
         int Id { get; }
         int Number { get; }

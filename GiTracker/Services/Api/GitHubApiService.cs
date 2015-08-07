@@ -8,9 +8,11 @@ namespace GiTracker.Services.Api
 {
     class GitHubApiService : IGitApiService
     {
-        public Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken)
         {
-            return Task.FromResult(new List<GitHubIssue> { 
+            await Task.Delay(3000);
+
+            return new List<GitHubIssue> { 
                 new GitHubIssue
                 {
                     Id = 1,
@@ -25,7 +27,14 @@ namespace GiTracker.Services.Api
                     Title="Issue 28",
                     Body="Issue 28 body",
                 },
-            }.Cast<IIssue>());
+                new GitHubIssue
+                {
+                    Id = 3,
+                    Number = 29,
+                    Title="Issue 29 with some long and interesting title",
+                    Body="Issue 29 body",
+                },
+            }.Cast<IIssue>();
         }
     }
 }

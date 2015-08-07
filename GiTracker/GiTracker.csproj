@@ -30,18 +30,35 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GiTracker.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="Controls\NiceListView.cs" />
+    <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\IIssue.cs" />
     <Compile Include="Models\GitHubIssue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bootstraper.cs" />
+    <Compile Include="Resources\Strings\Shared.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Api\GitApiServiceFactory.cs" />
     <Compile Include="Services\Api\GitApiServiceType.cs" />
     <Compile Include="Services\Api\GitHubApiService.cs" />
     <Compile Include="Services\Api\IGitApiService.cs" />
     <Compile Include="Services\Api\IGitApiServiceFactory.cs" />
+    <Compile Include="Services\Dialogs\DialogService.cs" />
+    <Compile Include="Services\Dialogs\IDialogService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
+    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\IssueDetails.xaml.cs">
+      <DependentUpon>IssueDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueList.xaml.cs">
+      <DependentUpon>IssueList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -93,10 +110,31 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings\Shared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\IssueList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\IssueDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

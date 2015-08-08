@@ -5,6 +5,7 @@ using GiTracker.Models;
 using GiTracker.Services.Api;
 using Prism.Commands;
 using Prism.Navigation;
+using GiTracker.Resources.Strings;
 
 namespace GiTracker.ViewModels
 {
@@ -27,20 +28,32 @@ namespace GiTracker.ViewModels
             await LoadIssuesAsync();
         }
 
-        ObservableCollection<IIssue> _issues = new ObservableCollection<IIssue>();
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+            Loader.CancelLoading();
+
+            base.OnNavigatedFrom(parameters);
+        }
+
+        ObservableCollection<IIssue> _issues;
         public ObservableCollection<IIssue> Issues
         {
             get { return _issues; }
             private set { SetProperty(ref _issues, value); }
         }
 
-        Task LoadIssuesAsync()
-        {                
-			return Loader.LoadAsync(async (cancellationToken) =>
+        async Task LoadIssuesAsync()
+        {
+            PageCenterText = Shared.Loading;
+
+            Issues?.Clear();
+            await Loader.LoadAsync(async (cancellationToken) =>
             {
                 var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
                 Issues = new ObservableCollection<IIssue>(issues);
             });
+
+            PageCenterText = string.Empty;
         }
 
         DelegateCommand _updateIssuesCommand;
@@ -63,6 +76,13 @@ namespace GiTracker.ViewModels
         void OpenIssueDetails(IIssue issue)
         {
             _navigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
+        }
+
+        string _pageCenterText;
+        public string PageCenterText
+        {
+            get { return _pageCenterText; }
+            private set { SetProperty(ref _pageCenterText, value); }
         }
     }
 }

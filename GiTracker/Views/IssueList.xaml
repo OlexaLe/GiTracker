@@ -8,29 +8,34 @@
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
   prism:ViewModelLocator.AutowireViewModel="True">
 
-  <controls:NiceListView 
-    ItemsSource="{Binding Issues}"
-    ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
-    RefreshCommand="{Binding UpdateIssuesCommand}"
-    IsRefreshing="{Binding Loader.IsLoading}">
+  <Grid>
+    <Label 
+      Text="{Binding PageCenterText}"
+      Style="{StaticResource PageCenterLabelStyle}"/>
     
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout Padding="{StaticResource ListItemPadding}">
+    <controls:NiceListView 
+      ItemsSource="{Binding Issues}"
+      ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
+      RefreshCommand="{Binding UpdateIssuesCommand}"
+      IsRefreshing="{Binding Loader.IsLoading, Mode=OneWay}">
+    
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="{StaticResource ListItemPadding}">
             
-            <Label Text="{Binding Title}"
-                   Style="{StaticResource MediumSimpleLabelStyle}"
-                   LineBreakMode = "TailTruncation"/>
+              <Label Text="{Binding Title}"
+                     Style="{StaticResource MediumSimpleLabelStyle}"
+                     LineBreakMode = "TailTruncation"/>
             
-            <Label Text="{Binding Number}"
-                   Style="{StaticResource SmallSimpleLabelStyle}"/>
+              <Label Text="{Binding Number}"
+                     Style="{StaticResource SmallSimpleLabelStyle}"/>
           
-          </StackLayout>    
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
+            </StackLayout>    
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
   
-  </controls:NiceListView >
-
+    </controls:NiceListView>
+  </Grid>
 </pages:BasePage>

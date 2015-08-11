@@ -1,7 +1,7 @@
 ﻿using System;
 using Prism.Mvvm;
 using GiTracker.Database;
-using GiTracker.Services.Api;
+using GiTracker.Services.ServiceProvider;
 using Prism.Navigation;
 using Prism.Commands;
 using GiTracker.Helpers;

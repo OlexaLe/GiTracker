@@ -33,7 +33,7 @@ namespace GiTracker.Helpers
             try
             { await taskFactory(_loadingCTS.Token); }
             catch (Exception e)
-			{ await _dialogService.ShowMessageAsync(title: e.Message); }	
+			{ await _dialogService.ShowMessageAsync(content: e.Message); }	
             finally
             { IsLoading = false; }
         }

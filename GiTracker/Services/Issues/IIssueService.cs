@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using GiTracker.Models;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using GiTracker.Models;
 
-namespace GiTracker.Services.Api
+namespace GiTracker.Services.Issues
 {
-    public interface IGitApiService
+    public interface IIssueService
     {
         Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken);
     }

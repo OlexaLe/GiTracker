@@ -9,20 +9,21 @@ namespace GiTracker.Services.Rest
 {
     class RestService : IRestService
     {
-        HttpClient CreateHttpClient(string host, string userAgent)
+        const string _userAgent = "XamarinGarage";
+
+        HttpClient CreateHttpClient(string host)
         {
             var httpClient = new HttpClient { BaseAddress = new Uri(host) };
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            if (!string.IsNullOrEmpty(userAgent))
-                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);            
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(_userAgent);            
             return httpClient;
         }
 
-        public async Task<T> GetAsync<T>(RequestSettings settings, CancellationToken cancellationToken)
+        public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
         {
-            using (var client = CreateHttpClient(settings.HostName, settings.UserAgent))
+            using (var client = CreateHttpClient(host))
             {
-                using (var response = await client.GetAsync(settings.Url, cancellationToken).ConfigureAwait(false))
+                using (var response = await client.GetAsync(url, cancellationToken).ConfigureAwait(false))
 				{
 					cancellationToken.ThrowIfCancellationRequested();
 

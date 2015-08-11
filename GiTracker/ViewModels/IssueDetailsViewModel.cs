@@ -1,6 +1,7 @@
 ﻿using GiTracker.Helpers;
 using GiTracker.Models;
-using GiTracker.Services.Api;
+using GiTracker.Services.Issues;
+using GiTracker.Services.ServiceProvider;
 using Prism.Navigation;
 
 namespace GiTracker.ViewModels
@@ -9,14 +10,14 @@ namespace GiTracker.ViewModels
     {
         public const string IssueParameterName = "IssueParameterName";
 
-        readonly IGitApiService _gitApiService;
+        readonly IIssueService _issueService;
 
-		public IssueDetailsViewModel(Loader loader,
+        public IssueDetailsViewModel(Loader loader,
 			INavigationService navigationService,
-			IGitApiServiceFactory gitApiServiceFactory)
+            IGitServiceProvider gitServiceProvider)
 			: base(loader, navigationService)
         {
-            _gitApiService = gitApiServiceFactory.GetApiService();
+            _issueService = gitServiceProvider.GetIssueService();
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

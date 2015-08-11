@@ -1,4 +1,4 @@
-﻿namespace GiTracker.Services.Api
+﻿namespace GiTracker.Services.ServiceProvider
 {
     public enum GitApiServiceType
     {

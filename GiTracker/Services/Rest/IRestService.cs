@@ -5,6 +5,6 @@ namespace GiTracker.Services.Rest
 {
     public interface IRestService
     {
-        Task<T> GetAsync<T>(RequestSettings settings, CancellationToken cancellationToken);
+        Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken);
     }
 }

@@ -1,8 +1,9 @@
 ﻿using GiTracker.Database;
 using GiTracker.Helpers;
-using GiTracker.Services.Api;
 using GiTracker.Services.Dialogs;
+using GiTracker.Services.Issues;
 using GiTracker.Services.Rest;
+using GiTracker.Services.ServiceProvider;
 using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
@@ -19,14 +20,18 @@ namespace GiTracker
 
         protected override void RegisterTypes ()
 		{
+            Container.RegisterInstance<IUnityContainer>(Container);
+
             Container.RegisterTypeForNavigation<IssueList, IssueListViewModel>();
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
 
 			Container.RegisterType<Loader>();
-			Container.RegisterType<IDatabaseService, DatabaseService>();
+            Container.RegisterType<GitHubIssueService>();
+
+            Container.RegisterType<IDatabaseService, DatabaseService>();
             Container.RegisterType<IDialogService, DialogService>();
             Container.RegisterType<IRestService, RestService>();
-            Container.RegisterType<IGitApiServiceFactory, GitApiServiceFactory>();
+            Container.RegisterType<IGitServiceProvider, GitServiceProvider>();
         }
     }
 }

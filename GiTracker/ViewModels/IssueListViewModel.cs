@@ -1,24 +1,25 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using GiTracker.Helpers;
+﻿using GiTracker.Helpers;
 using GiTracker.Models;
-using GiTracker.Services.Api;
+using GiTracker.Resources.Strings;
+using GiTracker.Services.Issues;
+using GiTracker.Services.ServiceProvider;
 using Prism.Commands;
 using Prism.Navigation;
-using GiTracker.Resources.Strings;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace GiTracker.ViewModels
 {
     public class IssueListViewModel : BaseViewModel
     {
-        readonly IGitApiService _gitApiService;
+        readonly IIssueService _issueService;
 
-        public IssueListViewModel(Loader loader, 
-			IGitApiServiceFactory gitApiServiceFactory,
+        public IssueListViewModel(Loader loader,
+            IGitServiceProvider gitServiceProvider,
             INavigationService navigationService)
 			: base(loader, navigationService)
         {
-            _gitApiService = gitApiServiceFactory.GetApiService();
+            _issueService = gitServiceProvider.GetIssueService();
         }
 
         public override async void OnNavigatedTo(NavigationParameters parameters)
@@ -49,7 +50,7 @@ namespace GiTracker.ViewModels
             Issues?.Clear();
             await Loader.LoadAsync(async (cancellationToken) =>
             {
-                var issues = await _gitApiService.GetIssuesAsync(cancellationToken);
+                var issues = await _issueService.GetIssuesAsync(cancellationToken);
                 Issues = new ObservableCollection<IIssue>(issues);
             });
 

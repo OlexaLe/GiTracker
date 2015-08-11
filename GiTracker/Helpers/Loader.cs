@@ -8,12 +8,12 @@ namespace GiTracker.Helpers
 {
     public class Loader : BindableBase
     {
-		readonly IDialogService _dialogService;
+        readonly IDialogService _dialogService;
 
-		public Loader(IDialogService dialogService)
-		{
-			_dialogService = dialogService;
-		}
+        public Loader(IDialogService dialogService)
+        {
+            _dialogService = dialogService;
+        }
 
         bool _isLoading;
         public bool IsLoading
@@ -33,16 +33,14 @@ namespace GiTracker.Helpers
             try
             { await taskFactory(_loadingCTS.Token); }
             catch (Exception e)
-			{ await _dialogService.ShowMessageAsync(content: e.Message); }	
+            { await _dialogService.ShowMessageAsync(content: e.Message); }
             finally
             { IsLoading = false; }
         }
 
         public void CancelLoading()
         {
-            if (_loadingCTS != null)
-                _loadingCTS.Cancel();
-
+            _loadingCTS?.Cancel();
             _loadingCTS = new CancellationTokenSource();
         }
     }

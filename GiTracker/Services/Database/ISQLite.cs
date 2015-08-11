@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace GiTracker.Database
+namespace GiTracker.Services.Database
 {
     public interface ISQLite
     {

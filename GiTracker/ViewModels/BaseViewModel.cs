@@ -10,7 +10,7 @@ namespace GiTracker.ViewModels
 
 		protected readonly INavigationService _navigationService;
 
-		public BaseViewModel(Loader loader,
+		protected BaseViewModel(Loader loader,
 			INavigationService navigationService)
 		{
 			Loader = loader;

@@ -25,8 +25,8 @@ namespace GiTracker.Controls
 
         public ICommand ItemClickedCommand
         {
-            get { return (ICommand)this.GetValue(ItemClickedCommandProperty); }
-            set { this.SetValue(ItemClickedCommandProperty, value); }
+            get { return (ICommand)GetValue(ItemClickedCommandProperty); }
+            set { SetValue(ItemClickedCommandProperty, value); }
         }
     }
 }

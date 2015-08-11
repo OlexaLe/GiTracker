@@ -1,12 +1,9 @@
-﻿using GiTracker.Models;
-using GiTracker.Services.ServiceProvider;
-using GiTracker.Services.Rest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using GiTracker.Models;
+using GiTracker.Services.Api;
+using GiTracker.Services.Rest;
 
 namespace GiTracker.Services.Issues
 {
@@ -26,7 +23,7 @@ namespace GiTracker.Services.Issues
                 _gitApiProvider.Host, _gitApiProvider.GetIssuesUrl, cancellationToken)
                 .ConfigureAwait(false);
 
-            return issues.Cast<IIssue>();
+            return issues;
         }
     }
 }

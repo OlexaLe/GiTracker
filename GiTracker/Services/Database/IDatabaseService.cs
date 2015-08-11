@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GiTracker.Database
+namespace GiTracker.Services.Database
 {
     public interface IDatabaseService
     {

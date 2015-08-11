@@ -9,13 +9,13 @@ namespace GiTracker.Services.Rest
 {
     class RestService : IRestService
     {
-        const string _userAgent = "XamarinGarage";
+        const string UserAgent = "XamarinGarage";
 
         HttpClient CreateHttpClient(string host)
         {
             var httpClient = new HttpClient { BaseAddress = new Uri(host) };
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(_userAgent);            
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);            
             return httpClient;
         }
 

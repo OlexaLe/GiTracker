@@ -6,7 +6,7 @@ namespace GiTracker.Services.ServiceProvider
 {
     class GitServiceProvider : IGitServiceProvider
     {
-        IUnityContainer _container;
+        readonly IUnityContainer _container;
 
         public GitServiceProvider(IUnityContainer unityContainer)
         {

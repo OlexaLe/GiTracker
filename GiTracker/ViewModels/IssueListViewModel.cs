@@ -61,7 +61,6 @@ namespace GiTracker.ViewModels
         public DelegateCommand UpdateIssuesCommand => 
             _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues)); 
         
-
         async void UpdateIssues()
         {
             await LoadIssuesAsync();

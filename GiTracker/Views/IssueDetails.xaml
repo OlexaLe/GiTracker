@@ -1,15 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:BasePage 
+<pages:BasePage
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="GiTracker.Views.IssueDetails"
   xmlns:pages="clr-namespace:GiTracker.Views"
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-  prism:ViewModelLocator.AutowireViewModel="True">
-  
-  <Label Text="{Binding Issue.Title}" 
-         Style="{StaticResource LargeSimpleLabelStyle}"
-         VerticalOptions="Center" 
-         HorizontalOptions="Center" />
-  
-</pages:BasePage >
+  xmlns:controls="clr-namespace:GiTracker.Controls"
+  xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+  prism:ViewModelLocator.AutowireViewModel="True"
+  Padding="{StaticResource PagePadding}">
+
+  <StackLayout BindingContext="{Binding Issue}">
+
+    <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
+           Style="{StaticResource MediumSimpleLabelStyle}"/>
+
+    <Label Text="{Binding Status}"
+           HorizontalOptions="EndAndExpand"
+           Style="{StaticResource SmallSimpleLabelStyle}"/>
+    
+    <Label Text="{Binding Title}"
+           Style="{StaticResource LargeSimpleLabelStyle}"/>
+
+    <Label Text="{Binding Body}"
+           Style="{StaticResource MediumSimpleLabelStyle}"/>
+
+    <StackLayout HorizontalOptions="EndAndExpand">
+      <Label Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.CreatedAt}}"
+             Style="{StaticResource SmallSimpleLabelStyle}"/>
+      <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
+             Style="{StaticResource SmallSimpleLabelStyle}"/>
+      <Label Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.ClosedAt}}"
+             Style="{StaticResource SmallSimpleLabelStyle}"/>
+    </StackLayout>
+
+    <Label BindingContext="{Binding Author}"
+           Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"
+           Style="{StaticResource SmallSimpleLabelStyle}"/>
+
+    <Label BindingContext="{Binding Assignee}"
+           Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
+           Style="{StaticResource SmallSimpleLabelStyle}"/>
+
+    <!--TODO : make this list multiline and horizontal -->
+    <controls:NiceListView ItemsSource="{Binding Labels}"
+                           IsPullToRefreshEnabled="False">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+
+            <StackLayout Orientation="Horizontal">
+              <BoxView HeightRequest="20"
+                       WidthRequest="40"
+                       VerticalOptions="CenterAndExpand"
+                       BackgroundColor="{Binding Color}"/>
+              <Label Text="{Binding Name}"
+                     VerticalOptions="CenterAndExpand"
+                     Style="{StaticResource SmallSimpleLabelStyle}"/>
+            </StackLayout>
+
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </controls:NiceListView>
+  </StackLayout>
+</pages:BasePage>

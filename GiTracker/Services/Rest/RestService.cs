@@ -27,14 +27,12 @@ namespace GiTracker.Services.Rest
 				{
 					cancellationToken.ThrowIfCancellationRequested();
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        return JsonConvert.DeserializeObject<T>(data);
-                    }
-                    else
+                    if (!response.IsSuccessStatusCode)
                         throw new Exception(response.ToString());
-				}                
+                    
+                    var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject<T>(data);
+                }                
             }
         }
     }

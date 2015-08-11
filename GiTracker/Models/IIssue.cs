@@ -1,4 +1,6 @@
-﻿namespace GiTracker.Models
+﻿using System;
+
+namespace GiTracker.Models
 {
     public interface IIssue
     {
@@ -7,5 +9,12 @@
         string Url { get; }
         string Title { get; }
         string Body { get; }
+        IssueStatus Status { get; }
+        ILabel[] Labels { get; }
+        IUser Author { get; }
+        IUser Assignee { get; }
+        DateTime? CreatedAt { get; }
+        DateTime? UpdatedAt { get; }
+        DateTime? ClosedAt { get; }
     }
 }

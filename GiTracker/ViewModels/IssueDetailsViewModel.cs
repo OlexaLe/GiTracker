@@ -14,6 +14,7 @@ namespace GiTracker.ViewModels
 
         public IssueDetailsViewModel(Loader loader,
 			INavigationService navigationService,
+
             IGitServiceProvider gitServiceProvider)
 			: base(loader, navigationService)
         {

@@ -5,7 +5,7 @@ namespace GiTracker.Models
 {
     public enum IssueStatus
     {
-        [EnumDescription("IssueStatuOpen", typeof(Enums))]
+        [EnumDescription("IssueStatusOpen", typeof(Enums))]
         Open,
 
         [EnumDescription("IssueStatusClosed", typeof(Enums))]

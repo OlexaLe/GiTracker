@@ -46,23 +46,14 @@ namespace GiTracker.Models
 
         [JsonProperty(PropertyName = "created_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime? GitHubCreatedAt { get; set; }
-        
-        [JsonIgnore]
-        public DateTime? CreatedAt => GitHubCreatedAt;
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty(PropertyName = "updated_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime? GitHubUpdatedAt { get; set; }
-
-        [JsonIgnore]
-        public DateTime? UpdatedAt => GitHubUpdatedAt;
+        public DateTime? UpdatedAt { get; set; }
 
         [JsonProperty(PropertyName = "closed_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime? GitHubClosedAt { get; set; }
-
-        [JsonIgnore]
-        public DateTime? ClosedAt => GitHubClosedAt;
+        public DateTime? ClosedAt { get; set; }
     }
 }

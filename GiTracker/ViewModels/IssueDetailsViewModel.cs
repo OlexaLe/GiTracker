@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using GiTracker.Helpers;
 using GiTracker.Models;
@@ -35,7 +34,7 @@ namespace GiTracker.ViewModels
 
             _issue = (IIssue)parameters[IssueParameterName];
 
-            Title = string.Format(IssueDetails.IssueNumber, _issue.Number);\
+            Title = string.Format(IssueDetails.IssueNumber, _issue.Number);
 
             OnPropertyChanged(() => Number);
             OnPropertyChanged(() => Name);

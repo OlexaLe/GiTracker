@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GiTracker.Helpers;
 using GiTracker.Models;
 
 namespace GiTracker.ViewModels
@@ -14,11 +13,11 @@ namespace GiTracker.ViewModels
             _issue = issue;
         }
 
-        public string Number => _issue?.Number.ToString();
+        public int? Number => _issue?.Number;
         public string Url => _issue?.Url;
         public string Title => _issue?.Title;
         public string Body => _issue?.Body;
-        public string Status => _issue?.Status.GetDisplayName();
+        public IssueStatus? Status => _issue?.Status;
         public IEnumerable<ILabel> Labels => _issue?.Labels;
         public IUser Author => _issue?.Author;
         public IUser Assignee => _issue?.Assignee;

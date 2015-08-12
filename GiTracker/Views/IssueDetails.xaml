@@ -11,12 +11,18 @@
   prism:ViewModelLocator.AutowireViewModel="True"
   Padding="{StaticResource PagePadding}">
 
+  <Page.Resources>
+    <ResourceDictionary>
+      <converters:EnumToStringValueConverter x:Key="EnumToStringValueConverter"/>
+    </ResourceDictionary>
+  </Page.Resources>
+  
   <StackLayout BindingContext="{Binding Issue}">
 
     <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
            Style="{StaticResource MediumSimpleLabelStyle}"/>
 
-    <Label Text="{Binding Status}"
+    <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
            HorizontalOptions="EndAndExpand"
            Style="{StaticResource SmallSimpleLabelStyle}"/>
 

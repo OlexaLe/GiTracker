@@ -1,14 +1,16 @@
-﻿using System;
+﻿using GiTracker.Resources.Strings;
+using System;
 using System.Globalization;
+using System.Resources;
 using Xamarin.Forms;
 
 namespace GiTracker.Converters
 {
-    public class StringToColorValueConverter : IValueConverter
+    public class EnumToStringValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Color.FromHex(value.ToString());
+            return value != null ? new ResourceManager(typeof(Enums)).GetString(value.ToString()) : Enums.Unknown;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

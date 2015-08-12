@@ -64,18 +64,27 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
-        public static string IssueStatusClosed {
+        public static string Closed {
             get {
-                return ResourceManager.GetString("IssueStatusClosed", resourceCulture);
+                return ResourceManager.GetString("Closed", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string IssueStatusOpen {
+        public static string Open {
             get {
-                return ResourceManager.GetString("IssueStatusOpen", resourceCulture);
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
     }

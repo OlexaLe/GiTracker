@@ -33,9 +33,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Controls\LabelsList.cs" />
     <Compile Include="Controls\NiceListView.cs" />
-    <Compile Include="Converters\StringToColorValueConverter.cs" />
-    <Compile Include="Helpers\EnumDescriptionAttribute.cs" />
-    <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Converters\EnumToStringValueConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\GitHubLabel.cs" />
     <Compile Include="Models\GitHubUser.cs" />

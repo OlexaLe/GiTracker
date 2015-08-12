@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Controls\NiceListView.cs" />
+    <Compile Include="Converters\StringToColorValueConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\GitHubLabel.cs" />
     <Compile Include="Models\GitHubUser.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
+    <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\IssueDetails.xaml.cs">
       <DependentUpon>IssueDetails.xaml</DependentUpon>

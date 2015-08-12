@@ -7,6 +7,7 @@
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
   xmlns:controls="clr-namespace:GiTracker.Controls"
   xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+  xmlns:converters="clr-namespace:GiTracker.Converters"
   prism:ViewModelLocator.AutowireViewModel="True"
   Padding="{StaticResource PagePadding}">
 
@@ -18,7 +19,7 @@
     <Label Text="{Binding Status}"
            HorizontalOptions="EndAndExpand"
            Style="{StaticResource SmallSimpleLabelStyle}"/>
-    
+
     <Label Text="{Binding Title}"
            Style="{StaticResource LargeSimpleLabelStyle}"/>
 
@@ -45,6 +46,13 @@
     <!--TODO : make this list multiline and horizontal -->
     <controls:NiceListView ItemsSource="{Binding Labels}"
                            IsPullToRefreshEnabled="False">
+
+      <ListView.Resources>
+        <ResourceDictionary>
+          <converters:StringToColorValueConverter x:Key="StringToColorValueConverter"/>
+        </ResourceDictionary>
+      </ListView.Resources>
+
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
@@ -53,7 +61,7 @@
               <BoxView HeightRequest="20"
                        WidthRequest="40"
                        VerticalOptions="CenterAndExpand"
-                       BackgroundColor="{Binding Color}"/>
+                       BackgroundColor="{Binding Color, Converter={StaticResource StringToColorValueConverter}}"/>
               <Label Text="{Binding Name}"
                      VerticalOptions="CenterAndExpand"
                      Style="{StaticResource SmallSimpleLabelStyle}"/>

@@ -5,6 +5,6 @@ namespace GiTracker.Models
     public interface ILabel
     {
         string Name { get; }
-        Color Color { get; }
+        string Color { get; }
     }
 }

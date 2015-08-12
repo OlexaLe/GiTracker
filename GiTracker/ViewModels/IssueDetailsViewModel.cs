@@ -25,11 +25,11 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            Issue = (IIssue)parameters[IssueParameterName];
+            Issue = new IssueViewModel((IIssue)parameters[IssueParameterName]);
         }
 
-        IIssue _issue;
-        public IIssue Issue
+        IssueViewModel _issue;
+        public IssueViewModel Issue
         {
             get { return _issue; }
             private set { SetProperty(ref _issue, value); }

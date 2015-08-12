@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -26,42 +27,42 @@ namespace GiTracker.Models
         public IssueStatus Status { get; set; }
 
         [JsonProperty(PropertyName = "labels")]
-        public GitHubLabel[] _labels { get; set; }
+        public GitHubLabel[] GitHubLabels { get; set; }
 
         [JsonIgnore]
-        public ILabel[] Labels => _labels;
+        public IEnumerable<ILabel> Labels => GitHubLabels;
 
         [JsonProperty(PropertyName = "user")]
-        public GitHubUser _author { get; set; }
+        public GitHubUser GitHubAuthor { get; set; }
 
         [JsonIgnore]
-        public IUser Author => _author;
+        public IUser Author => GitHubAuthor;
 
         [JsonProperty(PropertyName = "assignee")]
-        public GitHubUser _assignee { get; set; }
+        public GitHubUser GitHubAssignee { get; set; }
 
         [JsonIgnore]
-        public IUser Assignee => _assignee;
+        public IUser Assignee => GitHubAssignee;
 
         [JsonProperty(PropertyName = "created_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime? _createdAt { get; set; }
+        public DateTime? GitHubCreatedAt { get; set; }
         
         [JsonIgnore]
-        public DateTime? CreatedAt => _createdAt?.ToLocalTime();
+        public DateTime? CreatedAt => GitHubCreatedAt;
 
         [JsonProperty(PropertyName = "updated_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime? _updatedAt { get; set; }
+        public DateTime? GitHubUpdatedAt { get; set; }
 
         [JsonIgnore]
-        public DateTime? UpdatedAt => _updatedAt?.ToLocalTime();
+        public DateTime? UpdatedAt => GitHubUpdatedAt;
 
         [JsonProperty(PropertyName = "closed_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime? _closedAt { get; set; }
+        public DateTime? GitHubClosedAt { get; set; }
 
         [JsonIgnore]
-        public DateTime? ClosedAt => _closedAt?.ToLocalTime();
+        public DateTime? ClosedAt => GitHubClosedAt;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GiTracker.Models
 {
@@ -10,7 +11,7 @@ namespace GiTracker.Models
         string Title { get; }
         string Body { get; }
         IssueStatus Status { get; }
-        ILabel[] Labels { get; }
+        IEnumerable<ILabel> Labels { get; }
         IUser Author { get; }
         IUser Assignee { get; }
         DateTime? CreatedAt { get; }

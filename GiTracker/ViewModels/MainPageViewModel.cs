@@ -25,7 +25,7 @@ namespace GiTracker.ViewModels
 
         void OpenIssueList()
         {
-            _navigationService.Navigate<IssueListViewModel>();
+            NavigationService.Navigate<IssueListViewModel>();
         }
     }
 }

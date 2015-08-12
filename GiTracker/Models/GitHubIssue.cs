@@ -16,6 +16,9 @@ namespace GiTracker.Models
         [JsonProperty(PropertyName = "url")]
         public string Url { get; set; }
 
+        [JsonProperty(PropertyName = "html_url")]
+        public string WebPage { get; set; }
+
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 

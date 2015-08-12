@@ -4,16 +4,16 @@ using Xamarin.Forms;
 
 namespace GiTracker.Controls
 {
-    public class LabelsList : Label
+    public class IssueLabelsList : Label
     {
-        public LabelsList()
+        public IssueLabelsList()
         {
             // TODO: make some line spacing
             Style = (Style) Application.Current.Resources["SmallSimpleLabelStyle"];
         }
 
         public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<LabelsList, IEnumerable<ILabel>>(p => p.ItemsSource, null, propertyChanged: OnItemsSourcePropertyChanged);
+            BindableProperty.Create<IssueLabelsList, IEnumerable<ILabel>>(p => p.ItemsSource, null, propertyChanged: OnItemsSourcePropertyChanged);
         
         public IEnumerable<ILabel> ItemsSource
         {

@@ -72,7 +72,7 @@ namespace GiTracker.ViewModels
 
         void OpenIssueDetails(IIssue issue)
         {
-            _navigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
+            NavigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
         }
 
         string _pageCenterText;

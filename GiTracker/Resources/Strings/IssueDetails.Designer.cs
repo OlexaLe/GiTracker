@@ -114,5 +114,14 @@ namespace GiTracker.Resources.Strings {
                 return ResourceManager.GetString("UpdatedAt", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in browser.
+        /// </summary>
+        public static string ViewInBrowser {
+            get {
+                return ResourceManager.GetString("ViewInBrowser", resourceCulture);
+            }
+        }
     }
 }

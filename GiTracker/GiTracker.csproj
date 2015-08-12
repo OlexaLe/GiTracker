@@ -31,7 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Controls\LabelsList.cs" />
+    <Compile Include="Controls\IssueLabelsList.cs" />
+    <Compile Include="Controls\NiceLabel.cs" />
     <Compile Include="Controls\NiceListView.cs" />
     <Compile Include="Converters\EnumToStringValueConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
-    <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\IssueDetails.xaml.cs">
       <DependentUpon>IssueDetails.xaml</DependentUpon>

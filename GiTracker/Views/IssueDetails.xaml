@@ -17,7 +17,7 @@
     </ResourceDictionary>
   </Page.Resources>
   
-  <StackLayout BindingContext="{Binding Issue}">
+  <StackLayout>
 
     <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
            Style="{StaticResource MediumSimpleLabelStyle}"/>
@@ -26,7 +26,7 @@
            HorizontalOptions="EndAndExpand"
            Style="{StaticResource SmallSimpleLabelStyle}"/>
 
-    <Label Text="{Binding Title}"
+    <Label Text="{Binding Name}"
            Style="{StaticResource LargeSimpleLabelStyle}"/>
 
     <Label Text="{Binding Body}"
@@ -49,8 +49,16 @@
            Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
            Style="{StaticResource SmallSimpleLabelStyle}"/>
 
-    <!--TODO : make this list multiline and horizontal -->
-    <controls:LabelsList ItemsSource="{Binding Labels}"/>
-    
+    <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
+
+    <controls:NiceLabel Text="{x:Static localization:IssueDetails.ViewInBrowser}"
+                        IsUnderlined="{Binding A}"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource SmallSimpleLabelStyle}">
+      <Label.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding OpenInBrowserCommand}" />        
+      </Label.GestureRecognizers>
+    </controls:NiceLabel>
+
   </StackLayout>
 </pages:BasePage>

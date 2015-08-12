@@ -135,4 +135,7 @@
   <data name="UpdatedAt" xml:space="preserve">
     <value>Updated at {0:g}</value>
   </data>
+  <data name="ViewInBrowser" xml:space="preserve">
+    <value>View in browser</value>
+  </data>
 </root>

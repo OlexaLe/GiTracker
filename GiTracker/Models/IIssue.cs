@@ -8,6 +8,7 @@ namespace GiTracker.Models
         int Id { get; }
         int Number { get; }
         string Url { get; }
+        string WebPage { get; }
         string Title { get; }
         string Body { get; }
         IssueStatus Status { get; }

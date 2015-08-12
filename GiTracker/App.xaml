@@ -7,7 +7,8 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="SimpleTextColor">#dddddd</Color>
+            <Color x:Key="LightTextColor">#dddddd</Color>
+            <Color x:Key="DarkTextColor">#222222</Color>
 
             <Thickness x:Key="PagePadding">20</Thickness>
             <Thickness x:Key="ListItemPadding">20,6</Thickness>
@@ -15,7 +16,7 @@
             <Style 
                 x:Key="SimpleLabelStyle"
                 TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource SimpleTextColor}" />
+                <Setter Property="TextColor" Value="{StaticResource LightTextColor}" />
             </Style>
 
             <Style 

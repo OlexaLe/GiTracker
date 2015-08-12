@@ -44,32 +44,7 @@
            Style="{StaticResource SmallSimpleLabelStyle}"/>
 
     <!--TODO : make this list multiline and horizontal -->
-    <controls:NiceListView ItemsSource="{Binding Labels}"
-                           IsPullToRefreshEnabled="False">
-
-      <ListView.Resources>
-        <ResourceDictionary>
-          <converters:StringToColorValueConverter x:Key="StringToColorValueConverter"/>
-        </ResourceDictionary>
-      </ListView.Resources>
-
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-
-            <StackLayout Orientation="Horizontal">
-              <BoxView HeightRequest="20"
-                       WidthRequest="40"
-                       VerticalOptions="CenterAndExpand"
-                       BackgroundColor="{Binding Color, Converter={StaticResource StringToColorValueConverter}}"/>
-              <Label Text="{Binding Name}"
-                     VerticalOptions="CenterAndExpand"
-                     Style="{StaticResource SmallSimpleLabelStyle}"/>
-            </StackLayout>
-
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </controls:NiceListView>
+    <controls:LabelsList ItemsSource="{Binding Labels}"/>
+    
   </StackLayout>
 </pages:BasePage>

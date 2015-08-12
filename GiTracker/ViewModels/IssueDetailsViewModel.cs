@@ -1,5 +1,6 @@
 ﻿using GiTracker.Helpers;
 using GiTracker.Models;
+using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
 using GiTracker.Services.ServiceProvider;
 using Prism.Navigation;
@@ -26,6 +27,7 @@ namespace GiTracker.ViewModels
             base.OnNavigatedTo(parameters);
 
             Issue = new IssueViewModel((IIssue)parameters[IssueParameterName]);
+            Title = string.Format(IssueDetails.IssueNumber, Issue.Number);
         }
 
         IssueViewModel _issue;

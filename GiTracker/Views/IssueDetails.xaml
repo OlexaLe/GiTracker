@@ -52,7 +52,7 @@
     <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
 
     <controls:NiceLabel Text="{x:Static localization:IssueDetails.ViewInBrowser}"
-                        IsUnderlined="{Binding A}"
+                        IsUnderlined="True"
                         HorizontalOptions="EndAndExpand"
                         Style="{StaticResource SmallSimpleLabelStyle}">
       <Label.GestureRecognizers>

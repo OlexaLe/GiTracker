@@ -35,8 +35,8 @@ namespace GiTracker.ViewModels
 
             _issue = (IIssue)parameters[IssueParameterName];
 
-            Title = string.Format(IssueDetails.IssueNumber, _issue.Number);
-            Asd();
+            Title = string.Format(IssueDetails.IssueNumber, _issue.Number);\
+
             OnPropertyChanged(() => Number);
             OnPropertyChanged(() => Name);
             OnPropertyChanged(() => Body);
@@ -67,22 +67,5 @@ namespace GiTracker.ViewModels
             _openInBrowserCommand ?? (_openInBrowserCommand = new DelegateCommand(OpenInBrowser));
 
         void OpenInBrowser() => Device.OpenUri(new Uri(_issue?.WebPage));
-
-
-        async void Asd()
-        {
-            A = true;
-            await Task.Delay(2000);
-            A = false;
-            await Task.Delay(2000);
-            A = true;
-        }
-
-        bool _a;
-        public bool A
-        {
-            get { return _a; }
-            protected set { SetProperty(ref _a, value); }
-        }
     }
 }

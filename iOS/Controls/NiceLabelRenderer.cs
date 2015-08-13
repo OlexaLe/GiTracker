@@ -20,6 +20,8 @@ namespace GiTracker.iOS.Controls
         void Underline()
         {
             if (Control == null || (Element as NiceLabel) == null) return;
+
+            // TODO: implement text underlining
         }
     }
 }

@@ -36,7 +36,7 @@ namespace GiTracker.Controls
                 formattedString.Spans.Add(new Span
                 {
                     Text = $"\u00A0{label.Name}\u00A0",
-                    ForegroundColor = (Color)Application.Current.Resources[(color.Hue > 0 ? "LightTextColor" : "DarkTextColor")],
+                    ForegroundColor = (Color)Application.Current.Resources[(color.Hue > 0 ? "PrimaryLightTextColor" : "PrimaryDarkTextColor")],
                     BackgroundColor = color,
                 });
                 formattedString.Spans.Add(new Span

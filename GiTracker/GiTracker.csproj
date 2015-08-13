@@ -35,6 +35,7 @@
     <Compile Include="Controls\NiceLabel.cs" />
     <Compile Include="Controls\NiceListView.cs" />
     <Compile Include="Converters\EnumToStringValueConverter.cs" />
+    <Compile Include="Converters\IssueStatusToColorConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\GitHubLabel.cs" />
     <Compile Include="Models\GitHubUser.cs" />

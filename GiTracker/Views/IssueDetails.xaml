@@ -14,51 +14,85 @@
   <Page.Resources>
     <ResourceDictionary>
       <converters:EnumToStringValueConverter x:Key="EnumToStringValueConverter"/>
+      <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter"/>
     </ResourceDictionary>
   </Page.Resources>
-  
-  <StackLayout>
 
-    <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
-           Style="{StaticResource MediumSimpleLabelStyle}"/>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
 
-    <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
-           HorizontalOptions="EndAndExpand"
-           Style="{StaticResource SmallSimpleLabelStyle}"/>
+    <StackLayout>
 
-    <Label Text="{Binding Name}"
-           Style="{StaticResource LargeSimpleLabelStyle}"/>
+      <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
+             Style="{StaticResource MediumSimpleLabelStyle}"/>
 
-    <Label Text="{Binding Body}"
-           Style="{StaticResource MediumSimpleLabelStyle}"/>
+      <Label Text="{Binding Name}"
+             Style="{StaticResource LargeSimpleLabelStyle}"/>
 
-    <StackLayout HorizontalOptions="EndAndExpand">
-      <Label Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.CreatedAt}}"
-             Style="{StaticResource SmallSimpleLabelStyle}"/>
-      <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
-             Style="{StaticResource SmallSimpleLabelStyle}"/>
-      <Label Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.ClosedAt}}"
-             Style="{StaticResource SmallSimpleLabelStyle}"/>
+      <Grid>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ContentView BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
+                     Padding="6">
+          <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
+                 TextColor="{StaticResource PrimaryLightTextColor}"
+                 Style="{StaticResource SmallSimpleLabelStyle}"
+                 YAlign="Center"/>
+        </ContentView>
+
+        <Label Grid.Column="1"
+               BindingContext="{Binding Author}"
+               YAlign="Center"
+               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+
+        <Label Grid.Column="2"
+               Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.CreatedAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"
+               YAlign="Center"/>
+      </Grid>
+
+      <Label Text="{Binding Body}"
+             IsVisible="{Binding HasBody}"
+             Style="{StaticResource MediumSimpleLabelStyle}"/>
     </StackLayout>
 
-    <Label BindingContext="{Binding Author}"
-           Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"
-           Style="{StaticResource SmallSimpleLabelStyle}"/>
+    <StackLayout Grid.Row="1">
 
-    <Label BindingContext="{Binding Assignee}"
-           Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
-           Style="{StaticResource SmallSimpleLabelStyle}"/>
+      <StackLayout HorizontalOptions="EndAndExpand">
+        <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+        <Label Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.ClosedAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+      </StackLayout>
 
-    <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
+      <Label BindingContext="{Binding Assignee}"
+             Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
+             Style="{StaticResource SmallSimpleLabelStyle}"/>
 
-    <controls:NiceLabel Text="{x:Static localization:IssueDetails.ViewInBrowser}"
-                        IsUnderlined="True"
-                        HorizontalOptions="EndAndExpand"
-                        Style="{StaticResource SmallSimpleLabelStyle}">
-      <Label.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding OpenInBrowserCommand}" />        
-      </Label.GestureRecognizers>
-    </controls:NiceLabel>
+    </StackLayout>
 
-  </StackLayout>
+    <StackLayout Grid.Row="2">
+      <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
+
+      <!--TODO: think of moving this to tool bar items-->
+      <controls:NiceLabel Text="{x:Static localization:IssueDetails.ViewInBrowser}"
+                          HorizontalOptions="EndAndExpand"
+                          Style="{StaticResource SmallSimpleLabelStyle}"
+                          IsUnderlined="True">
+        <Label.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding OpenInBrowserCommand}" />
+        </Label.GestureRecognizers>
+      </controls:NiceLabel>
+    </StackLayout>
+  </Grid>
 </pages:BasePage>

@@ -124,10 +124,10 @@
     <value>Closed at {0:g}</value>
   </data>
   <data name="CreatedAt" xml:space="preserve">
-    <value>Created at {0:g}</value>
+    <value>{0:g}</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Created by {0}</value>
+    <value>{0} opened this issue at</value>
   </data>
   <data name="IssueNumber" xml:space="preserve">
     <value>Issue #{0}</value>

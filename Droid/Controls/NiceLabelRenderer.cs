@@ -10,6 +10,13 @@ namespace GiTracker.Droid.Controls
 {
     public class NiceLabelRenderer : LabelRenderer
     {
+        protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
+        {
+            base.OnElementChanged(e);
+
+            Underline();
+        }
+
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);

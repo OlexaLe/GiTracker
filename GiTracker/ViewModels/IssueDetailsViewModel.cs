@@ -39,6 +39,7 @@ namespace GiTracker.ViewModels
             OnPropertyChanged(() => Number);
             OnPropertyChanged(() => Name);
             OnPropertyChanged(() => Body);
+            OnPropertyChanged(() => HasBody);
             OnPropertyChanged(() => Url);
             OnPropertyChanged(() => Status);
             OnPropertyChanged(() => Labels);
@@ -52,6 +53,7 @@ namespace GiTracker.ViewModels
         public int? Number => _issue?.Number;
         public string Name => _issue?.Title;
         public string Body => _issue?.Body;
+        public bool HasBody => !string.IsNullOrEmpty(Body);
         public string Url => _issue?.Url;
         public IssueStatus? Status => _issue?.Status;
         public IEnumerable<ILabel> Labels => _issue?.Labels;

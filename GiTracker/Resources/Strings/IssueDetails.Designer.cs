@@ -80,7 +80,7 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created at {0:g}.
+        ///   Looks up a localized string similar to {0:g}.
         /// </summary>
         public static string CreatedAt {
             get {
@@ -89,7 +89,7 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created by {0}.
+        ///   Looks up a localized string similar to {0} opened this issue at.
         /// </summary>
         public static string CreatedBy {
             get {

@@ -8,14 +8,14 @@ namespace GiTracker.ViewModels
     {
 		public Loader Loader { get; private set; }
 
-		protected readonly INavigationService _navigationService;
+		protected readonly INavigationService NavigationService;
 
-		public BaseViewModel(Loader loader,
+		protected BaseViewModel(Loader loader,
 			INavigationService navigationService)
 		{
 			Loader = loader;
 
-			_navigationService = navigationService;
+			NavigationService = navigationService;
 		}
 
         string _title;

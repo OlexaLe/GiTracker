@@ -23,14 +23,14 @@ namespace GiTracker.Resources.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Shared {
+    public class Enums {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Shared() {
+        internal Enums() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace GiTracker.Resources.Strings {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.Shared", typeof(Shared).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.Enums", typeof(Enums).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,29 +62,29 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GiTracker.
+        ///   Looks up a localized string similar to Closed.
         /// </summary>
-        public static string AppName {
+        public static string Closed {
             get {
-                return ResourceManager.GetString("AppName", resourceCulture);
+                return ResourceManager.GetString("Closed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading....
+        ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string Loading {
+        public static string Open {
             get {
-                return ResourceManager.GetString("Loading", resourceCulture);
+                return ResourceManager.GetString("Open", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
+        ///   Looks up a localized string similar to Unknown.
         /// </summary>
-        public static string Ok {
+        public static string Unknown {
             get {
-                return ResourceManager.GetString("Ok", resourceCulture);
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
     }

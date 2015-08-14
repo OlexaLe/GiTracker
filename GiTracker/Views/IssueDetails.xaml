@@ -1,15 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:BasePage 
+<pages:BasePage
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="GiTracker.Views.IssueDetails"
   xmlns:pages="clr-namespace:GiTracker.Views"
 	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-  prism:ViewModelLocator.AutowireViewModel="True">
-  
-  <Label Text="{Binding Issue.Title}" 
-         Style="{StaticResource LargeSimpleLabelStyle}"
-         VerticalOptions="Center" 
-         HorizontalOptions="Center" />
-  
-</pages:BasePage >
+  xmlns:controls="clr-namespace:GiTracker.Controls"
+  xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+  xmlns:converters="clr-namespace:GiTracker.Converters"
+  prism:ViewModelLocator.AutowireViewModel="True"
+  Padding="{StaticResource PagePadding}">
+
+  <Page.Resources>
+    <ResourceDictionary>
+      <converters:EnumToStringValueConverter x:Key="EnumToStringValueConverter"/>
+      <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter"/>
+    </ResourceDictionary>
+  </Page.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <StackLayout>
+
+      <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
+             Style="{StaticResource MediumSimpleLabelStyle}"/>
+
+      <Label Text="{Binding Name}"
+             Style="{StaticResource LargeSimpleLabelStyle}"/>
+
+      <Grid>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ContentView BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
+                     Padding="6">
+          <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
+                 TextColor="{StaticResource PrimaryLightTextColor}"
+                 Style="{StaticResource SmallSimpleLabelStyle}"
+                 YAlign="Center"/>
+        </ContentView>
+
+        <Label Grid.Column="1"
+               BindingContext="{Binding Author}"
+               YAlign="Center"
+               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+
+        <Label Grid.Column="2"
+               Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.CreatedAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"
+               YAlign="Center"/>
+      </Grid>
+
+      <Label Text="{Binding Body}"
+             IsVisible="{Binding HasBody}"
+             Style="{StaticResource MediumSimpleLabelStyle}"/>
+    </StackLayout>
+
+    <StackLayout Grid.Row="1">
+
+      <StackLayout HorizontalOptions="EndAndExpand">
+        <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+        <Label Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.ClosedAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+      </StackLayout>
+
+      <Label BindingContext="{Binding Assignee}"
+             Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
+             Style="{StaticResource SmallSimpleLabelStyle}"/>
+
+    </StackLayout>
+
+    <StackLayout Grid.Row="2">
+      <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
+
+      <!--TODO: think of moving this to tool bar items-->
+      <controls:NiceLabel Text="{x:Static localization:IssueDetails.ViewInBrowser}"
+                          HorizontalOptions="EndAndExpand"
+                          Style="{StaticResource SmallSimpleLabelStyle}"
+                          IsUnderlined="True">
+        <Label.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding OpenInBrowserCommand}" />
+        </Label.GestureRecognizers>
+      </controls:NiceLabel>
+    </StackLayout>
+  </Grid>
+</pages:BasePage>

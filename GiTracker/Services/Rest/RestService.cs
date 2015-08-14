@@ -9,13 +9,13 @@ namespace GiTracker.Services.Rest
 {
     class RestService : IRestService
     {
-        const string _userAgent = "XamarinGarage";
+        const string UserAgent = "XamarinGarage";
 
         HttpClient CreateHttpClient(string host)
         {
             var httpClient = new HttpClient { BaseAddress = new Uri(host) };
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(_userAgent);            
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);            
             return httpClient;
         }
 
@@ -27,14 +27,12 @@ namespace GiTracker.Services.Rest
 				{
 					cancellationToken.ThrowIfCancellationRequested();
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        return JsonConvert.DeserializeObject<T>(data);
-                    }
-                    else
+                    if (!response.IsSuccessStatusCode)
                         throw new Exception(response.ToString());
-				}                
+                    
+                    var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject<T>(data);
+                }                
             }
         }
     }

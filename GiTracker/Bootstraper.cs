@@ -1,5 +1,5 @@
-﻿using GiTracker.Database;
-using GiTracker.Helpers;
+﻿using GiTracker.Helpers;
+using GiTracker.Services.Database;
 using GiTracker.Services.Dialogs;
 using GiTracker.Services.Issues;
 using GiTracker.Services.Rest;
@@ -20,7 +20,7 @@ namespace GiTracker
 
         protected override void RegisterTypes ()
 		{
-            Container.RegisterInstance<IUnityContainer>(Container);
+            Container.RegisterInstance(Container);
 
             Container.RegisterTypeForNavigation<IssueList, IssueListViewModel>();
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();

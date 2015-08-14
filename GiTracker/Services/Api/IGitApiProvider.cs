@@ -1,4 +1,4 @@
-﻿namespace GiTracker.Services.ServiceProvider
+﻿namespace GiTracker.Services.Api
 {
     public interface IGitApiProvider
     {

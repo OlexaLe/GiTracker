@@ -23,14 +23,14 @@ namespace GiTracker.Resources.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Shared {
+    public class IssueDetails {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Shared() {
+        internal IssueDetails() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace GiTracker.Resources.Strings {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.Shared", typeof(Shared).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.IssueDetails", typeof(IssueDetails).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,29 +62,65 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GiTracker.
+        ///   Looks up a localized string similar to Assignee {0}.
         /// </summary>
-        public static string AppName {
+        public static string AssignedTo {
             get {
-                return ResourceManager.GetString("AppName", resourceCulture);
+                return ResourceManager.GetString("AssignedTo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading....
+        ///   Looks up a localized string similar to Closed at {0:g}.
         /// </summary>
-        public static string Loading {
+        public static string ClosedAt {
             get {
-                return ResourceManager.GetString("Loading", resourceCulture);
+                return ResourceManager.GetString("ClosedAt", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
+        ///   Looks up a localized string similar to {0:g}.
         /// </summary>
-        public static string Ok {
+        public static string CreatedAt {
             get {
-                return ResourceManager.GetString("Ok", resourceCulture);
+                return ResourceManager.GetString("CreatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} opened this issue at.
+        /// </summary>
+        public static string CreatedBy {
+            get {
+                return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issue #{0}.
+        /// </summary>
+        public static string IssueNumber {
+            get {
+                return ResourceManager.GetString("IssueNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated at {0:g}.
+        /// </summary>
+        public static string UpdatedAt {
+            get {
+                return ResourceManager.GetString("UpdatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in browser.
+        /// </summary>
+        public static string ViewInBrowser {
+            get {
+                return ResourceManager.GetString("ViewInBrowser", resourceCulture);
             }
         }
     }

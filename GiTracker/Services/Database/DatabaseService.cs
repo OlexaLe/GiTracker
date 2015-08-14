@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SQLite;
 
-namespace GiTracker.Database
+namespace GiTracker.Services.Database
 {
     public class DatabaseService : IDatabaseService
     {

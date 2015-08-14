@@ -48,7 +48,7 @@ namespace GiTracker.ViewModels
             PageCenterText = Shared.Loading;
 
             Issues?.Clear();
-            await Loader.LoadAsync(async (cancellationToken) =>
+            await Loader.LoadAsync(async cancellationToken =>
             {
                 var issues = await _issueService.GetIssuesAsync(cancellationToken);
                 Issues = new ObservableCollection<IIssue>(issues);
@@ -58,25 +58,21 @@ namespace GiTracker.ViewModels
         }
 
         DelegateCommand _updateIssuesCommand;
-        public DelegateCommand UpdateIssuesCommand
-        {
-            get { return _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues)); }
-        }
-
+        public DelegateCommand UpdateIssuesCommand => 
+            _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues)); 
+        
         async void UpdateIssues()
         {
             await LoadIssuesAsync();
         }
 
         DelegateCommand<IIssue> _openIssueDetailsCommand;
-        public DelegateCommand<IIssue> OpenIssueDetailsCommand
-        {
-            get { return _openIssueDetailsCommand ?? (_openIssueDetailsCommand = new DelegateCommand<IIssue>(OpenIssueDetails)); }
-        }
+        public DelegateCommand<IIssue> OpenIssueDetailsCommand =>
+            _openIssueDetailsCommand ?? (_openIssueDetailsCommand = new DelegateCommand<IIssue>(OpenIssueDetails)); 
 
         void OpenIssueDetails(IIssue issue)
         {
-            _navigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
+            NavigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
         }
 
         string _pageCenterText;

@@ -1,8 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using GiTracker.iOS.Injections;
-using GiTracker.Database;
 using System.IO;
+using GiTracker.Services.Database;
 
 [assembly: Dependency (typeof(SQLiteTouch))]
 

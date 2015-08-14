@@ -1,10 +1,7 @@
-﻿using System;
-using Prism.Mvvm;
-using GiTracker.Database;
-using GiTracker.Services.ServiceProvider;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using Prism.Commands;
 using GiTracker.Helpers;
+using GiTracker.Services.Database;
 
 namespace GiTracker.ViewModels
 {
@@ -23,14 +20,12 @@ namespace GiTracker.ViewModels
         }
 
         DelegateCommand _openIssueListCommand;
-        public DelegateCommand OpenIssueListCommand
-        {
-            get { return _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList)); }
-        }
+        public DelegateCommand OpenIssueListCommand => 
+            _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList)); 
 
         void OpenIssueList()
         {
-            _navigationService.Navigate<IssueListViewModel>();
+            NavigationService.Navigate<IssueListViewModel>();
         }
     }
 }

@@ -6,19 +6,26 @@ namespace GiTracker.ViewModels
 {
     public abstract class BaseViewModel : BindableBase, INavigationAware
     {
-		public Loader Loader { get; private set; }
+        protected readonly INavigationService NavigationService;
+        private bool _isLoading;
+        private string _title;
 
-		protected readonly INavigationService NavigationService;
+        protected BaseViewModel(Loader loader,
+            INavigationService navigationService)
+        {
+            Loader = loader;
+            Loader.LoadinChanged += (sender, args) => IsLoading = Loader.IsLoading;
+            NavigationService = navigationService;
+        }
 
-		protected BaseViewModel(Loader loader,
-			INavigationService navigationService)
-		{
-			Loader = loader;
+        protected Loader Loader { get; }
 
-			NavigationService = navigationService;
-		}
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            protected set { SetProperty(ref _isLoading, value); }
+        }
 
-        string _title;
         public string Title
         {
             get { return _title; }
@@ -27,12 +34,10 @@ namespace GiTracker.ViewModels
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
-
         }
 
         public virtual void OnNavigatedTo(NavigationParameters parameters)
         {
-
         }
     }
 }

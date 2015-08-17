@@ -1,41 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:BasePage
-  xmlns="http://xamarin.com/schemas/2014/forms"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  x:Class="GiTracker.Views.IssueList"
-  xmlns:pages="clr-namespace:GiTracker.Views"
-  xmlns:controls="clr-namespace:GiTracker.Controls"
-	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-  prism:ViewModelLocator.AutowireViewModel="True">
+﻿<?xml version="1.0" encoding="utf-8"?>
 
-  <Grid>
-    <Label 
-      Text="{Binding PageCenterText}"
-      Style="{StaticResource PageCenterLabelStyle}"/>
-    
-    <controls:NiceListView 
-      ItemsSource="{Binding Issues}"
-      ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
-      RefreshCommand="{Binding UpdateIssuesCommand}"
-      IsRefreshing="{Binding Loader.IsLoading, Mode=OneWay}">
-    
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Padding="{StaticResource ListItemPadding}">
-            
-              <Label Text="{Binding Title}"
-                     Style="{StaticResource MediumSimpleLabelStyle}"
-                     LineBreakMode = "TailTruncation"/>
-            
-              <Label Text="{Binding Number}"
-                     Style="{StaticResource SmallSimpleLabelStyle}"/>
-          
-            </StackLayout>    
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-  
-    </controls:NiceListView>
-  </Grid>
+<pages:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GiTracker.Views.IssueList"
+    xmlns:pages="clr-namespace:GiTracker.Views"
+    xmlns:controls="clr-namespace:GiTracker.Controls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True">
+
+    <Grid>
+        <Label
+            Text="{Binding PageCenterText}"
+            Style="{StaticResource PageCenterLabelStyle}" />
+
+        <controls:NiceListView
+            ItemsSource="{Binding Issues}"
+            ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
+            RefreshCommand="{Binding UpdateIssuesCommand}"
+            IsRefreshing="{Binding IsLoading, Mode=OneWay}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="{StaticResource ListItemPadding}">
+
+                            <Label Text="{Binding Title}"
+                                   Style="{StaticResource MediumSimpleLabelStyle}"
+                                   LineBreakMode="TailTruncation" />
+
+                            <Label Text="{Binding Number}"
+                                   Style="{StaticResource SmallSimpleLabelStyle}" />
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </controls:NiceListView>
+    </Grid>
 </pages:BasePage>

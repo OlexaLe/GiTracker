@@ -8,7 +8,7 @@ namespace GiTracker.Droid
         Icon = "@drawable/icon", 
         MainLauncher = true, 
         // TODO: check whether this works on Android 4+
-        Theme = "@android:style/Theme.Material.Light.DarkActionBar",
+        Theme = "@style/GiTrackerTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {

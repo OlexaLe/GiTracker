@@ -6,6 +6,7 @@ using GiTracker.Services.ServiceProvider;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GiTracker.ViewModels
@@ -36,8 +37,8 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        ObservableCollection<IIssue> _issues;
-        public ObservableCollection<IIssue> Issues
+        ObservableCollection<IssueViewModel> _issues;
+        public ObservableCollection<IssueViewModel> Issues
         {
             get { return _issues; }
             private set { SetProperty(ref _issues, value); }
@@ -51,7 +52,7 @@ namespace GiTracker.ViewModels
             await Loader.LoadAsync(async cancellationToken =>
             {
                 var issues = await _issueService.GetIssuesAsync(cancellationToken);
-                Issues = new ObservableCollection<IIssue>(issues);
+                Issues = new ObservableCollection<IssueViewModel>(issues.Select(issue => new IssueViewModel(issue)));
             });
 
             PageCenterText = string.Empty;
@@ -66,13 +67,13 @@ namespace GiTracker.ViewModels
             await LoadIssuesAsync();
         }
 
-        DelegateCommand<IIssue> _openIssueDetailsCommand;
-        public DelegateCommand<IIssue> OpenIssueDetailsCommand =>
-            _openIssueDetailsCommand ?? (_openIssueDetailsCommand = new DelegateCommand<IIssue>(OpenIssueDetails)); 
+        DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
+        public DelegateCommand<IssueViewModel> OpenIssueDetailsCommand =>
+            _openIssueDetailsCommand ?? (_openIssueDetailsCommand = new DelegateCommand<IssueViewModel>(OpenIssueDetails)); 
 
-        void OpenIssueDetails(IIssue issue)
+        void OpenIssueDetails(IssueViewModel issueViewModel)
         {
-            NavigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issue } });
+            NavigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issueViewModel } });
         }
 
         string _pageCenterText;

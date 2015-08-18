@@ -56,6 +56,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IssueDetails.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings\IssueList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IssueList.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Strings\Shared.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -75,6 +80,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
+    <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\IssueDetails.xaml.cs">
       <DependentUpon>IssueDetails.xaml</DependentUpon>
@@ -153,6 +159,10 @@
     <EmbeddedResource Include="Resources\Strings\IssueDetails.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IssueDetails.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings\IssueList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IssueList.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

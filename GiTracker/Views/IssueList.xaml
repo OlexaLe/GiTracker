@@ -1,42 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <pages:BasePage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="GiTracker.Views.IssueList"
-    xmlns:pages="clr-namespace:GiTracker.Views"
-    xmlns:controls="clr-namespace:GiTracker.Controls"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    prism:ViewModelLocator.AutowireViewModel="True">
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="GiTracker.Views.IssueList"
+  xmlns:pages="clr-namespace:GiTracker.Views"
+  xmlns:controls="clr-namespace:GiTracker.Controls"
+  xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+  prism:ViewModelLocator.AutowireViewModel="True">
 
-    <Grid>
-        <Label
-            Text="{Binding PageCenterText}"
-            Style="{StaticResource PageCenterLabelStyle}" />
+  <Grid>
+    <Label
+        Text="{Binding PageCenterText}"
+        Style="{StaticResource PageCenterLabelStyle}" />
 
-        <controls:NiceListView
-            ItemsSource="{Binding Issues}"
-            ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
-            RefreshCommand="{Binding UpdateIssuesCommand}"
-            IsRefreshing="{Binding IsLoading, Mode=OneWay}">
+    <controls:NiceListView
+        ItemsSource="{Binding Issues}"
+        ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
+        RefreshCommand="{Binding UpdateIssuesCommand}"
+        IsRefreshing="{Binding IsLoading, Mode=OneWay}">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="{StaticResource ListItemPadding}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="{StaticResource ListItemPadding}">
 
-                            <Label Text="{Binding Title}"
-                                   Style="{StaticResource MediumSimpleLabelStyle}"
-                                   LineBreakMode="TailTruncation" />
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Number}"
-                                   Style="{StaticResource SmallSimpleLabelStyle}" />
+                <Label Text="{Binding Title}"
+                       Style="{StaticResource MediumSimpleLabelStyle}"
+                       LineBreakMode="TailTruncation" />
+                <Label Grid.Column="1"
+                       Text="{Binding Number, StringFormat='#{0}'}"
+                       Style="{StaticResource SmallSimpleLabelStyle}"
+                       YAlign="Center"/>
+              </Grid>
 
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+              <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueList.Opened}}"
+                       Style="{StaticResource SmallSimpleLabelStyle}" />
 
-        </controls:NiceListView>
-    </Grid>
+                <Label BindingContext="{Binding Author}"
+                       Text="{Binding Login, StringFormat={x:Static localization:IssueList.OpenedBy}}"
+                       Style="{StaticResource SmallSimpleLabelStyle}" />
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
+    </controls:NiceListView>
+  </Grid>
 </pages:BasePage>

@@ -18,19 +18,18 @@
     </ResourceDictionary>
   </Page.Resources>
 
-  <Grid>
+  <Grid >
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
-    <StackLayout>
+    <StackLayout BindingContext="{Binding Issue}">
 
       <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
              Style="{StaticResource MediumSimpleLabelStyle}"/>
 
-      <Label Text="{Binding Name}"
+      <Label Text="{Binding Title}"
              Style="{StaticResource LargeSimpleLabelStyle}"/>
 
       <Grid>
@@ -64,9 +63,7 @@
       <Label Text="{Binding Body}"
              IsVisible="{Binding HasBody}"
              Style="{StaticResource MediumSimpleLabelStyle}"/>
-    </StackLayout>
 
-    <StackLayout Grid.Row="1">
 
       <StackLayout HorizontalOptions="EndAndExpand">
         <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
@@ -79,20 +76,19 @@
              Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
              Style="{StaticResource SmallSimpleLabelStyle}"/>
 
-    </StackLayout>
-
-    <StackLayout Grid.Row="2">
       <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
 
-      <!--TODO: think of moving this to tool bar items-->
-      <controls:NiceLabel Text="{x:Static localization:IssueDetails.ViewInBrowser}"
-                          HorizontalOptions="EndAndExpand"
-                          Style="{StaticResource SmallSimpleLabelStyle}"
-                          IsUnderlined="True">
-        <Label.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding OpenInBrowserCommand}" />
-        </Label.GestureRecognizers>
-      </controls:NiceLabel>
     </StackLayout>
+
+    <!--TODO: think of moving this to tool bar items-->
+    <controls:NiceLabel Grid.Row="1" 
+                        Text="{x:Static localization:IssueDetails.ViewInBrowser}"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource SmallSimpleLabelStyle}"
+                        IsUnderlined="True">
+      <Label.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding OpenInBrowserCommand}" />
+      </Label.GestureRecognizers>
+    </controls:NiceLabel>
   </Grid>
 </pages:BasePage>

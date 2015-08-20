@@ -34,6 +34,7 @@
     <Compile Include="Controls\IssueLabelsList.cs" />
     <Compile Include="Controls\NiceLabel.cs" />
     <Compile Include="Controls\NiceListView.cs" />
+    <Compile Include="Controls\UserControl.cs" />
     <Compile Include="Converters\EnumToStringValueConverter.cs" />
     <Compile Include="Converters\IssueStatusToColorConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />

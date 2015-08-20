@@ -31,5 +31,7 @@ namespace GiTracker.ViewModels
         public DateTime? CreatedAt => _issue?.CreatedAt?.ToLocalTime();
         public DateTime? UpdatedAt => _issue?.UpdatedAt?.ToLocalTime();
         public DateTime? ClosedAt => _issue?.ClosedAt?.ToLocalTime();
+        public bool HasClosedAt => ClosedAt != null;
+        public bool HasComments => _issue?.CommentsCount > 0;
     }
 }

@@ -44,62 +44,42 @@
 
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:UserControl ImageUrl="{Binding Author.AvatarUrl}"
+                              Text="{Binding Author.Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"/>
+
+        <Label Grid.Column="1"
+               Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.TimeAt}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"
+               YAlign="Center"/>
+      </Grid>
+
+      <controls:UserControl IsVisible="{Binding HasAssignee}"
+                            ImageUrl="{Binding Assignee.AvatarUrl}"
+                            Text="{Binding Assignee.Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"/>
+      <Grid>
+
+        <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image BindingContext="{Binding Author}"
-               Source="{Binding AvatarUrl}"
-               Style="{StaticResource AvatarStyle}"/>
+        <controls:UserControl IsVisible="{Binding HasClosedBy}"
+                              ImageUrl="{Binding ClosedBy.AvatarUrl}"
+                              Text="{Binding ClosedBy.Login, StringFormat={x:Static localization:IssueDetails.ClosedBy}}"/>
 
         <Label Grid.Column="1"
-               BindingContext="{Binding Author}"
-               YAlign="Center"
-               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"
-               Style="{StaticResource SmallSimpleLabelStyle}"/>
-
-        <Label Grid.Column="2"
-               Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.CreatedAt}}"
+               IsVisible="{Binding HasClosedAt}"
+               Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.TimeAt}}"
                Style="{StaticResource SmallSimpleLabelStyle}"
                YAlign="Center"/>
       </Grid>
       
-      <StackLayout Orientation="Horizontal"
-                   IsVisible="{Binding HasAssignee}">
-        
-        <Image BindingContext="{Binding Assignee}"
-               Source="{Binding AvatarUrl}"
-               Style="{StaticResource AvatarStyle}"/>
-
-        <Label BindingContext="{Binding Assignee}"
-               YAlign="Center"
-               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
-               Style="{StaticResource SmallSimpleLabelStyle}"/>
-      </StackLayout>
-
-      <StackLayout Orientation="Horizontal"
-                   IsVisible="{Binding HasClosedBy}">
-        
-        <Image BindingContext="{Binding ClosedBy}"
-               Source="{Binding AvatarUrl}"
-               Style="{StaticResource AvatarStyle}"/>
-
-        <Label BindingContext="{Binding ClosedBy}"
-               YAlign="Center"
-               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
-               Style="{StaticResource SmallSimpleLabelStyle}"/>
-      </StackLayout>
-
       <Label Text="{Binding Body}"
              IsVisible="{Binding HasBody}"
              Style="{StaticResource MediumSimpleLabelStyle}"/>
-
-      <StackLayout HorizontalOptions="EndAndExpand">
-        <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
-               Style="{StaticResource SmallSimpleLabelStyle}"/>
-        <Label Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.ClosedAt}}"
-               Style="{StaticResource SmallSimpleLabelStyle}"/>
-      </StackLayout>
 
       <controls:IssueLabelsList ItemsSource="{Binding Labels}"
                                 IsVisible="{Binding HasLabels}"/>

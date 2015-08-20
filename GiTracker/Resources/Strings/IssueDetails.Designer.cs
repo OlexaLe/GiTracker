@@ -80,16 +80,16 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:g}.
+        ///   Looks up a localized string similar to {0} closed this issue.
         /// </summary>
-        public static string CreatedAt {
+        public static string ClosedBy {
             get {
-                return ResourceManager.GetString("CreatedAt", resourceCulture);
+                return ResourceManager.GetString("ClosedBy", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} opened this issue at.
+        ///   Looks up a localized string similar to {0} opened this issue.
         /// </summary>
         public static string CreatedBy {
             get {
@@ -103,6 +103,15 @@ namespace GiTracker.Resources.Strings {
         public static string IssueNumber {
             get {
                 return ResourceManager.GetString("IssueNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to at {0:g}.
+        /// </summary>
+        public static string TimeAt {
+            get {
+                return ResourceManager.GetString("TimeAt", resourceCulture);
             }
         }
         

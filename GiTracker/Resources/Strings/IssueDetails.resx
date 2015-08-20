@@ -123,14 +123,17 @@
   <data name="ClosedAt" xml:space="preserve">
     <value>Closed at {0:g}</value>
   </data>
-  <data name="CreatedAt" xml:space="preserve">
-    <value>{0:g}</value>
+  <data name="ClosedBy" xml:space="preserve">
+    <value>{0} closed this issue</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>{0} opened this issue at</value>
+    <value>{0} opened this issue</value>
   </data>
   <data name="IssueNumber" xml:space="preserve">
     <value>Issue #{0}</value>
+  </data>
+  <data name="TimeAt" xml:space="preserve">
+    <value>at {0:g}</value>
   </data>
   <data name="UpdatedAt" xml:space="preserve">
     <value>Updated at {0:g}</value>

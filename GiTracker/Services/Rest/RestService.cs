@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using GiTracker.Services.HttpClientProvider;
 
 namespace GiTracker.Services.Rest
 {
@@ -11,19 +12,19 @@ namespace GiTracker.Services.Rest
     {
         const string UserAgent = "XamarinGarage";
 
-        HttpClient CreateHttpClient(string host)
+        protected readonly IGitsProvider _gitProvider;
+
+        protected RestService(IGitsProvider gitProvider)
         {
-            var httpClient = new HttpClient { BaseAddress = new Uri(host) };
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);            
-            return httpClient;
+            _gitProvider = gitProvider;
         }
 
         public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
         {
-            using (var client = CreateHttpClient(host))
+            using (var client = _gitProvider.CreateHttpClient())
             {
-                using (var response = await client.GetAsync(url, cancellationToken).ConfigureAwait(false))
+                using (var response = await client.GetAsync(_gitProvider.RequestURL(url), 
+                    cancellationToken).ConfigureAwait(false))
 				{
 					cancellationToken.ThrowIfCancellationRequested();
 

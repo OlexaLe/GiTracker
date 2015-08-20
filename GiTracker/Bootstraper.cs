@@ -8,6 +8,7 @@ using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
+using GiTracker.Services.HttpClientProvider;
 
 namespace GiTracker
 {
@@ -32,6 +33,8 @@ namespace GiTracker
             Container.RegisterType<IDialogService, DialogService>();
             Container.RegisterType<IRestService, RestService>();
             Container.RegisterType<IGitServiceProvider, GitServiceProvider>();
+
+            Container.RegisterType<IGitsProvider, GithubProvider> ();
         }
     }
 }

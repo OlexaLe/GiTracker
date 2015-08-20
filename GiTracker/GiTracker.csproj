@@ -66,6 +66,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Login\ILoginService.cs" />
+    <Compile Include="Services\Login\LoginService.cs" />
     <Compile Include="Services\ServiceProvider\GitServiceProvider.cs" />
     <Compile Include="Services\ServiceProvider\GitApiServiceType.cs" />
     <Compile Include="Services\Api\GitHubApiProvider.cs" />

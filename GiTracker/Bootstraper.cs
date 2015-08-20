@@ -8,24 +8,25 @@ using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
+using Xamarin.Forms;
 
 namespace GiTracker
 {
     public class Bootstraper : UnityBootstrapper
     {
-        protected override Xamarin.Forms.Page CreateMainPage ()
+        protected override Page CreateMainPage()
         {
-            return Container.Resolve<MainPage> ();
+            return new NavigationPage(Container.Resolve<MainPage>());
         }
 
-        protected override void RegisterTypes ()
-		{
+        protected override void RegisterTypes()
+        {
             Container.RegisterInstance(Container);
 
             Container.RegisterTypeForNavigation<IssueList, IssueListViewModel>();
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
 
-			Container.RegisterType<Loader>();
+            Container.RegisterType<Loader>();
             Container.RegisterType<GitHubIssueService>();
 
             Container.RegisterType<IDatabaseService, DatabaseService>();
@@ -35,4 +36,3 @@ namespace GiTracker
         }
     }
 }
-

@@ -77,6 +77,19 @@
                Style="{StaticResource SmallSimpleLabelStyle}"/>
       </StackLayout>
 
+      <StackLayout Orientation="Horizontal"
+                   IsVisible="{Binding HasClosedBy}">
+        
+        <Image BindingContext="{Binding ClosedBy}"
+               Source="{Binding AvatarUrl}"
+               Style="{StaticResource AvatarStyle}"/>
+
+        <Label BindingContext="{Binding ClosedBy}"
+               YAlign="Center"
+               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+      </StackLayout>
+
       <Label Text="{Binding Body}"
              IsVisible="{Binding HasBody}"
              Style="{StaticResource MediumSimpleLabelStyle}"/>

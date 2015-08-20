@@ -15,6 +15,7 @@ namespace GiTracker.Models
         IEnumerable<ILabel> Labels { get; }
         IUser Author { get; }
         IUser Assignee { get; }
+        IUser ClosedBy { get; }
         DateTime? CreatedAt { get; }
         DateTime? UpdatedAt { get; }
         DateTime? ClosedAt { get; }

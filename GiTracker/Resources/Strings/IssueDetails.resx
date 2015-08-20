@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AssignedTo" xml:space="preserve">
-    <value>Assignee {0}</value>
+    <value>{0} is assigned</value>
   </data>
   <data name="ClosedAt" xml:space="preserve">
     <value>Closed at {0:g}</value>

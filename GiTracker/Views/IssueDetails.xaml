@@ -18,7 +18,7 @@
     </ResourceDictionary>
   </Page.Resources>
 
-  <Grid >
+  <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
       <RowDefinition Height="Auto"/>
@@ -29,9 +29,17 @@
       <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
              Style="{StaticResource MediumSimpleLabelStyle}"/>
 
+      <ContentView BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
+                   Padding="6"
+                   HorizontalOptions="Start">
+        <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
+               TextColor="{StaticResource PrimaryLightTextColor}"
+               Style="{StaticResource SmallSimpleLabelStyle}"
+               YAlign="Center"/>
+      </ContentView>
+
       <Label Text="{Binding Title}"
              Style="{StaticResource LargeSimpleLabelStyle}"/>
-
       <Grid>
 
         <Grid.ColumnDefinitions>
@@ -40,13 +48,9 @@
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ContentView BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
-                     Padding="6">
-          <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
-                 TextColor="{StaticResource PrimaryLightTextColor}"
-                 Style="{StaticResource SmallSimpleLabelStyle}"
-                 YAlign="Center"/>
-        </ContentView>
+        <Image BindingContext="{Binding Author}"
+               Source="{Binding AvatarUrl}"
+               Style="{StaticResource AvatarStyle}"/>
 
         <Label Grid.Column="1"
                BindingContext="{Binding Author}"
@@ -59,11 +63,23 @@
                Style="{StaticResource SmallSimpleLabelStyle}"
                YAlign="Center"/>
       </Grid>
+      
+      <StackLayout Orientation="Horizontal"
+                   IsVisible="{Binding HasAssignee}">
+        
+        <Image BindingContext="{Binding Assignee}"
+               Source="{Binding AvatarUrl}"
+               Style="{StaticResource AvatarStyle}"/>
+
+        <Label BindingContext="{Binding Assignee}"
+               YAlign="Center"
+               Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
+               Style="{StaticResource SmallSimpleLabelStyle}"/>
+      </StackLayout>
 
       <Label Text="{Binding Body}"
              IsVisible="{Binding HasBody}"
              Style="{StaticResource MediumSimpleLabelStyle}"/>
-
 
       <StackLayout HorizontalOptions="EndAndExpand">
         <Label Text="{Binding UpdatedAt, StringFormat={x:Static localization:IssueDetails.UpdatedAt}}"
@@ -72,16 +88,13 @@
                Style="{StaticResource SmallSimpleLabelStyle}"/>
       </StackLayout>
 
-      <Label BindingContext="{Binding Assignee}"
-             Text="{Binding Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"
-             Style="{StaticResource SmallSimpleLabelStyle}"/>
-
-      <controls:IssueLabelsList ItemsSource="{Binding Labels}"/>
+      <controls:IssueLabelsList ItemsSource="{Binding Labels}"
+                                IsVisible="{Binding HasLabels}"/>
 
     </StackLayout>
 
     <!--TODO: think of moving this to tool bar items-->
-    <controls:NiceLabel Grid.Row="1" 
+    <controls:NiceLabel Grid.Row="1"
                         Text="{x:Static localization:IssueDetails.ViewInBrowser}"
                         HorizontalOptions="EndAndExpand"
                         Style="{StaticResource SmallSimpleLabelStyle}"

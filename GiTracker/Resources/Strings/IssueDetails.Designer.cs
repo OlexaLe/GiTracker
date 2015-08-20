@@ -62,7 +62,7 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assignee {0}.
+        ///   Looks up a localized string similar to {0} is assigned.
         /// </summary>
         public static string AssignedTo {
             get {

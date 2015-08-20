@@ -6,7 +6,8 @@
                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                 xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
                 xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
-                prism:ViewModelLocator.AutowireViewModel="True">
+                prism:ViewModelLocator.AutowireViewModel="True"
+                Title="{x:Static localization:Shared.AppName}">
     <StackLayout>
         <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}" />
         <Entry IsPassword="True" Placeholder="{x:Static localization:LoginPage.Password}" />

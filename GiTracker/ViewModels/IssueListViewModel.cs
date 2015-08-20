@@ -1,26 +1,48 @@
-﻿using GiTracker.Helpers;
-using GiTracker.Models;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using GiTracker.Helpers;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
 using GiTracker.Services.ServiceProvider;
 using Prism.Commands;
 using Prism.Navigation;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GiTracker.ViewModels
 {
     public class IssueListViewModel : BaseViewModel
     {
-        readonly IIssueService _issueService;
+        private readonly IIssueService _issueService;
+        private ObservableCollection<IssueViewModel> _issues;
+        private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
+        private string _pageCenterText;
+        private DelegateCommand _updateIssuesCommand;
 
         public IssueListViewModel(Loader loader,
             IGitServiceProvider gitServiceProvider,
             INavigationService navigationService)
-			: base(loader, navigationService)
+            : base(loader, navigationService)
         {
             _issueService = gitServiceProvider.GetIssueService();
+        }
+
+        public ObservableCollection<IssueViewModel> Issues
+        {
+            get { return _issues; }
+            private set { SetProperty(ref _issues, value); }
+        }
+
+        public DelegateCommand UpdateIssuesCommand =>
+            _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues));
+
+        public DelegateCommand<IssueViewModel> OpenIssueDetailsCommand =>
+            _openIssueDetailsCommand ??
+            (_openIssueDetailsCommand = new DelegateCommand<IssueViewModel>(OpenIssueDetails));
+
+        public string PageCenterText
+        {
+            get { return _pageCenterText; }
+            private set { SetProperty(ref _pageCenterText, value); }
         }
 
         public override async void OnNavigatedTo(NavigationParameters parameters)
@@ -37,14 +59,7 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        ObservableCollection<IssueViewModel> _issues;
-        public ObservableCollection<IssueViewModel> Issues
-        {
-            get { return _issues; }
-            private set { SetProperty(ref _issues, value); }
-        }
-
-        async Task LoadIssuesAsync()
+        private async Task LoadIssuesAsync()
         {
             PageCenterText = Shared.Loading;
 
@@ -58,29 +73,15 @@ namespace GiTracker.ViewModels
             PageCenterText = string.Empty;
         }
 
-        DelegateCommand _updateIssuesCommand;
-        public DelegateCommand UpdateIssuesCommand => 
-            _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues)); 
-        
-        async void UpdateIssues()
+        private async void UpdateIssues()
         {
             await LoadIssuesAsync();
         }
 
-        DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
-        public DelegateCommand<IssueViewModel> OpenIssueDetailsCommand =>
-            _openIssueDetailsCommand ?? (_openIssueDetailsCommand = new DelegateCommand<IssueViewModel>(OpenIssueDetails)); 
-
-        void OpenIssueDetails(IssueViewModel issueViewModel)
+        private void OpenIssueDetails(IssueViewModel issueViewModel)
         {
-            NavigationService.Navigate<IssueDetailsViewModel>(new NavigationParameters { { IssueDetailsViewModel.IssueParameterName, issueViewModel } });
-        }
-
-        string _pageCenterText;
-        public string PageCenterText
-        {
-            get { return _pageCenterText; }
-            private set { SetProperty(ref _pageCenterText, value); }
+            NavigationService.Navigate<IssueDetailsViewModel>(
+                new NavigationParameters {{IssueDetailsViewModel.IssueParameterName, issueViewModel}}, false);
         }
     }
 }

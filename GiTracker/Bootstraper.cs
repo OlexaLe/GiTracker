@@ -2,7 +2,6 @@
 using GiTracker.Services.Database;
 using GiTracker.Services.Dialogs;
 using GiTracker.Services.Issues;
-using GiTracker.Services.Login;
 using GiTracker.Services.Rest;
 using GiTracker.Services.ServiceProvider;
 using GiTracker.ViewModels;
@@ -17,7 +16,7 @@ namespace GiTracker
     {
         protected override Page CreateMainPage()
         {
-            return Container.Resolve<LoginPage>();
+            return new NavigationPage(Container.Resolve<MainPage>());
         }
 
         protected override void RegisterTypes()
@@ -31,7 +30,6 @@ namespace GiTracker
             Container.RegisterType<GitHubIssueService>();
 
             Container.RegisterType<IDatabaseService, DatabaseService>();
-            Container.RegisterType<ILoginService, LoginService>();
             Container.RegisterType<IDialogService, DialogService>();
             Container.RegisterType<IRestService, RestService>();
             Container.RegisterType<IGitServiceProvider, GitServiceProvider>();

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="GiTracker.Views.LoginPage"
+                xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+                xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
+                prism:ViewModelLocator.AutowireViewModel="True">
+    <StackLayout>
+        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}" />
+        <Entry IsPassword="True" Placeholder="{x:Static localization:LoginPage.Password}" />
+        <Button Text="{x:Static localization:LoginPage.Login}" />
+    </StackLayout>
+</views:BasePage>

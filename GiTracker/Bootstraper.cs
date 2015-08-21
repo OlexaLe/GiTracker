@@ -1,9 +1,9 @@
 ﻿using GiTracker.Helpers;
+using GiTracker.Services.Api;
 using GiTracker.Services.Database;
 using GiTracker.Services.Dialogs;
 using GiTracker.Services.Issues;
 using GiTracker.Services.Rest;
-using GiTracker.Services.ServiceProvider;
 using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
@@ -27,12 +27,13 @@ namespace GiTracker
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
 
             Container.RegisterType<Loader>();
-            Container.RegisterType<GitHubIssueService>();
+            Container.RegisterType<IIssueService, IssueService>();
 
             Container.RegisterType<IDatabaseService, DatabaseService>();
             Container.RegisterType<IDialogService, DialogService>();
             Container.RegisterType<IRestService, RestService>();
-            Container.RegisterType<IGitServiceProvider, GitServiceProvider>();
+
+            Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
         }
     }
 }

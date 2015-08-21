@@ -61,32 +61,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IssueList.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings\LoginPage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginPage.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Strings\Shared.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\ServiceProvider\GitServiceProvider.cs" />
-    <Compile Include="Services\ServiceProvider\GitApiServiceType.cs" />
+    <Compile Include="Services\Login\ILoginService.cs" />
+    <Compile Include="Services\Login\LoginService.cs" />
     <Compile Include="Services\Api\GitHubApiProvider.cs" />
     <Compile Include="Services\Api\IGitApiProvider.cs" />
-    <Compile Include="Services\ServiceProvider\IGitServiceProvider.cs" />
     <Compile Include="Services\Dialogs\DialogService.cs" />
     <Compile Include="Services\Dialogs\IDialogService.cs" />
     <Compile Include="Services\Issues\IIssueService.cs" />
-    <Compile Include="Services\Issues\GitHubIssueService.cs" />
+    <Compile Include="Services\Issues\IssueService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
+    <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\IssueDetails.xaml.cs">
       <DependentUpon>IssueDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IssueList.xaml.cs">
       <DependentUpon>IssueList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -164,6 +172,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IssueList.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings\LoginPage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginPage.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
@@ -188,6 +201,12 @@
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

@@ -73,15 +73,12 @@
     </Compile>
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
-    <Compile Include="Services\ServiceProvider\GitServiceProvider.cs" />
-    <Compile Include="Services\ServiceProvider\GitApiServiceType.cs" />
     <Compile Include="Services\Api\GitHubApiProvider.cs" />
     <Compile Include="Services\Api\IGitApiProvider.cs" />
-    <Compile Include="Services\ServiceProvider\IGitServiceProvider.cs" />
     <Compile Include="Services\Dialogs\DialogService.cs" />
     <Compile Include="Services\Dialogs\IDialogService.cs" />
     <Compile Include="Services\Issues\IIssueService.cs" />
-    <Compile Include="Services\Issues\GitHubIssueService.cs" />
+    <Compile Include="Services\Issues\IssueService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

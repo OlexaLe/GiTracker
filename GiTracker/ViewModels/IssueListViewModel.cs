@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using GiTracker.Helpers;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
-using GiTracker.Services.ServiceProvider;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -19,11 +18,11 @@ namespace GiTracker.ViewModels
         private DelegateCommand _updateIssuesCommand;
 
         public IssueListViewModel(Loader loader,
-            IGitServiceProvider gitServiceProvider,
+            IIssueService issueService,
             INavigationService navigationService)
             : base(loader, navigationService)
         {
-            _issueService = gitServiceProvider.GetIssueService();
+            _issueService = issueService;
         }
 
         public ObservableCollection<IssueViewModel> Issues

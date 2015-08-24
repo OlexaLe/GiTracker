@@ -1,31 +1,26 @@
-﻿using Prism.Navigation;
+﻿using GiTracker.Helpers;
 using Prism.Commands;
-using GiTracker.Helpers;
-using GiTracker.Services.Database;
+using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        readonly IDatabaseService _databaseService;
+        private DelegateCommand _openIssueListCommand;
 
-		public MainPageViewModel(Loader loader, 
-			IDatabaseService databaseService,
+        public MainPageViewModel(Loader loader,
             INavigationService navigationService)
-			: base(loader, navigationService)
+            : base(loader, navigationService)
         {
-            _databaseService = databaseService; // JUST AN EXAMPLE!
-
             Title = "Main Page";
         }
 
-        DelegateCommand _openIssueListCommand;
-        public DelegateCommand OpenIssueListCommand => 
-            _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList)); 
+        public DelegateCommand OpenIssueListCommand =>
+            _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList));
 
-        void OpenIssueList()
+        private void OpenIssueList()
         {
-            NavigationService.Navigate<IssueListViewModel>();
+            NavigationService.Navigate<IssueListViewModel>(null, false);
         }
     }
 }

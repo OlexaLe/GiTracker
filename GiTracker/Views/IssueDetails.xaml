@@ -26,9 +26,6 @@
 
     <StackLayout BindingContext="{Binding Issue}">
 
-      <Label Text="{Binding Number, StringFormat={x:Static localization:IssueDetails.IssueNumber}}"
-             Style="{StaticResource MediumSimpleLabelStyle}"/>
-
       <ContentView BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
                    Padding="6"
                    HorizontalOptions="Start">

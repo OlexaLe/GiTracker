@@ -19,5 +19,6 @@ namespace GiTracker.Models
         DateTime? CreatedAt { get; }
         DateTime? UpdatedAt { get; }
         DateTime? ClosedAt { get; }
+        int CommentsCount { get; }
     }
 }

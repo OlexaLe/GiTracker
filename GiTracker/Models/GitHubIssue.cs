@@ -64,5 +64,8 @@ namespace GiTracker.Models
         [JsonProperty(PropertyName = "closed_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime? ClosedAt { get; set; }
+        
+        [JsonProperty(PropertyName = "comments")]
+        public int CommentsCount { get; set; }
     }
 }

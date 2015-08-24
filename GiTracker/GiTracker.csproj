@@ -38,8 +38,10 @@
     <Compile Include="Converters\EnumToStringValueConverter.cs" />
     <Compile Include="Converters\IssueStatusToColorConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />
+    <Compile Include="Models\GitHubComment.cs" />
     <Compile Include="Models\GitHubLabel.cs" />
     <Compile Include="Models\GitHubUser.cs" />
+    <Compile Include="Models\IComment.cs" />
     <Compile Include="Models\IIssue.cs" />
     <Compile Include="Models\GitHubIssue.cs" />
     <Compile Include="Models\ILabel.cs" />

@@ -50,6 +50,13 @@
                 <Setter Property="YAlign" Value="Center" />
             </Style>
 
+            <Style
+                x:Key="AvatarStyle"
+                TargetType="Image">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 

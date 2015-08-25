@@ -78,5 +78,14 @@ namespace GiTracker.Resources.Strings {
                 return ResourceManager.GetString("OpenedBy", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issues.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
     }
 }

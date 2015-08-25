@@ -23,6 +23,8 @@ namespace GiTracker.ViewModels
             : base(loader, navigationService)
         {
             _issueService = issueService;
+
+            Title = IssueList.Title;
         }
 
         public ObservableCollection<IssueViewModel> Issues

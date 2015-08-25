@@ -47,6 +47,12 @@ namespace GiTracker.Models
         [JsonIgnore]
         public IUser Assignee => GitHubAssignee;
 
+        [JsonProperty(PropertyName = "closed_by")]
+        public GitHubUser GitHubClosedBy { get; set; }
+
+        [JsonIgnore]
+        public IUser ClosedBy => GitHubClosedBy;
+
         [JsonProperty(PropertyName = "created_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime? CreatedAt { get; set; }
@@ -58,5 +64,8 @@ namespace GiTracker.Models
         [JsonProperty(PropertyName = "closed_at"),
         JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime? ClosedAt { get; set; }
+        
+        [JsonProperty(PropertyName = "comments")]
+        public int CommentsCount { get; set; }
     }
 }

@@ -44,8 +44,8 @@
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <controls:UserControl ImageUrl="{Binding Author.AvatarUrl}"
-                              Text="{Binding Author.Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"/>
+        <controls:ImageWithLabel ImageUrl="{Binding Author.AvatarUrl}"
+                                 Text="{Binding Author.Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"/>
 
         <Label Grid.Column="1"
                Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.TimeAt}}"
@@ -53,9 +53,9 @@
                YAlign="Center"/>
       </Grid>
 
-      <controls:UserControl IsVisible="{Binding HasAssignee}"
-                            ImageUrl="{Binding Assignee.AvatarUrl}"
-                            Text="{Binding Assignee.Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"/>
+      <controls:ImageWithLabel IsVisible="{Binding HasAssignee}"
+                               ImageUrl="{Binding Assignee.AvatarUrl}"
+                               Text="{Binding Assignee.Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}"/>
       <Grid>
 
         <Grid.ColumnDefinitions>
@@ -63,9 +63,9 @@
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <controls:UserControl IsVisible="{Binding HasClosedBy}"
-                              ImageUrl="{Binding ClosedBy.AvatarUrl}"
-                              Text="{Binding ClosedBy.Login, StringFormat={x:Static localization:IssueDetails.ClosedBy}}"/>
+        <controls:ImageWithLabel IsVisible="{Binding HasClosedBy}"
+                                 ImageUrl="{Binding ClosedBy.AvatarUrl}"
+                                 Text="{Binding ClosedBy.Login, StringFormat={x:Static localization:IssueDetails.ClosedBy}}"/>
 
         <Label Grid.Column="1"
                IsVisible="{Binding HasClosedAt}"

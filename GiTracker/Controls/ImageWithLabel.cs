@@ -3,10 +3,10 @@ using Xamarin.Forms;
 
 namespace GiTracker.Controls
 {
-    public class UserControl : Grid
+    public class ImageWithLabel : Grid
     {
         public static readonly BindableProperty ImageUrlProperty =
-            BindableProperty.Create<UserControl, string>(p => p.ImageUrl, null, propertyChanged: OnImageUrlPropertyChanged);
+            BindableProperty.Create<ImageWithLabel, string>(p => p.ImageUrl, null, propertyChanged: OnImageUrlPropertyChanged);
 
         public string ImageUrl
         {
@@ -16,12 +16,12 @@ namespace GiTracker.Controls
 
         static void OnImageUrlPropertyChanged(BindableObject bindable, string oldvalue, string newvalue)
         {
-            var control = bindable as UserControl;
+            var control = bindable as ImageWithLabel;
             control._image.Source = new UriImageSource { Uri = new Uri(newvalue) };
         }
 
         public static readonly BindableProperty TextProperty =
-            BindableProperty.Create<UserControl, string>(p => p.Text, null, propertyChanged: OnTextPropertyChanged);
+            BindableProperty.Create<ImageWithLabel, string>(p => p.Text, null, propertyChanged: OnTextPropertyChanged);
 
         public string Text
         {
@@ -31,12 +31,12 @@ namespace GiTracker.Controls
 
         static void OnTextPropertyChanged(BindableObject bindable, string oldvalue, string newvalue)
         {
-            var control = bindable as UserControl;
+            var control = bindable as ImageWithLabel;
             control._label.Text = newvalue;
         }
 
         public static readonly BindableProperty LabelStyleProperty =
-            BindableProperty.Create<UserControl, Style>(p => p.LabelStyle, null, propertyChanged: OnLabelStylePropertyChanged);
+            BindableProperty.Create<ImageWithLabel, Style>(p => p.LabelStyle, null, propertyChanged: OnLabelStylePropertyChanged);
 
         public Style LabelStyle
         {
@@ -46,14 +46,14 @@ namespace GiTracker.Controls
 
         static void OnLabelStylePropertyChanged(BindableObject bindable, Style oldvalue, Style newvalue)
         {
-            var control = bindable as UserControl;
+            var control = bindable as ImageWithLabel;
             control._label.Style = newvalue;
         }
 
         private readonly Image _image;
         private readonly Label _label;
 
-        public UserControl()
+        public ImageWithLabel()
         {
             _image = new Image { Style = (Style)Application.Current.Resources["AvatarStyle"] };
             _label = new Label { Style = (Style)Application.Current.Resources["SmallSimpleLabelStyle"], YAlign = TextAlignment.Center};

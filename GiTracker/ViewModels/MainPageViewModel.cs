@@ -1,26 +1,31 @@
-﻿using GiTracker.Helpers;
-using Prism.Commands;
-using Prism.Navigation;
+﻿using System;
+using GiTracker.Views;
+using Microsoft.Practices.Unity;
+using Prism.Mvvm;
 
 namespace GiTracker.ViewModels
 {
-    public class MainPageViewModel : BaseViewModel
+    public class MainPageViewModel : BindableBase
     {
-        private DelegateCommand _openIssueListCommand;
+        //private DelegateCommand _openIssueListCommand;
 
-        public MainPageViewModel(Loader loader,
-            INavigationService navigationService)
-            : base(loader, navigationService)
+        public MainPageViewModel(IUnityContainer container)
         {
-            Title = "Main Page";
+            Container = container;
+            PresentedViewModelType = typeof (IssueList);
         }
 
-        public DelegateCommand OpenIssueListCommand =>
-            _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList));
+        public Type PresentedViewModelType { get; private set; }
 
-        private void OpenIssueList()
-        {
-            NavigationService.Navigate<IssueListViewModel>(null, false);
-        }
+        public IUnityContainer Container { get; private set; }
+
+        //private void OpenIssueList()
+
+        //public DelegateCommand OpenIssueListCommand =>
+
+        //    _openIssueListCommand ?? (_openIssueListCommand = new DelegateCommand(OpenIssueList));
+        //{
+        //    NavigationService.Navigate<IssueListViewModel>(null, false);
+        //}
     }
 }

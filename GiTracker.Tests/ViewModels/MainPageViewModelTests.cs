@@ -13,11 +13,12 @@ namespace GiTracker.Tests.ViewModels
         {
             // Arrange
             var vm = new MainPageViewModel(null);
+            var expectedScreen = typeof (IssueList);
 
             // Act
 
             // Assert
-            Assert.AreEqual(typeof (IssueList), vm.PresentedViewModelType);
+            Assert.AreEqual(expectedScreen, vm.PresentedViewModelType);
         }
 
         [Test]

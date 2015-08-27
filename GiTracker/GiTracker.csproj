@@ -77,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings\SlideMenu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SlideMenu.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
     <Compile Include="Services\Api\GitHubApiProvider.cs" />
@@ -186,6 +191,10 @@
     <EmbeddedResource Include="Resources\Strings\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings\SlideMenu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SlideMenu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\IssueList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

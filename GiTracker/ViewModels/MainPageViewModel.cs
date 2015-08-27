@@ -24,8 +24,8 @@ namespace GiTracker.ViewModels
 
         public IEnumerable<SlideMenuItem> SlideMenu { get; } = new List<SlideMenuItem>
         {
-            new SlideMenuItem {Title = "Repositories", ScreenView = typeof (IssueList)},
-            new SlideMenuItem {Title = "About", ScreenView = typeof (IssueList)}
+            new SlideMenuItem {Title = Resources.Strings.SlideMenu.Repositories, ScreenView = typeof (IssueList)},
+            new SlideMenuItem {Title = Resources.Strings.SlideMenu.About, ScreenView = typeof (IssueList)}
         };
 
         public DelegateCommand<SlideMenuItem> SlideMenuItemTapped => _slideMenuItemTapped ??

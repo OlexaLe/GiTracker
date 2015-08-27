@@ -17,7 +17,6 @@ namespace GiTracker.ViewModels
         public int? Number => _issue?.Number;
         public string Title => _issue?.Title;
         public string Body => _issue?.Body;
-        public bool HasBody => !string.IsNullOrEmpty(Body);
         public string WebPage => _issue.WebPage;
         public string Url => _issue?.Url;
         public IssueStatus? Status => _issue?.Status;
@@ -31,7 +30,8 @@ namespace GiTracker.ViewModels
         public DateTime? CreatedAt => _issue?.CreatedAt?.ToLocalTime();
         public DateTime? UpdatedAt => _issue?.UpdatedAt?.ToLocalTime();
         public DateTime? ClosedAt => _issue?.ClosedAt?.ToLocalTime();
-        public bool HasClosedAt => ClosedAt != null;
         public bool HasComments => _issue?.CommentsCount > 0;
+        public bool IsOpened => Status == IssueStatus.Open;
+        public bool IsClosed => Status == IssueStatus.Closed;
     }
 }

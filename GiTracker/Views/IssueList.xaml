@@ -5,6 +5,7 @@
   x:Class="GiTracker.Views.IssueList"
   xmlns:pages="clr-namespace:GiTracker.Views"
   xmlns:controls="clr-namespace:GiTracker.Controls"
+  xmlns:converters="clr-namespace:GiTracker.Converters"
   xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
   xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
   prism:ViewModelLocator.AutowireViewModel="True">
@@ -20,35 +21,58 @@
         RefreshCommand="{Binding UpdateIssuesCommand}"
         IsRefreshing="{Binding IsLoading, Mode=OneWay}">
 
+      <ListView.Resources>
+        <ResourceDictionary>
+          <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter"/>
+          <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
+        </ResourceDictionary>
+      </ListView.Resources>
+      
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Padding="{StaticResource ListItemPadding}">
+              <Grid Padding="{StaticResource ListItemPadding}">
 
-              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
                 <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding Title}"
+                <Image Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}}"
+                       Grid.RowSpan="2"
+                       HeightRequest="30"
+                       WidthRequest="30"/>
+                
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
                        Style="{StaticResource MediumSimpleLabelStyle}"
                        LineBreakMode="TailTruncation" />
-                <Label Grid.Column="1"
-                       Text="{Binding Number, StringFormat='#{0}'}"
-                       Style="{StaticResource SmallSimpleLabelStyle}"
-                       YAlign="Center"/>
+
+                <StackLayout Grid.Column="1"
+                             Grid.Row="1"
+                             Orientation="Horizontal"
+                             IsVisible="{Binding IsOpened}">
+                
+                  <Label Text="{Binding Number, StringFormat='#{0}'}"
+                         Style="{StaticResource SmallSimpleLabelStyle}"/>
+
+                  <Label Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueList.OpenedOn}}"
+                         Style="{StaticResource SmallSimpleLabelStyle}"
+                         IsVisible="{Binding CreatedAt, Converter={StaticResource TextToVisibilityConverter}}"/>
+
+                  <Label BindingContext="{Binding Author}"
+                         Text="{Binding Login, StringFormat={x:Static localization:IssueList.By}}"
+                         Style="{StaticResource SmallSimpleLabelStyle}"
+                         IsVisible="{Binding Login, Converter={StaticResource TextToVisibilityConverter}}"/>
+
+                </StackLayout>                
               </Grid>
-
-              <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueList.Opened}}"
-                       Style="{StaticResource SmallSimpleLabelStyle}" />
-
-                <Label BindingContext="{Binding Author}"
-                       Text="{Binding Login, StringFormat={x:Static localization:IssueList.OpenedBy}}"
-                       Style="{StaticResource SmallSimpleLabelStyle}" />
-              </StackLayout>
-            </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

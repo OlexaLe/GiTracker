@@ -39,6 +39,8 @@
     <Compile Include="Controls\ImageWithLabel.cs" />
     <Compile Include="Converters\EnumToStringValueConverter.cs" />
     <Compile Include="Converters\IssueStatusToColorConverter.cs" />
+    <Compile Include="Converters\IssueStatusToIconConverter.cs" />
+    <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Models\GitHubComment.cs" />
     <Compile Include="Models\GitHubLabel.cs" />

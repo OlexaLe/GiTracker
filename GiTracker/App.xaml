@@ -14,6 +14,8 @@
             <Thickness x:Key="PagePadding">20</Thickness>
             <Thickness x:Key="ListItemPadding">20,6</Thickness>
 
+            <Font x:Key="OcticonsFont"></Font>
+
             <Style 
                 x:Key="SimpleLabelStyle"
                 TargetType="Label">
@@ -56,7 +58,6 @@
                 <Setter Property="HeightRequest" Value="40"/>
                 <Setter Property="WidthRequest" Value="40"/>
             </Style>
-
         </ResourceDictionary>
     </Application.Resources>
 

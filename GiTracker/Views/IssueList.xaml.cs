@@ -7,11 +7,6 @@ namespace GiTracker.Views
         public IssueList()
         {
             InitializeComponent();
-
-
-            //BasePage.SetTitleBinding(this);
-            //SetBinding(ItemsSourceProperty, new Binding { Path = nameof(IssueListViewModel.Tabs) });
-            //ItemTemplate = new DataTemplate(() => new IssueListTab());
         }
     }
 }

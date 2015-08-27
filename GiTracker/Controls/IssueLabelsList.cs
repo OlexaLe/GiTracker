@@ -6,22 +6,24 @@ namespace GiTracker.Controls
 {
     public class IssueLabelsList : Label
     {
+        public static readonly BindableProperty ItemsSourceProperty =
+            BindableProperty.Create<IssueLabelsList, IEnumerable<ILabel>>(p => p.ItemsSource, null,
+                propertyChanged: OnItemsSourcePropertyChanged);
+
         public IssueLabelsList()
         {
             // TODO: make some line spacing
             Style = (Style) Application.Current.Resources["SmallSimpleLabelStyle"];
         }
 
-        public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<IssueLabelsList, IEnumerable<ILabel>>(p => p.ItemsSource, null, propertyChanged: OnItemsSourcePropertyChanged);
-        
         public IEnumerable<ILabel> ItemsSource
         {
-            get { return (IEnumerable<ILabel>)GetValue(ItemsSourceProperty); }
+            get { return (IEnumerable<ILabel>) GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
-        static void OnItemsSourcePropertyChanged(BindableObject bindable, IEnumerable<ILabel> oldvalue, IEnumerable<ILabel> newvalue)
+        private static void OnItemsSourcePropertyChanged(BindableObject bindable, IEnumerable<ILabel> oldvalue,
+            IEnumerable<ILabel> newvalue)
         {
             var control = bindable as Label;
             control.FormattedText = null;
@@ -36,12 +38,15 @@ namespace GiTracker.Controls
                 formattedString.Spans.Add(new Span
                 {
                     Text = $"\u00A0{label.Name}\u00A0",
-                    ForegroundColor = (Color)Application.Current.Resources[(color.Hue > 0 ? "PrimaryLightTextColor" : "PrimaryDarkTextColor")],
-                    BackgroundColor = color,
+                    ForegroundColor =
+                        (Color)
+                            Application.Current.Resources[
+                                (color.Hue > 0 ? "PrimaryLightTextColor" : "PrimaryDarkTextColor")],
+                    BackgroundColor = color
                 });
                 formattedString.Spans.Add(new Span
                 {
-                    Text = " ",
+                    Text = " "
                 });
             }
 

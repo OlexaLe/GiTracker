@@ -1,21 +1,17 @@
-﻿using GiTracker.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GiTracker.Models;
 using Xamarin.Forms;
 
 namespace GiTracker.Converters
 {
-    class IssueStatusToIconConverter : IValueConverter
+    internal class IssueStatusToIconConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null) return "Octicon_IssueOpened.png";
 
-            switch ((IssueStatus)value)
+            switch ((IssueStatus) value)
             {
                 case IssueStatus.Open:
                     return "Octicon_IssueOpened.png";

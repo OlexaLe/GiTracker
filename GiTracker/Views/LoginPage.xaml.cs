@@ -1,6 +1,6 @@
 ﻿namespace GiTracker.Views
 {
-    public partial class LoginPage : BasePage
+    public partial class LoginPage
     {
         public LoginPage()
         {

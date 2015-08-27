@@ -1,6 +1,6 @@
 ﻿namespace GiTracker.Views
 {
-    public partial class IssueList : BasePage
+    public partial class IssueList
     {
         public IssueList()
         {

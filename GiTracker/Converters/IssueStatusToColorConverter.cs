@@ -11,7 +11,7 @@ namespace GiTracker.Converters
         {
             if (value == null) return Color.Gray;
 
-            switch ((IssueStatus)value)
+            switch ((IssueStatus) value)
             {
                 case IssueStatus.Open:
                     return Color.Green;

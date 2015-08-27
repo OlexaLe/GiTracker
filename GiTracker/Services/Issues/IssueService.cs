@@ -18,11 +18,12 @@ namespace GiTracker.Services.Issues
             _gitApiProvider = gitApiProvider;
         }
 
-        public async Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken, string repository, IssueStatus? statusFilter = null)
+        public async Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken, string repository,
+            IssueStatus? statusFilter = null)
         {
             var url = _gitApiProvider.GetIssuesUrl;
             if (statusFilter.HasValue)
-                switch(statusFilter)
+                switch (statusFilter)
                 {
                     case IssueStatus.Open:
                         url = _gitApiProvider.GetOpenIssuesUrl;
@@ -32,8 +33,11 @@ namespace GiTracker.Services.Issues
                         break;
                 }
 
-            var issues = await _restService.GetAsync(_gitApiProvider.Host, string.Format(url, repository), _gitApiProvider.IssueListType, cancellationToken)
-                .ConfigureAwait(false);
+            var issues =
+                await
+                    _restService.GetAsync(_gitApiProvider.Host, string.Format(url, repository),
+                        _gitApiProvider.IssueListType, cancellationToken)
+                        .ConfigureAwait(false);
 
             return issues as IEnumerable<IIssue>;
         }

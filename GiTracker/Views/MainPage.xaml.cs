@@ -1,11 +1,10 @@
 ﻿namespace GiTracker.Views
 {
-    public partial class MainPage : BasePage    
+    public partial class MainPage
     {
-        public MainPage ()
+        public MainPage()
         {
-            InitializeComponent ();
+            InitializeComponent();
         }
     }
 }
-

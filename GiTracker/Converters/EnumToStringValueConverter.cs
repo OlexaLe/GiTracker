@@ -1,7 +1,7 @@
-﻿using GiTracker.Resources.Strings;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Resources;
+using GiTracker.Resources.Strings;
 using Xamarin.Forms;
 
 namespace GiTracker.Converters
@@ -10,7 +10,7 @@ namespace GiTracker.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null ? new ResourceManager(typeof(Enums)).GetString(value.ToString()) : Enums.Unknown;
+            return value != null ? new ResourceManager(typeof (Enums)).GetString(value.ToString()) : Enums.Unknown;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

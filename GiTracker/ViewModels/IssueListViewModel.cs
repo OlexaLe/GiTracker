@@ -1,88 +1,39 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using GiTracker.Helpers;
 using GiTracker.Resources.Strings;
-using GiTracker.Services.Issues;
-using Prism.Commands;
 using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    public class IssueListViewModel : BaseViewModel
+    internal class IssueListViewModel : BaseViewModel
     {
-        private readonly IIssueService _issueService;
-        private ObservableCollection<IssueViewModel> _issues;
-        private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
-        private string _pageCenterText;
-        private DelegateCommand _updateIssuesCommand;
-
         public IssueListViewModel(Loader loader,
-            IIssueService issueService,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            OpenIssueTabViewModel openIssuesTabViewModel,
+            ClosedIssueTabViewModel closedIssuesTabViewModel)
             : base(loader, navigationService)
         {
-            _issueService = issueService;
-
             Title = IssueList.Title;
+
+            Tabs = new IssueListTabViewModel[] {openIssuesTabViewModel, closedIssuesTabViewModel};
         }
 
-        public ObservableCollection<IssueViewModel> Issues
-        {
-            get { return _issues; }
-            private set { SetProperty(ref _issues, value); }
-        }
+        public IEnumerable<IssueListTabViewModel> Tabs { get; }
 
-        public DelegateCommand UpdateIssuesCommand =>
-            _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues));
-
-        public DelegateCommand<IssueViewModel> OpenIssueDetailsCommand =>
-            _openIssueDetailsCommand ??
-            (_openIssueDetailsCommand = new DelegateCommand<IssueViewModel>(OpenIssueDetails));
-
-        public string PageCenterText
-        {
-            get { return _pageCenterText; }
-            private set { SetProperty(ref _pageCenterText, value); }
-        }
-
-        public override async void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
-            await LoadIssuesAsync();
+            foreach (var tab in Tabs)
+                tab.OnNavigatedTo(parameters);
         }
 
         public override void OnNavigatedFrom(NavigationParameters parameters)
         {
-            Loader.CancelLoading();
+            foreach (var tab in Tabs)
+                tab.OnNavigatedFrom(parameters);
 
             base.OnNavigatedFrom(parameters);
-        }
-
-        private async Task LoadIssuesAsync()
-        {
-            PageCenterText = Shared.Loading;
-
-            Issues?.Clear();
-            await Loader.LoadAsync(async cancellationToken =>
-            {
-                var issues = await _issueService.GetIssuesAsync(cancellationToken, "XamarinGarage/GiTracker");
-                Issues = new ObservableCollection<IssueViewModel>(issues.Select(issue => new IssueViewModel(issue)));
-            });
-
-            PageCenterText = string.Empty;
-        }
-
-        private async void UpdateIssues()
-        {
-            await LoadIssuesAsync();
-        }
-
-        private void OpenIssueDetails(IssueViewModel issueViewModel)
-        {
-            NavigationService.Navigate<IssueDetailsViewModel>(
-                new NavigationParameters {{IssueDetailsViewModel.IssueParameterName, issueViewModel}}, false);
         }
     }
 }

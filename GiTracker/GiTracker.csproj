@@ -90,6 +90,7 @@
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
+    <Compile Include="ViewModels\IssueListTabViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
@@ -99,6 +100,9 @@
     </Compile>
     <Compile Include="Views\IssueList.xaml.cs">
       <DependentUpon>IssueList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueListTab.xaml.cs">
+      <DependentUpon>IssueListTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -188,7 +192,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\IssueList.xaml">
+    <EmbeddedResource Include="Views\IssueListTab.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -212,6 +216,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\IssueList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

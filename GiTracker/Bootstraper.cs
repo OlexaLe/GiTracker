@@ -16,7 +16,7 @@ namespace GiTracker
     {
         protected override Page CreateMainPage()
         {
-            return new NavigationPage(Container.Resolve<MainPage>());
+            return Container.Resolve<MainPage>();
         }
 
         protected override void RegisterTypes()

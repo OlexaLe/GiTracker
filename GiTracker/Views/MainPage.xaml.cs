@@ -1,4 +1,5 @@
-﻿using GiTracker.ViewModels;
+﻿using System;
+using GiTracker.ViewModels;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 
@@ -7,27 +8,38 @@ namespace GiTracker.Views
     public partial class MainPage : MasterDetailPage
     {
         private readonly MainPageViewModel _viewModel;
-        private bool _isInitialized;
 
         public MainPage()
         {
             InitializeComponent();
             _viewModel = (MainPageViewModel) BindingContext;
-
-            //var view = ServiceLocator.Current.GetInstance<object>(_viewModel.PresentedViewModelType.ToString()) as Page;
-
-            var page = _viewModel.Container.Resolve(_viewModel.PresentedViewModelType) as Page;
-            Detail = new NavigationPage(page);
+            ChangeDetailPage(_viewModel.PresentedViewModelType);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (!_isInitialized)
-            {
-                _isInitialized = true;
-                ((Detail as NavigationPage)?.CurrentPage.BindingContext as BaseViewModel)?.OnNavigatedTo(null);
-            }
+            _viewModel.PresentedViewModelTypeChanged += OnPresentedViewModelTypeChanged;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            _viewModel.PresentedViewModelTypeChanged -= OnPresentedViewModelTypeChanged;
+        }
+
+        private void OnPresentedViewModelTypeChanged(object sender, EventArgs eventArgs)
+        {
+            ChangeDetailPage(_viewModel.PresentedViewModelType);
+        }
+
+        private void ChangeDetailPage(Type newPageType)
+        {
+            var page = _viewModel.Container.Resolve(newPageType) as Page;
+            Detail = new NavigationPage(page);
+            IsPresented = false;
+
+            (page?.BindingContext as BaseViewModel)?.OnNavigatedTo(null);
         }
     }
 }

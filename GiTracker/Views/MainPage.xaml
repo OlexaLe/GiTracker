@@ -6,10 +6,20 @@
     x:Class="GiTracker.Views.MainPage"
     xmlns:pages="clr-namespace:GiTracker.Views"
     xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+    xmlns:localization="clr-namespace:GiTracker.Resources.Strings;assembly=GiTracker"
     mvvm:ViewModelLocator.AutowireViewModel="True">
     <MasterDetailPage.Master>
         <ContentPage Title="GiTracker">
-            <Label Text="Master" />
+            <controls:NiceListView ItemsSource="{Binding SlideMenu}"
+                                   ItemClickedCommand="{Binding SlideMenuItemTapped}"
+                                   IsPullToRefreshEnabled="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </controls:NiceListView>
         </ContentPage>
     </MasterDetailPage.Master>
 

@@ -67,7 +67,7 @@ namespace GiTracker.ViewModels
             Issues?.Clear();
             await Loader.LoadAsync(async cancellationToken =>
             {
-                var issues = await _issueService.GetIssuesAsync(cancellationToken);
+                var issues = await _issueService.GetIssuesAsync(cancellationToken, "XamarinGarage/GiTracker");
                 Issues = new ObservableCollection<IssueViewModel>(issues.Select(issue => new IssueViewModel(issue)));
             });
 

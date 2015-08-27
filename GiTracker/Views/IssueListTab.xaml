@@ -74,6 +74,26 @@
                                        IsVisible="{Binding Login, Converter={StaticResource TextToVisibilityConverter}}" />
 
                             </StackLayout>
+
+                            <StackLayout Grid.Column="1"
+                                         Grid.Row="1"
+                                         Orientation="Horizontal"
+                                         IsVisible="{Binding IsClosed}">
+
+                                <Label Text="{Binding Number, StringFormat='#{0}'}"
+                                       Style="{StaticResource SmallSimpleLabelStyle}" />
+
+                                <Label
+                                    Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueList.ClosedOn}}"
+                                    Style="{StaticResource SmallSimpleLabelStyle}"
+                                    IsVisible="{Binding ClosedAt, Converter={StaticResource TextToVisibilityConverter}}" />
+
+                                <Label BindingContext="{Binding ClosedBy}"
+                                       Text="{Binding Login, StringFormat={x:Static localization:IssueList.By}}"
+                                       Style="{StaticResource SmallSimpleLabelStyle}"
+                                       IsVisible="{Binding Login, Converter={StaticResource TextToVisibilityConverter}}" />
+
+                            </StackLayout>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

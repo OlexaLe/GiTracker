@@ -7,7 +7,7 @@ namespace GiTracker.ViewModels
 {
     public class IssueViewModel
     {
-        readonly IIssue _issue;
+        private readonly IIssue _issue;
 
         public IssueViewModel(IIssue issue)
         {
@@ -24,9 +24,7 @@ namespace GiTracker.ViewModels
         public bool? HasLabels => Labels?.Any();
         public IUser Author => _issue?.Author;
         public IUser Assignee => _issue?.Assignee;
-        public bool HasAssignee => Assignee != null;
         public IUser ClosedBy => _issue?.ClosedBy;
-        public bool HasClosedBy => ClosedBy != null;
         public DateTime? CreatedAt => _issue?.CreatedAt?.ToLocalTime();
         public DateTime? UpdatedAt => _issue?.UpdatedAt?.ToLocalTime();
         public DateTime? ClosedAt => _issue?.ClosedAt?.ToLocalTime();

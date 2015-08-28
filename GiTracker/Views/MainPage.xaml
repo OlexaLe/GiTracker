@@ -4,11 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="GiTracker.Views.MainPage"
-    xmlns:pages="clr-namespace:GiTracker.Views"
     xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
-    xmlns:localization="clr-namespace:GiTracker.Resources.Strings;assembly=GiTracker"
     mvvm:ViewModelLocator.AutowireViewModel="True">
+
     <MasterDetailPage.Master>
         <ContentPage Title="GiTracker">
             <controls:NiceListView ItemsSource="{Binding SlideMenu}"

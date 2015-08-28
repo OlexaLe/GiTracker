@@ -62,33 +62,6 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is assigned.
-        /// </summary>
-        public static string AssignedTo {
-            get {
-                return ResourceManager.GetString("AssignedTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Closed at {0:g}.
-        /// </summary>
-        public static string ClosedAt {
-            get {
-                return ResourceManager.GetString("ClosedAt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} closed this issue.
-        /// </summary>
-        public static string ClosedBy {
-            get {
-                return ResourceManager.GetString("ClosedBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} opened this issue.
         /// </summary>
         public static string CreatedBy {
@@ -112,15 +85,6 @@ namespace GiTracker.Resources.Strings {
         public static string TimeAt {
             get {
                 return ResourceManager.GetString("TimeAt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Updated at {0:g}.
-        /// </summary>
-        public static string UpdatedAt {
-            get {
-                return ResourceManager.GetString("UpdatedAt", resourceCulture);
             }
         }
         

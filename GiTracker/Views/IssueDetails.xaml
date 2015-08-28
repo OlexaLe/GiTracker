@@ -14,8 +14,7 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <converters:EnumToStringValueConverter x:Key="EnumToStringValueConverter" />
-            <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
+            <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -27,56 +26,33 @@
 
         <StackLayout BindingContext="{Binding Issue}">
 
-            <ContentView BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
-                         Padding="6"
-                         HorizontalOptions="Start">
-                <Label Text="{Binding Status, Converter={StaticResource EnumToStringValueConverter}}"
-                       TextColor="{StaticResource PrimaryLightTextColor}"
-                       Style="{StaticResource SmallSimpleLabelStyle}"
-                       YAlign="Center" />
-            </ContentView>
-
-            <Label Text="{Binding Title}"
-                   Style="{StaticResource LargeSimpleLabelStyle}" />
             <Grid>
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:ImageWithLabel ImageUrl="{Binding Author.AvatarUrl}"
-                                         Text="{Binding Author.Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}" />
+                <Image Source="Octicon_IssueOpened.png"
+                       HeightRequest="{StaticResource IssueIconSize}"
+                       WidthRequest="{StaticResource IssueIconSize}"
+                       IsVisible="{Binding IsOpened}" />
+
+                <Image Source="Octicon_IssueClosed.png"
+                       HeightRequest="{StaticResource IssueIconSize}"
+                       WidthRequest="{StaticResource IssueIconSize}"
+                       IsVisible="{Binding IsClosed}" />
 
                 <Label Grid.Column="1"
-                       Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.TimeAt}}"
-                       Style="{StaticResource SmallSimpleLabelStyle}"
-                       YAlign="Center" />
+                       Text="{Binding Title}"
+                       Style="{StaticResource LargeSimpleLabelStyle}" />
             </Grid>
 
-            <controls:ImageWithLabel IsVisible="{Binding HasAssignee}"
-                                     ImageUrl="{Binding Assignee.AvatarUrl}"
-                                     Text="{Binding Assignee.Login, StringFormat={x:Static localization:IssueDetails.AssignedTo}}" />
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <controls:ImageWithLabel IsVisible="{Binding HasClosedBy}"
-                                         ImageUrl="{Binding ClosedBy.AvatarUrl}"
-                                         Text="{Binding ClosedBy.Login, StringFormat={x:Static localization:IssueDetails.ClosedBy}}" />
-
-                <Label Grid.Column="1"
-                       IsVisible="{Binding HasClosedAt}"
-                       Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueDetails.TimeAt}}"
-                       Style="{StaticResource SmallSimpleLabelStyle}"
-                       YAlign="Center" />
-            </Grid>
+            <controls:ImageWithLabel ImageUrl="{Binding Author.AvatarUrl}"
+                                     Text="{Binding Author.Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"
+                                     SecondaryText="{Binding CreatedAt, StringFormat={x:Static localization:IssueDetails.TimeAt}}" />
 
             <Label Text="{Binding Body}"
-                   IsVisible="{Binding HasBody}"
+                   IsVisible="{Binding Body, Converter={StaticResource TextToVisibilityConverter}}"
                    Style="{StaticResource MediumSimpleLabelStyle}" />
 
             <controls:IssueLabelsList ItemsSource="{Binding Labels}"

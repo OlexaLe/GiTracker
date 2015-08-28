@@ -19,6 +19,9 @@ namespace GiTracker.Models
         [JsonProperty(PropertyName = "closed_by")]
         public GitHubUser GitHubClosedBy { get; set; }
 
+        [JsonProperty(PropertyName = "pull_request")]
+        public object PullRequest { get; set; }
+
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
@@ -67,5 +70,7 @@ namespace GiTracker.Models
 
         [JsonProperty(PropertyName = "comments")]
         public int CommentsCount { get; set; }
+
+        public bool IsPullRequest => PullRequest != null;
     }
 }

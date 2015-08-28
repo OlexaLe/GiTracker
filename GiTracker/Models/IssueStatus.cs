@@ -4,5 +4,7 @@
     {
         Open,
         Closed,
+        OpenPullRequest,
+        ClosedPullRequest
     }
 }

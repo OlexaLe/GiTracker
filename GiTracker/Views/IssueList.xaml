@@ -31,7 +31,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="Octicon_IssueOpened.png"
+                        <Image Source="Octicon_Issue_Open_Colored.png"
                                Grid.RowSpan="2"
                                HeightRequest="{StaticResource IssueIconSize}"
                                WidthRequest="{StaticResource IssueIconSize}" />
@@ -80,7 +80,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="Octicon_IssueClosed.png"
+                        <Image Source="Octicon_Issue_Closed_Colored.png"
                                Grid.RowSpan="2"
                                HeightRequest="{StaticResource IssueIconSize}"
                                WidthRequest="{StaticResource IssueIconSize}" />

@@ -80,11 +80,56 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed.
+        /// </summary>
+        public static string IssueStatus_Closed {
+            get {
+                return ResourceManager.GetString("IssueStatus_Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merged.
+        /// </summary>
+        public static string IssueStatus_ClosedPullRequest {
+            get {
+                return ResourceManager.GetString("IssueStatus_ClosedPullRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string IssueStatus_Open {
+            get {
+                return ResourceManager.GetString("IssueStatus_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string IssueStatus_OpenPullRequest {
+            get {
+                return ResourceManager.GetString("IssueStatus_OpenPullRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to at {0:g}.
         /// </summary>
         public static string TimeAt {
             get {
                 return ResourceManager.GetString("TimeAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GiTracker.Helpers;
-using GiTracker.Models;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
 using Prism.Commands;
@@ -28,10 +27,10 @@ namespace GiTracker.ViewModels
         }
 
         public IEnumerable<IssueViewModel> OpenIssues
-            => _issues?.Where(issue => issue.Status == IssueStatus.Open).ToList();
+            => _issues?.Where(issue => issue.IsOpened).ToList();
 
         public IEnumerable<IssueViewModel> ClosedIssues
-            => _issues?.Where(issue => issue.Status == IssueStatus.Closed).ToList();
+            => _issues?.Where(issue => issue.IsClosed).ToList();
 
         public DelegateCommand UpdateIssuesCommand =>
             _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues));

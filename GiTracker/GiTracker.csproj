@@ -51,6 +51,7 @@
     <Compile Include="Models\ILabel.cs" />
     <Compile Include="Models\IssueStatus.cs" />
     <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\SlideMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bootstraper.cs" />
     <Compile Include="Resources\Strings\Enums.Designer.cs">
@@ -77,6 +78,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings\SlideMenu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SlideMenu.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
@@ -195,6 +201,10 @@
     <EmbeddedResource Include="Views\IssueListTab.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Resources\Strings\SlideMenu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SlideMenu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

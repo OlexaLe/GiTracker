@@ -16,7 +16,7 @@
         <ResourceDictionary>
             <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
             <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
-            <converters:IssueStatusToWhiteIconConverter x:Key="IssueStatusToWhiteIconConverter" />
+            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
             <converters:IssueStatusToTextConverter x:Key="IssueStatusToTextConverter" />
         </ResourceDictionary>
     </Page.Resources>
@@ -39,9 +39,10 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="{Binding Status, Converter={StaticResource IssueStatusToWhiteIconConverter}}"
-                           HeightRequest="20"
-                           WidthRequest="20" />
+                    <Image
+                        Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}, ConverterParameter=White}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
 
                     <Label Grid.Column="1"
                            Text="{Binding Status, Converter={StaticResource IssueStatusToTextConverter}}"

@@ -62,20 +62,47 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to opened on {0:d}.
+        ///   Looks up a localized string similar to by {0}.
         /// </summary>
-        public static string Opened {
+        public static string By {
             get {
-                return ResourceManager.GetString("Opened", resourceCulture);
+                return ResourceManager.GetString("By", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to by {0}.
+        ///   Looks up a localized string similar to closed on {0:d}.
         /// </summary>
-        public static string OpenedBy {
+        public static string ClosedOn {
             get {
-                return ResourceManager.GetString("OpenedBy", resourceCulture);
+                return ResourceManager.GetString("ClosedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closed.
+        /// </summary>
+        public static string ClosedTabTitle {
+            get {
+                return ResourceManager.GetString("ClosedTabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to opened on {0:d}.
+        /// </summary>
+        public static string OpenedOn {
+            get {
+                return ResourceManager.GetString("OpenedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string OpenTabTitle {
+            get {
+                return ResourceManager.GetString("OpenTabTitle", resourceCulture);
             }
         }
         

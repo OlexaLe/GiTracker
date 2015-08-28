@@ -1,22 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
 
 namespace GiTracker.Models
 {
-    class GitHubComment : IComment
+    internal class GitHubComment : IComment
     {
-        [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
-        
         [JsonProperty(PropertyName = "user")]
         public GitHubUser GitHubAuthor { get; set; }
+
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
 
         [JsonIgnore]
         public IUser Author => GitHubAuthor;
 
         [JsonProperty(PropertyName = "url")]
-        public string Url { get; }
+        public string Url { get; set; }
 
         [JsonProperty(PropertyName = "body")]
         public string Body { get; set; }
@@ -28,11 +28,11 @@ namespace GiTracker.Models
         public string IssueApiUrl { get; set; }
 
         [JsonProperty(PropertyName = "created_at"),
-        JsonConverter(typeof(IsoDateTimeConverter))]
+         JsonConverter(typeof (IsoDateTimeConverter))]
         public DateTime? CreatedAt { get; set; }
 
         [JsonProperty(PropertyName = "updated_at"),
-        JsonConverter(typeof(IsoDateTimeConverter))]
+         JsonConverter(typeof (IsoDateTimeConverter))]
         public DateTime? UpdatedAt { get; set; }
     }
 }

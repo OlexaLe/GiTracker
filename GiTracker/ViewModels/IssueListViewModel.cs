@@ -1,7 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GiTracker.Helpers;
+using GiTracker.Models;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
 using Prism.Commands;
@@ -9,17 +10,16 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    public class IssueListViewModel : BaseViewModel
+    internal class IssueListViewModel : BaseViewModel
     {
         private readonly IIssueService _issueService;
-        private ObservableCollection<IssueViewModel> _issues;
+        private IEnumerable<IssueViewModel> _issues;
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
-        private string _pageCenterText;
         private DelegateCommand _updateIssuesCommand;
 
         public IssueListViewModel(Loader loader,
-            IIssueService issueService,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            IIssueService issueService)
             : base(loader, navigationService)
         {
             _issueService = issueService;
@@ -27,11 +27,11 @@ namespace GiTracker.ViewModels
             Title = IssueList.Title;
         }
 
-        public ObservableCollection<IssueViewModel> Issues
-        {
-            get { return _issues; }
-            private set { SetProperty(ref _issues, value); }
-        }
+        public IEnumerable<IssueViewModel> OpenIssues
+            => _issues?.Where(issue => issue.Status == IssueStatus.Open).ToList();
+
+        public IEnumerable<IssueViewModel> ClosedIssues
+            => _issues?.Where(issue => issue.Status == IssueStatus.Closed).ToList();
 
         public DelegateCommand UpdateIssuesCommand =>
             _updateIssuesCommand ?? (_updateIssuesCommand = new DelegateCommand(UpdateIssues));
@@ -39,12 +39,6 @@ namespace GiTracker.ViewModels
         public DelegateCommand<IssueViewModel> OpenIssueDetailsCommand =>
             _openIssueDetailsCommand ??
             (_openIssueDetailsCommand = new DelegateCommand<IssueViewModel>(OpenIssueDetails));
-
-        public string PageCenterText
-        {
-            get { return _pageCenterText; }
-            private set { SetProperty(ref _pageCenterText, value); }
-        }
 
         public override async void OnNavigatedTo(NavigationParameters parameters)
         {
@@ -62,16 +56,23 @@ namespace GiTracker.ViewModels
 
         private async Task LoadIssuesAsync()
         {
-            PageCenterText = Shared.Loading;
-
-            Issues?.Clear();
-            await Loader.LoadAsync(async cancellationToken =>
+            try
             {
-                var issues = await _issueService.GetIssuesAsync(cancellationToken);
-                Issues = new ObservableCollection<IssueViewModel>(issues.Select(issue => new IssueViewModel(issue)));
-            });
+                _issues = null;
 
-            PageCenterText = string.Empty;
+                await Loader.LoadAsync(async cancellationToken =>
+                {
+                    var issues =
+                        await _issueService.GetIssuesAsync("XamarinGarage/GiTracker", cancellationToken);
+
+                    _issues = issues.Select(issue => new IssueViewModel(issue)).ToList();
+                });
+            }
+            finally
+            {
+                OnPropertyChanged(() => OpenIssues);
+                OnPropertyChanged(() => ClosedIssues);
+            }
         }
 
         private async void UpdateIssues()

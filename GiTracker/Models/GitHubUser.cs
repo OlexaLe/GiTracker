@@ -2,7 +2,7 @@
 
 namespace GiTracker.Models
 {
-    public class GitHubUser :IUser
+    public class GitHubUser : IUser
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }

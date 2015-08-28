@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Application
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -14,13 +15,15 @@
             <Thickness x:Key="PagePadding">20</Thickness>
             <Thickness x:Key="ListItemPadding">20,6</Thickness>
 
-            <Style 
+            <x:Double x:Key="IssueIconSize">24</x:Double>
+
+            <Style
                 x:Key="SimpleLabelStyle"
                 TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource PrimaryDarkTextColor}" />
             </Style>
 
-            <Style 
+            <Style
                 x:Key="SmallSimpleLabelStyle"
                 TargetType="Label"
                 BaseResourceKey="SimpleLabelStyle">
@@ -28,21 +31,21 @@
                 <Setter Property="TextColor" Value="{StaticResource SecondaryDarkTextColor}" />
             </Style>
 
-            <Style 
+            <Style
                 x:Key="MediumSimpleLabelStyle"
                 TargetType="Label"
                 BaseResourceKey="SimpleLabelStyle">
                 <Setter Property="FontSize" Value="Medium" />
             </Style>
 
-            <Style 
+            <Style
                 x:Key="LargeSimpleLabelStyle"
                 TargetType="Label"
                 BaseResourceKey="SimpleLabelStyle">
                 <Setter Property="FontSize" Value="Large" />
             </Style>
 
-            <Style 
+            <Style
                 x:Key="PageCenterLabelStyle"
                 TargetType="Label"
                 BaseResourceKey="SmallSimpleLabelStyle">
@@ -53,10 +56,9 @@
             <Style
                 x:Key="AvatarStyle"
                 TargetType="Image">
-                <Setter Property="HeightRequest" Value="40"/>
-                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
             </Style>
-
         </ResourceDictionary>
     </Application.Resources>
 

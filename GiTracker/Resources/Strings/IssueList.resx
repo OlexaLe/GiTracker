@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Opened" xml:space="preserve">
+  <data name="By" xml:space="preserve">
+    <value>by {0}</value>
+  </data>
+  <data name="ClosedOn" xml:space="preserve">
+    <value>closed on {0:d}</value>
+  </data>
+  <data name="ClosedTabTitle" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="OpenedOn" xml:space="preserve">
     <value>opened on {0:d}</value>
   </data>
-  <data name="OpenedBy" xml:space="preserve">
-    <value>by {0}</value>
+  <data name="OpenTabTitle" xml:space="preserve">
+    <value>Open</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Issues</value>

@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-
-namespace GiTracker.Models
+﻿namespace GiTracker.Models
 {
     public interface ILabel
     {

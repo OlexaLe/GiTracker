@@ -1,16 +1,14 @@
-﻿using GiTracker.Resources.Strings;
-using System;
+﻿using System;
 using System.Globalization;
-using System.Resources;
 using Xamarin.Forms;
 
 namespace GiTracker.Converters
 {
-    public class EnumToStringValueConverter : IValueConverter
+    internal class TextToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null ? new ResourceManager(typeof(Enums)).GetString(value.ToString()) : Enums.Unknown;
+            return !string.IsNullOrEmpty(value?.ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

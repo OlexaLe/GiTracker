@@ -7,7 +7,7 @@ namespace GiTracker.Views
     {
         public BasePage()
         {
-            SetBinding(Page.TitleProperty, new Binding { Path = nameof(BaseViewModel.Title) });
+            SetBinding(TitleProperty, new Binding {Path = nameof(BaseViewModel.Title)});
         }
     }
 }

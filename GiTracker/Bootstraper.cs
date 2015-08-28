@@ -27,8 +27,6 @@ namespace GiTracker
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
 
             Container.RegisterType<Loader>();
-            Container.RegisterType<OpenIssueTabViewModel>();
-            Container.RegisterType<ClosedIssueTabViewModel>();
 
             Container.RegisterType<IIssueService, IssueService>();
             Container.RegisterType<IDatabaseService, DatabaseService>();

@@ -18,7 +18,7 @@ namespace GiTracker.Services.Issues
             _gitApiProvider = gitApiProvider;
         }
 
-        public async Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken, string repository)
+        public async Task<IEnumerable<IIssue>> GetIssuesAsync(string repository, CancellationToken cancellationToken)
         {
             var issues =
                 await

@@ -7,6 +7,6 @@ namespace GiTracker.Services.Issues
 {
     public interface IIssueService
     {
-        Task<IEnumerable<IIssue>> GetIssuesAsync(CancellationToken cancellationToken, string repository);
+        Task<IEnumerable<IIssue>> GetIssuesAsync(string repository, CancellationToken cancellationToken);
     }
 }

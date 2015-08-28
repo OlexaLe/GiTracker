@@ -13,7 +13,7 @@ namespace GiTracker.ViewModels
     internal class IssueListViewModel : BaseViewModel
     {
         private readonly IIssueService _issueService;
-        private List<IssueViewModel> _issues;
+        private IEnumerable<IssueViewModel> _issues;
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
         private DelegateCommand _updateIssuesCommand;
 
@@ -58,12 +58,12 @@ namespace GiTracker.ViewModels
         {
             try
             {
-                _issues?.Clear();
+                _issues = null;
 
                 await Loader.LoadAsync(async cancellationToken =>
                 {
                     var issues =
-                        await _issueService.GetIssuesAsync(cancellationToken, "XamarinGarage/GiTracker");
+                        await _issueService.GetIssuesAsync("XamarinGarage/GiTracker", cancellationToken);
 
                     _issues = issues.Select(issue => new IssueViewModel(issue)).ToList();
                 });

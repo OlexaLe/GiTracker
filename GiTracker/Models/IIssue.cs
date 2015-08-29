@@ -20,5 +20,6 @@ namespace GiTracker.Models
         DateTime? UpdatedAt { get; }
         DateTime? ClosedAt { get; }
         int CommentsCount { get; }
+        bool IsPullRequest { get; }
     }
 }

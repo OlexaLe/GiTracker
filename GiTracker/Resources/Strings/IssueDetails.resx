@@ -123,8 +123,23 @@
   <data name="IssueNumber" xml:space="preserve">
     <value>Issue #{0}</value>
   </data>
+  <data name="IssueStatus_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="IssueStatus_ClosedPullRequest" xml:space="preserve">
+    <value>Merged</value>
+  </data>
+  <data name="IssueStatus_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="IssueStatus_OpenPullRequest" xml:space="preserve">
+    <value>Open</value>
+  </data>
   <data name="TimeAt" xml:space="preserve">
     <value>at {0:g}</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
   <data name="ViewInBrowser" xml:space="preserve">
     <value>View in browser</value>

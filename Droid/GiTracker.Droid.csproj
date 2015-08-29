@@ -136,8 +136,14 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_IssueClosed.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_IssueOpened.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Open_Colored.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Open_White.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Closed_Colored.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Closed_White.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_PullRequest_Colored.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_PullRequest_White.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Unknown_Colored.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Unknown_White.png" />	
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-v21\styles.xml" />

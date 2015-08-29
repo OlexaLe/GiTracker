@@ -13,6 +13,7 @@
     <TabbedPage.Resources>
         <ResourceDictionary>
             <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
+            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
 
             <DataTemplate x:Key="OpenIssueListItem">
                 <ViewCell>
@@ -31,7 +32,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="Octicon_IssueOpened.png"
+                        <Image Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}}"
                                Grid.RowSpan="2"
                                HeightRequest="{StaticResource IssueIconSize}"
                                WidthRequest="{StaticResource IssueIconSize}" />
@@ -80,7 +81,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="Octicon_IssueClosed.png"
+                        <Image Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}}"
                                Grid.RowSpan="2"
                                HeightRequest="{StaticResource IssueIconSize}"
                                WidthRequest="{StaticResource IssueIconSize}" />

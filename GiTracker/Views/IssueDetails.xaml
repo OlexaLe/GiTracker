@@ -15,6 +15,9 @@
     <Page.Resources>
         <ResourceDictionary>
             <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
+            <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
+            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
+            <converters:IssueStatusToTextConverter x:Key="IssueStatusToTextConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -26,26 +29,30 @@
 
         <StackLayout BindingContext="{Binding Issue}">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <StackLayout Orientation="Horizontal">
 
-                <Image Source="Octicon_IssueOpened.png"
-                       HeightRequest="{StaticResource IssueIconSize}"
-                       WidthRequest="{StaticResource IssueIconSize}"
-                       IsVisible="{Binding IsOpened}" />
+                <Grid BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
+                      Padding="6">
 
-                <Image Source="Octicon_IssueClosed.png"
-                       HeightRequest="{StaticResource IssueIconSize}"
-                       WidthRequest="{StaticResource IssueIconSize}"
-                       IsVisible="{Binding IsClosed}" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="1"
-                       Text="{Binding Title}"
+                    <Image
+                        Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}, ConverterParameter=White}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
+
+                    <Label Grid.Column="1"
+                           Text="{Binding Status, Converter={StaticResource IssueStatusToTextConverter}}"
+                           TextColor="White"
+                           Style="{StaticResource SmallSimpleLabelStyle}" />
+                </Grid>
+
+                <Label Text="{Binding Title}"
                        Style="{StaticResource LargeSimpleLabelStyle}" />
-            </Grid>
+            </StackLayout>
 
             <controls:ImageWithLabel ImageUrl="{Binding Author.AvatarUrl}"
                                      Text="{Binding Author.Login, StringFormat={x:Static localization:IssueDetails.CreatedBy}}"

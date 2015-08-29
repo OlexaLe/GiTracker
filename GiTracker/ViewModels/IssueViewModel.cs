@@ -19,9 +19,15 @@ namespace GiTracker.ViewModels
         public string Body => _issue?.Body;
         public string WebPage => _issue.WebPage;
         public string Url => _issue?.Url;
-        public IssueStatus? Status => _issue?.Status;
+
+        public IssueStatus? Status
+            =>
+                (_issue?.IsPullRequest).GetValueOrDefault()
+                    ? (_issue?.Status == IssueStatus.Open ? IssueStatus.OpenPullRequest : IssueStatus.ClosedPullRequest)
+                    : (_issue?.Status);
+
         public IEnumerable<ILabel> Labels => _issue?.Labels;
-        public bool? HasLabels => Labels?.Any();
+        public bool? HasLabels => _issue?.Labels != null && _issue.Labels.Any();
         public IUser Author => _issue?.Author;
         public IUser Assignee => _issue?.Assignee;
         public IUser ClosedBy => _issue?.ClosedBy;
@@ -29,7 +35,7 @@ namespace GiTracker.ViewModels
         public DateTime? UpdatedAt => _issue?.UpdatedAt?.ToLocalTime();
         public DateTime? ClosedAt => _issue?.ClosedAt?.ToLocalTime();
         public bool HasComments => _issue?.CommentsCount > 0;
-        public bool IsOpened => Status == IssueStatus.Open;
-        public bool IsClosed => Status == IssueStatus.Closed;
+        public bool IsOpened => _issue?.Status == IssueStatus.Open;
+        public bool IsClosed => _issue?.Status == IssueStatus.Closed;
     }
 }

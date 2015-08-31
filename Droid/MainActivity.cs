@@ -1,25 +1,31 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace GiTracker.Droid
 {
-    [Activity (Label = "GiTracker", 
-        Icon = "@drawable/icon", 
-        MainLauncher = true, 
-        // TODO: check whether this works on Android 4+
+    [Activity(Label = "GiTracker",
+        Icon = "@drawable/icon",
+        MainLauncher = true,
         Theme = "@style/GiTrackerTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity
+    public class MainActivity : FormsApplicationActivity
     {
-        protected override void OnCreate (Bundle bundle)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate (bundle);
+            base.OnCreate(bundle);
 
-            Xamarin.Forms.Forms.Init (this, bundle);
+            Forms.Init(this, bundle);
 
-            LoadApplication (new App ());
+            if (UserDialogs.Instance == null)
+            {
+                UserDialogs.Init(this);
+            }
+
+            LoadApplication(new App());
         }
     }
 }
-

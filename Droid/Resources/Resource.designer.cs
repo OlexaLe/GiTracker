@@ -26,6 +26,8 @@ namespace GiTracker.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Acr.Support.Android.Resource.String.ApplicationName = global::GiTracker.Droid.Resource.String.ApplicationName;
+			global::Acr.Support.Android.Resource.String.Hello = global::GiTracker.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::GiTracker.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::GiTracker.Droid.Resource.String.Hello;
 		}

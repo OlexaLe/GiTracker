@@ -1,4 +1,6 @@
 ﻿using System;
+using Acr.UserDialogs;
+using GiTracker.Resources.Strings;
 
 namespace GiTracker.Services.Progress
 {
@@ -6,12 +8,17 @@ namespace GiTracker.Services.Progress
     {
         public void ShowProgress()
         {
-            throw new NotImplementedException();
+            ShowProgress(null);
+        }
+
+        public void ShowProgress(Action onCancel)
+        {
+            UserDialogs.Instance.Loading(Shared.Loading, onCancel);
         }
 
         public void DismissProgress()
         {
-            throw new NotImplementedException();
+            UserDialogs.Instance.Loading().Hide();
         }
     }
 }

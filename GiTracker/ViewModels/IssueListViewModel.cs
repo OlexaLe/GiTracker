@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GiTracker.Helpers;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
+using GiTracker.Services.Progress;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -16,10 +17,10 @@ namespace GiTracker.ViewModels
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
         private DelegateCommand _updateIssuesCommand;
 
-        public IssueListViewModel(Loader loader,
+        public IssueListViewModel(Loader loader, IProgressService progressService,
             INavigationService navigationService,
             IIssueService issueService)
-            : base(loader, navigationService)
+            : base(loader, progressService, navigationService)
         {
             _issueService = issueService;
 

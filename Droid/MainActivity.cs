@@ -20,10 +20,7 @@ namespace GiTracker.Droid
 
             Forms.Init(this, bundle);
 
-            if (UserDialogs.Instance == null)
-            {
-                UserDialogs.Init(this);
-            }
+            UserDialogs.Init(this);
 
             LoadApplication(new App());
         }

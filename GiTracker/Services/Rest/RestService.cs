@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using GiTracker.Services.HttpClientProvider;
@@ -15,12 +16,13 @@ namespace GiTracker.Services.Rest
             HttpClientProvider = httpClientProvider;
         }
 
-        public async Task<object> GetAsync(string host, string url, Type responseType,
+        public async Task<object> GetAsync(string host, string url,
+            Dictionary<string, string> parameters, Type responseType,
             CancellationToken cancellationToken)
         {
             using (var client = HttpClientProvider.CreateHttpClient())
             {
-                using (var response = await client.GetAsync(HttpClientProvider.GetRequestUrl(host, url),
+                using (var response = await client.GetAsync(HttpClientProvider.GetRequestUrl(host, url, parameters),
                     cancellationToken).ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -34,9 +36,10 @@ namespace GiTracker.Services.Rest
             }
         }
 
-        public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
+        public async Task<T> GetAsync<T>(string host, string url,
+            Dictionary<string, string> parameters, CancellationToken cancellationToken)
         {
-            var response = await GetAsync(host, url, typeof (T), cancellationToken);
+            var response = await GetAsync(host, url, parameters, typeof (T), cancellationToken);
             return (T) response;
         }
     }

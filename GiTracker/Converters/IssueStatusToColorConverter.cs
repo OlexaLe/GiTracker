@@ -11,12 +11,15 @@ namespace GiTracker.Converters
         {
             if (value == null) return Color.Gray;
 
-            switch ((IssueStatus)value)
+            switch ((IssueStatus) value)
             {
                 case IssueStatus.Open:
+                case IssueStatus.OpenPullRequest:
                     return Color.Green;
                 case IssueStatus.Closed:
                     return Color.Red;
+                case IssueStatus.ClosedPullRequest:
+                    return Color.Purple;
                 default:
                     return Color.Gray;
             }

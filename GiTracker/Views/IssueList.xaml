@@ -1,58 +1,141 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<pages:BasePage
-  xmlns="http://xamarin.com/schemas/2014/forms"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  x:Class="GiTracker.Views.IssueList"
-  xmlns:pages="clr-namespace:GiTracker.Views"
-  xmlns:controls="clr-namespace:GiTracker.Controls"
-  xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
-  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-  prism:ViewModelLocator.AutowireViewModel="True">
 
-  <Grid>
-    <Label
-        Text="{Binding PageCenterText}"
-        Style="{StaticResource PageCenterLabelStyle}" />
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="GiTracker.Views.IssueList"
+            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            xmlns:converters="clr-namespace:GiTracker.Converters"
+            xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+            xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            Title="{Binding Title}">
 
-    <controls:NiceListView
-        ItemsSource="{Binding Issues}"
-        ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
-        RefreshCommand="{Binding UpdateIssuesCommand}"
-        IsRefreshing="{Binding IsLoading, Mode=OneWay}">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
+            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
 
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Padding="{StaticResource ListItemPadding}">
+            <DataTemplate x:Key="OpenIssueListItem">
+                <ViewCell>
+                    <Grid Padding="{StaticResource ListItemPadding}">
 
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <Label Text="{Binding Title}"
-                       Style="{StaticResource MediumSimpleLabelStyle}"
-                       LineBreakMode="TailTruncation" />
-                <Label Grid.Column="1"
-                       Text="{Binding Number, StringFormat='#{0}'}"
-                       Style="{StaticResource SmallSimpleLabelStyle}"
-                       YAlign="Center"/>
-              </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-              <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueList.Opened}}"
-                       Style="{StaticResource SmallSimpleLabelStyle}" />
+                        <Image Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}}"
+                               Grid.RowSpan="2"
+                               HeightRequest="{StaticResource IssueIconSize}"
+                               WidthRequest="{StaticResource IssueIconSize}" />
 
-                <Label BindingContext="{Binding Author}"
-                       Text="{Binding Login, StringFormat={x:Static localization:IssueList.OpenedBy}}"
-                       Style="{StaticResource SmallSimpleLabelStyle}" />
-              </StackLayout>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
+                        <Label Grid.Column="1"
+                               Grid.ColumnSpan="3"
+                               Text="{Binding Title}"
+                               Style="{StaticResource MediumSimpleLabelStyle}"
+                               LineBreakMode="TailTruncation" />
 
-    </controls:NiceListView>
-  </Grid>
-</pages:BasePage>
+                        <Label Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding Number, StringFormat='#{0}'}"
+                               Style="{StaticResource SmallSimpleLabelStyle}" />
+
+                        <Label Grid.Column="2"
+                               Grid.Row="1"
+                               Text="{Binding CreatedAt, StringFormat={x:Static localization:IssueList.OpenedOn}}"
+                               Style="{StaticResource SmallSimpleLabelStyle}"
+                               IsVisible="{Binding CreatedAt, Converter={StaticResource TextToVisibilityConverter}}" />
+
+                        <Label Grid.Column="3"
+                               Grid.Row="1"
+                               BindingContext="{Binding Author}"
+                               Text="{Binding Login, StringFormat={x:Static localization:IssueList.By}}"
+                               Style="{StaticResource SmallSimpleLabelStyle}"
+                               IsVisible="{Binding Login, Converter={StaticResource TextToVisibilityConverter}}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ClosedIssueListItem">
+                <ViewCell>
+                    <Grid Padding="{StaticResource ListItemPadding}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}}"
+                               Grid.RowSpan="2"
+                               HeightRequest="{StaticResource IssueIconSize}"
+                               WidthRequest="{StaticResource IssueIconSize}" />
+
+                        <Label Grid.Column="1"
+                               Grid.ColumnSpan="3"
+                               Text="{Binding Title}"
+                               Style="{StaticResource MediumSimpleLabelStyle}"
+                               LineBreakMode="TailTruncation" />
+
+                        <Label Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding Number, StringFormat='#{0}'}"
+                               Style="{StaticResource SmallSimpleLabelStyle}" />
+
+                        <Label Grid.Column="2"
+                               Grid.Row="1"
+                               Text="{Binding ClosedAt, StringFormat={x:Static localization:IssueList.ClosedOn}}"
+                               Style="{StaticResource SmallSimpleLabelStyle}"
+                               IsVisible="{Binding ClosedAt, Converter={StaticResource TextToVisibilityConverter}}" />
+
+                        <Label Grid.Column="3"
+                               Grid.Row="1"
+                               BindingContext="{Binding ClosedBy}"
+                               Text="{Binding Login, StringFormat={x:Static localization:IssueList.By}}"
+                               Style="{StaticResource SmallSimpleLabelStyle}"
+                               IsVisible="{Binding Login, Converter={StaticResource TextToVisibilityConverter}}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <TabbedPage.Children>
+
+        <ContentPage Title="{x:Static localization:IssueList.OpenTabTitle}">
+
+            <controls:NiceListView
+                ItemsSource="{Binding OpenIssues}"
+                ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
+                RefreshCommand="{Binding UpdateIssuesCommand}"
+                IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+                ItemTemplate="{StaticResource OpenIssueListItem}" />
+        </ContentPage>
+
+        <ContentPage Title="{x:Static localization:IssueList.ClosedTabTitle}">
+
+            <controls:NiceListView
+                ItemsSource="{Binding ClosedIssues}"
+                ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
+                RefreshCommand="{Binding UpdateIssuesCommand}"
+                IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+                ItemTemplate="{StaticResource ClosedIssueListItem}" />
+        </ContentPage>
+    </TabbedPage.Children>
+
+</TabbedPage>

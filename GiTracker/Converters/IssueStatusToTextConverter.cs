@@ -1,16 +1,21 @@
-﻿using GiTracker.Resources.Strings;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Resources;
+using GiTracker.Models;
+using GiTracker.Resources.Strings;
 using Xamarin.Forms;
 
 namespace GiTracker.Converters
 {
-    public class EnumToStringValueConverter : IValueConverter
+    internal class IssueStatusToTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null ? new ResourceManager(typeof(Enums)).GetString(value.ToString()) : Enums.Unknown;
+            if (value == null) return IssueDetails.Unknown;
+
+            return
+                new ResourceManager(typeof (IssueDetails)).GetString(
+                    $"{typeof (IssueStatus).Name}_{value}");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

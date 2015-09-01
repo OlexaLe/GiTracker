@@ -8,10 +8,8 @@ using GiTracker.Services.HttpClientProvider;
 
 namespace GiTracker.Services.Rest
 {
-    class RestService : IRestService
+    internal class RestService : IRestService
     {
-        const string UserAgent = "XamarinGarage";
-
         protected readonly IGitsProvider _gitProvider;
 
         protected RestService(IGitsProvider gitProvider)
@@ -19,7 +17,7 @@ namespace GiTracker.Services.Rest
             _gitProvider = gitProvider;
         }
 
-        public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
+        public async Task<object> GetAsync(string host, string url, Type responseType, CancellationToken cancellationToken)
         {
             using (var client = _gitProvider.CreateHttpClient())
             {
@@ -32,9 +30,15 @@ namespace GiTracker.Services.Rest
                         throw new Exception(response.ToString());
                     
                     var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    return JsonConvert.DeserializeObject<T>(data);
-                }                
+                    return JsonConvert.DeserializeObject(data, responseType);
+                }
             }
+        }
+
+        public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
+        {
+            var response = await GetAsync(host, url, typeof (T), cancellationToken);
+            return (T) response;
         }
     }
 }

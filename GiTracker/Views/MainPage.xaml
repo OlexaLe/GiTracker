@@ -1,19 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:BasePage
-  xmlns="http://xamarin.com/schemas/2014/forms" 
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  x:Class="GiTracker.Views.MainPage"
-  xmlns:pages="clr-namespace:GiTracker.Views"
-	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-  prism:ViewModelLocator.AutowireViewModel="True">
-	  
-  <StackLayout>
-		<Label Text="{Binding Title}" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
 
-    <Button Text="Issues"
-            Command="{Binding OpenIssueListCommand}"/>
-	</StackLayout>
-  
-</pages:BasePage>
+<MasterDetailPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GiTracker.Views.MainPage"
+    xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+    mvvm:ViewModelLocator.AutowireViewModel="True">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="GiTracker">
+            <controls:NiceListView ItemsSource="{Binding SlideMenu}"
+                                   ItemClickedCommand="{Binding SlideMenuItemTapped}"
+                                   IsPullToRefreshEnabled="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </controls:NiceListView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+</MasterDetailPage>

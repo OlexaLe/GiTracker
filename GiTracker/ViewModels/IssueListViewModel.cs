@@ -10,17 +10,17 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    internal class IssueListViewModel : BaseViewModel
+    internal class IssueListViewModel : BaseListViewModel
     {
         private readonly IIssueService _issueService;
         private IEnumerable<IssueViewModel> _issues;
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
         private DelegateCommand _updateIssuesCommand;
 
-        public IssueListViewModel(Loader loader, IProgressService progressService,
+        public IssueListViewModel(Loader loader, Loader listLoader, IProgressService progressService,
             INavigationService navigationService,
             IIssueService issueService)
-            : base(loader, progressService, navigationService)
+            : base(loader, listLoader, progressService, navigationService)
         {
             _issueService = issueService;
 
@@ -44,7 +44,7 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            await LoadIssuesAsync();
+            await LoadIssuesAsync(Loader);
         }
 
         public override void OnNavigatedFrom(NavigationParameters parameters)
@@ -54,13 +54,14 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        private async Task LoadIssuesAsync()
+        private async Task LoadIssuesAsync(Loader loader)
         {
             try
             {
                 _issues = null;
+                TriggerIssuesPropertyChanged();
 
-                await Loader.LoadAsync(async cancellationToken =>
+                await loader.LoadAsync(async cancellationToken =>
                 {
                     var issues =
                         await _issueService.GetIssuesAsync("XamarinGarage/GiTracker", cancellationToken);
@@ -70,14 +71,19 @@ namespace GiTracker.ViewModels
             }
             finally
             {
-                OnPropertyChanged(() => OpenIssues);
-                OnPropertyChanged(() => ClosedIssues);
+                TriggerIssuesPropertyChanged();
             }
+        }
+
+        private void TriggerIssuesPropertyChanged()
+        {
+            OnPropertyChanged(() => OpenIssues);
+            OnPropertyChanged(() => ClosedIssues);
         }
 
         private async void UpdateIssues()
         {
-            await LoadIssuesAsync();
+            await LoadIssuesAsync(ListLoader);
         }
 
         private void OpenIssueDetails(IssueViewModel issueViewModel)

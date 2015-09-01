@@ -96,6 +96,7 @@
     <Compile Include="Services\Progress\ProgressService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
+    <Compile Include="ViewModels\BaseListViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModel.cs" />
     <Compile Include="ViewModels\IssueListViewModel.cs" />

@@ -9,7 +9,6 @@ namespace GiTracker.ViewModels
     {
         private readonly IProgressService _progressService;
         protected readonly INavigationService NavigationService;
-        private bool _isLoading;
         private string _title;
 
         protected BaseViewModel(Loader loader, IProgressService progressService,
@@ -22,12 +21,6 @@ namespace GiTracker.ViewModels
         }
 
         protected Loader Loader { get; }
-
-        public bool IsLoading
-        {
-            get { return _isLoading; }
-            private set { SetProperty(ref _isLoading, value); }
-        }
 
         public string Title
         {
@@ -45,7 +38,6 @@ namespace GiTracker.ViewModels
 
         private void IsLoadingChanged(bool isLoading)
         {
-            IsLoading = isLoading;
             if (isLoading)
             {
                 _progressService.ShowProgress();

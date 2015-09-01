@@ -10,7 +10,7 @@ namespace GiTracker.Services.Rest
     {
         protected readonly IHttpClientProvider HttpClientProvider;
 
-        protected RestService(IHttpClientProvider httpClientProvider)
+        public RestService(IHttpClientProvider httpClientProvider)
         {
             HttpClientProvider = httpClientProvider;
         }

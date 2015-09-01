@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using GiTracker.Services.HttpClientProvider;
+using Newtonsoft.Json;
 
 namespace GiTracker.Services.Rest
 {
@@ -15,7 +15,8 @@ namespace GiTracker.Services.Rest
             HttpClientProvider = httpClientProvider;
         }
 
-        public async Task<object> GetAsync(string host, string url, Type responseType, CancellationToken cancellationToken)
+        public async Task<object> GetAsync(string host, string url, Type responseType,
+            CancellationToken cancellationToken)
         {
             using (var client = HttpClientProvider.CreateHttpClient())
             {
@@ -35,8 +36,8 @@ namespace GiTracker.Services.Rest
 
         public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
         {
-            var response = await GetAsync(host, url, typeof(T), cancellationToken);
-            return (T)response;
+            var response = await GetAsync(host, url, typeof (T), cancellationToken);
+            return (T) response;
         }
     }
 }

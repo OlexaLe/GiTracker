@@ -23,7 +23,7 @@ namespace GiTracker.Services.Rest
         {
             using (var client = _gitProvider.CreateHttpClient())
             {
-                using (var response = await client.GetAsync(_gitProvider.RequestURL(url), 
+                using (var response = await client.GetAsync(_gitProvider.RequestUrl(url), 
                     cancellationToken).ConfigureAwait(false))
 				{
 					cancellationToken.ThrowIfCancellationRequested();

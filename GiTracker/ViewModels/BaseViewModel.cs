@@ -13,8 +13,8 @@ namespace GiTracker.ViewModels
         protected BaseViewModel(Loader loader,
             INavigationService navigationService)
         {
-            this.Loader = loader;
-            this.Loader.LoadinChanged += (sender, args) => IsLoading = this.Loader.IsLoading;
+            Loader = loader;
+            Loader.LoadinChanged += (sender, args) => IsLoading = Loader.IsLoading;
             NavigationService = navigationService;
         }
 

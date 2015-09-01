@@ -123,7 +123,7 @@
                 ItemsSource="{Binding OpenIssues}"
                 ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
                 RefreshCommand="{Binding UpdateIssuesCommand}"
-                IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+                IsRefreshing="{Binding IsListLoading, Mode=OneWay}"
                 ItemTemplate="{StaticResource OpenIssueListItem}" />
         </ContentPage>
 
@@ -133,7 +133,7 @@
                 ItemsSource="{Binding ClosedIssues}"
                 ItemClickedCommand="{Binding OpenIssueDetailsCommand}"
                 RefreshCommand="{Binding UpdateIssuesCommand}"
-                IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+                IsRefreshing="{Binding IsListLoading, Mode=OneWay}"
                 ItemTemplate="{StaticResource ClosedIssueListItem}" />
         </ContentPage>
     </TabbedPage.Children>

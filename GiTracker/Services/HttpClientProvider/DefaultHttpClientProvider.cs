@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Net.Http.Headers;
 
@@ -40,15 +41,13 @@ namespace GiTracker.Services.HttpClientProvider
         string BuildParametersString(Dictionary<string, string> parameters)
         {
             var queryString = new StringBuilder();
-
             foreach (var parameter in parameters)
             {
                 if (queryString.Length > 0)
                     queryString.Append('&');
                 queryString.AppendFormat("{0}={1}", parameter.Key, parameter.Value);
             }
-
-            return queryString.ToString();
+            return WebUtility.UrlEncode(queryString.ToString());
         }
     }
 }

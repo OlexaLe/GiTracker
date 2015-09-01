@@ -35,7 +35,7 @@ namespace GiTracker
             Container.RegisterType<IRestService, RestService>();
 
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
-            Container.RegisterType<IGitsProvider, GithubProvider> ();
+            Container.RegisterType<IHttpClientProvider, DefaultHttpClientProvider> ();
         }
     }
 }

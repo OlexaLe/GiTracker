@@ -21,13 +21,13 @@ namespace GiTracker
         }
 
         protected override void RegisterTypes()
-		{
+        {
             Container.RegisterInstance(Container);
 
             Container.RegisterTypeForNavigation<IssueList, IssueListViewModel>();
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
 
-			Container.RegisterType<Loader>();
+            Container.RegisterType<Loader>();
 
             Container.RegisterType<IIssueService, IssueService>();
             Container.RegisterType<IDatabaseService, DatabaseService>();
@@ -35,7 +35,7 @@ namespace GiTracker
             Container.RegisterType<IRestService, RestService>();
 
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
-            Container.RegisterType<IHttpClientProvider, DefaultHttpClientProvider> ();
+            Container.RegisterType<IHttpClientProvider, DefaultHttpClientProvider>();
         }
     }
 }

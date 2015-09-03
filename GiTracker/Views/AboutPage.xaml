@@ -6,24 +6,31 @@
                 xmlns:localization="clr-namespace:GiTracker.Resources.Strings;assembly=GiTracker"
                 xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                 xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+                xmlns:local="clr-namespace:GiTracker"
                 Title="{x:Static localization:AboutPage.About}"
                 mvvm:ViewModelLocator.AutowireViewModel="True"
                 Padding="{StaticResource PagePadding}"
                 x:Class="GiTracker.Views.AboutPage">
+
     <StackLayout>
+
         <Label Text="{Binding Version, StringFormat={x:Static localization:AboutPage.ApplicationTitleVersion}}"
                HorizontalOptions="Center" />
-        <Label Text="{x:Static localization:AboutPage.XamarinGarage}" HorizontalOptions="Center" />
+
+        <Label Text="{x:Static local:Constants.XamarinGarage}"
+               HorizontalOptions="Center" />
+
         <controls:NiceLabel
             Text="{x:Static localization:AboutPage.EmailUs}"
             HorizontalOptions="EndAndExpand"
             Style="{StaticResource SmallSimpleLabelStyle}"
             IsUnderlined="True">
+
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding EmailUsCommand}" />
             </Label.GestureRecognizers>
+
         </controls:NiceLabel>
     </StackLayout>
-
 
 </views:BasePage>

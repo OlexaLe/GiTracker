@@ -84,8 +84,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SlideMenu.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\HttpClientProvider\DefaultHttpClientProvider.cs" />
-    <Compile Include="Services\HttpClientProvider\IHttpClientProvider.cs" />
     <Compile Include="Services\Login\ILoginService.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
     <Compile Include="Services\Api\GitHubApiProvider.cs" />
@@ -97,6 +95,7 @@
     <Compile Include="Services\Progress\IProgressService.cs" />
     <Compile Include="Services\Progress\ProgressService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
+    <Compile Include="Services\Rest\RestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="ViewModels\BaseListViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

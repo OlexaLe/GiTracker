@@ -22,9 +22,7 @@ namespace GiTracker.Services.Issues
         {
             var issues =
                 await
-                    _restService.GetAsync(_gitApiProvider.Host, _gitApiProvider.GetIssuesUrl(repository),
-                        new Dictionary<string, string> {{"state", "all"}},
-                        _gitApiProvider.IssueListType, cancellationToken)
+                    _restService.GetAsync(_gitApiProvider.GetIssuesRequest(repository), cancellationToken)
                         .ConfigureAwait(false);
 
             return issues as IEnumerable<IIssue>;

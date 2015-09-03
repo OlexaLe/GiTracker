@@ -17,15 +17,13 @@ namespace GiTracker.Tests.Services
         public void Init()
         {
             var apiProvderMoq = new Mock<IGitApiProvider>();
-            apiProvderMoq.Setup(moq => moq.Host).Returns(Host);
-            apiProvderMoq.Setup(moq => moq.GetIssuesUrl(It.IsAny<string>())).Returns(IssuesUrl);
-            apiProvderMoq.Setup(moq => moq.IssueListType).Returns(IssuesListType);
+            apiProvderMoq.Setup(moq => moq.GetIssuesRequest(It.IsAny<string>())).Returns(restRequest);
 
             _gitApiProvider = apiProvderMoq.Object;
         }
 
-        private string Host => "TestHost";
-        private string IssuesUrl => "TestUrl";
+        private readonly RestRequest restRequest = new RestRequest();
+
         private Type IssuesListType => typeof (IEnumerable<IIssue>);
         private const string RestServiceExceptionMessage = "RestServiceExceptionMessage";
         private IGitApiProvider _gitApiProvider;
@@ -37,7 +35,7 @@ namespace GiTracker.Tests.Services
             var issuesList = new List<IIssue>();
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(Host, IssuesUrl, IssuesListType, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(restRequest, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(issuesList);
 
             var issueService = new IssueService(restServiceMoq.Object, _gitApiProvider);
@@ -46,11 +44,9 @@ namespace GiTracker.Tests.Services
             var issues = await issueService.GetIssuesAsync(It.IsAny<string>(), CancellationToken.None);
 
             // Assert
-            Mock.Get(_gitApiProvider).Verify(moq => moq.Host, Times.Once);
-            Mock.Get(_gitApiProvider).Verify(moq => moq.GetIssuesUrl(It.IsAny<string>()), Times.Once);
-            Mock.Get(_gitApiProvider).Verify(moq => moq.IssueListType, Times.Once);
+            Mock.Get(_gitApiProvider).Verify(moq => moq.GetIssuesRequest(It.IsAny<string>()), Times.Once);
 
-            restServiceMoq.Verify(moq => moq.GetAsync(Host, IssuesUrl, IssuesListType, It.IsAny<CancellationToken>()),
+            restServiceMoq.Verify(moq => moq.GetAsync(restRequest, It.IsAny<CancellationToken>()),
                 Times.Once);
 
             Assert.AreEqual(issues, issuesList);
@@ -62,7 +58,7 @@ namespace GiTracker.Tests.Services
         {
             // Arrange
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(Host, IssuesUrl, IssuesListType, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(restRequest, It.IsAny<CancellationToken>()))
                 .Throws(new Exception(RestServiceExceptionMessage));
 
             var issueService = new IssueService(restServiceMoq.Object, _gitApiProvider);

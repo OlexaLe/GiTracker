@@ -2,7 +2,6 @@
 using GiTracker.Services.Api;
 using GiTracker.Services.Database;
 using GiTracker.Services.Dialogs;
-using GiTracker.Services.HttpClientProvider;
 using GiTracker.Services.Issues;
 using GiTracker.Services.Progress;
 using GiTracker.Services.Rest;
@@ -37,7 +36,6 @@ namespace GiTracker
             Container.RegisterType<IProgressService, ProgressService>();
 
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
-            Container.RegisterType<IHttpClientProvider, DefaultHttpClientProvider>();
         }
     }
 }

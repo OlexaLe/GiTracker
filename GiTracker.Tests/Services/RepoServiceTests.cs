@@ -63,7 +63,7 @@ namespace GiTracker.Tests.Services
             // Arrange
             var restServiceMoq = new Mock<IRestService>();
             restServiceMoq.Setup(moq => moq.GetAsync(Host, ReposUrl, ReposListType, It.IsAny<CancellationToken>()))
-                .Throws(new Exception(RestServiceExceptionMessage));
+                .ThrowsAsync(new Exception(RestServiceExceptionMessage));
 
             var repoService = new RepoService(restServiceMoq.Object, _gitApiProvider);
 

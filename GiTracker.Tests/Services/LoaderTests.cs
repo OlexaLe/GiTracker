@@ -5,7 +5,7 @@ using GiTracker.Services.Dialogs;
 using Moq;
 using NUnit.Framework;
 
-namespace GiTracker.Tests.Helpers
+namespace GiTracker.Tests.Services
 {
     [TestFixture]
     public class LoaderTests

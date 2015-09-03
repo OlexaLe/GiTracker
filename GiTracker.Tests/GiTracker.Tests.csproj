@@ -114,6 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IssueServiceTests.cs" />
     <Compile Include="ViewModels\AboutPageViewModelTests.cs" />
+    <Compile Include="ViewModels\IssueDetailsViewModelTests.cs" />
     <Compile Include="ViewModels\MainPageViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

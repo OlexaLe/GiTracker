@@ -1,6 +1,7 @@
 ﻿using System;
 using GiTracker.Helpers;
 using GiTracker.Services.Device;
+using GiTracker.Services.Progress;
 using Prism.Navigation;
 using Xamarin.Forms;
 
@@ -12,8 +13,9 @@ namespace GiTracker.ViewModels
         private Command _emailUsCommand;
         private string _version;
 
-        public AboutPageViewModel(IDeviceService deviceService, Loader loader, INavigationService navigationService)
-            : base(loader, navigationService)
+        public AboutPageViewModel(IDeviceService deviceService, Loader loader, IProgressService progressService,
+            INavigationService navigationService)
+            : base(loader, progressService, navigationService)
         {
             _deviceService = deviceService;
             Version = "1.0";
@@ -29,7 +31,7 @@ namespace GiTracker.ViewModels
 
         private void DoEmailUs()
         {
-            _deviceService.OpenUri(new Uri("mailto:" + Constants.XamarinGarageEmail));
+            _deviceService.OpenUri(new Uri($"mailto:{Constants.XamarinGarageEmail}"));
         }
     }
 }

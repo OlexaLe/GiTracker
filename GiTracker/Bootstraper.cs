@@ -4,6 +4,7 @@ using GiTracker.Services.Database;
 using GiTracker.Services.Device;
 using GiTracker.Services.Dialogs;
 using GiTracker.Services.Issues;
+using GiTracker.Services.Progress;
 using GiTracker.Services.Rest;
 using GiTracker.ViewModels;
 using GiTracker.Views;
@@ -33,6 +34,7 @@ namespace GiTracker
             Container.RegisterType<IDatabaseService, DatabaseService>();
             Container.RegisterType<IDialogService, DialogService>();
             Container.RegisterType<IRestService, RestService>();
+            Container.RegisterType<IProgressService, ProgressService>();
             Container.RegisterType<IDeviceService, DeviceService>();
 
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();

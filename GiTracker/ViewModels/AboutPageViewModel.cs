@@ -1,5 +1,6 @@
 ﻿using System;
 using GiTracker.Helpers;
+using GiTracker.Services.Device;
 using Prism.Navigation;
 using Xamarin.Forms;
 
@@ -7,11 +8,14 @@ namespace GiTracker.ViewModels
 {
     public class AboutPageViewModel : BaseViewModel
     {
+        private readonly IDeviceService _deviceService;
         private Command _emailUsCommand;
         private string _version;
 
-        public AboutPageViewModel(Loader loader, INavigationService navigationService) : base(loader, navigationService)
+        public AboutPageViewModel(IDeviceService deviceService, Loader loader, INavigationService navigationService)
+            : base(loader, navigationService)
         {
+            _deviceService = deviceService;
             Version = "1.0";
         }
 
@@ -21,14 +25,11 @@ namespace GiTracker.ViewModels
             set { SetProperty(ref _version, value); }
         }
 
-        public Command EmailUsCommand
-        {
-            get { return _emailUsCommand ?? (_emailUsCommand = new Command(DoEmailUs)); }
-        }
+        public Command EmailUsCommand => _emailUsCommand ?? (_emailUsCommand = new Command(DoEmailUs));
 
         private void DoEmailUs()
         {
-            Device.OpenUri(new Uri("mailto:" + Constants.XamarinGarageEmail));
+            _deviceService.OpenUri(new Uri("mailto:" + Constants.XamarinGarageEmail));
         }
     }
 }

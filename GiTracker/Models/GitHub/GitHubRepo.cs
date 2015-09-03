@@ -2,7 +2,7 @@
 
 namespace GiTracker.Models.GitHub
 {
-    internal class GitHubRepo
+    internal class GitHubRepo : IRepo
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

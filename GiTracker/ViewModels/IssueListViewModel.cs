@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GiTracker.Helpers;
+using GiTracker.Models;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.Issues;
 using GiTracker.Services.Progress;
@@ -12,9 +13,11 @@ namespace GiTracker.ViewModels
 {
     internal class IssueListViewModel : BaseListViewModel
     {
+        public const string RepoParameterName = "RepoParameterName";
         private readonly IIssueService _issueService;
         private IEnumerable<IssueViewModel> _issues;
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
+        private IRepo _repo;
         private DelegateCommand _updateIssuesCommand;
 
         public IssueListViewModel(Loader loader, Loader listLoader, IProgressService progressService,
@@ -44,6 +47,9 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
+            _repo = parameters[RepoParameterName] as IRepo;
+            Title = _repo.Name;
+
             await LoadIssuesAsync(Loader);
         }
 
@@ -64,7 +70,7 @@ namespace GiTracker.ViewModels
                 await loader.LoadAsync(async cancellationToken =>
                 {
                     var issues =
-                        await _issueService.GetIssuesAsync("XamarinGarage/GiTracker", cancellationToken);
+                        await _issueService.GetIssuesAsync(_repo.Path, cancellationToken);
 
                     _issues = issues.Select(issue => new IssueViewModel(issue)).ToList();
                 });

@@ -164,6 +164,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Octicon_PullRequest_White.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Unknown_Colored.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Issue_Unknown_White.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Octicon_Repo_Colored.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-v21\styles.xml" />

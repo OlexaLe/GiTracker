@@ -41,7 +41,8 @@
     <Compile Include="Converters\IssueStatusToTextConverter.cs" />
     <Compile Include="Converters\IssueStatusToIconConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
-    <Compile Include="Helpers\Loader.cs" />
+    <Compile Include="Services\DataLoader\ILoader.cs" />
+    <Compile Include="Services\DataLoader\Loader.cs" />
     <Compile Include="Models\GitHub\GitHubComment.cs" />
     <Compile Include="Models\GitHub\GitHubLabel.cs" />
     <Compile Include="Models\GitHub\GitHubRepo.cs" />
@@ -266,6 +267,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GiTracker.Helpers;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Dialogs;
 using Moq;
 using NUnit.Framework;
@@ -33,7 +33,7 @@ namespace GiTracker.Tests.Helpers
             // Arrange
             var triggerCount = 0;
             var loader = new Loader(new Mock<IDialogService>().Object);
-            loader.LoadinChanged += (sender, args) => ++triggerCount;
+            loader.LoadingChanged += (sender, args) => ++triggerCount;
 
             // Act
             await loader.LoadAsync(token => Task.FromResult<object>(null));

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using GiTracker.Helpers;
 using GiTracker.Models;
 using GiTracker.Resources.Strings;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Progress;
 using GiTracker.Services.Repos;
 using Prism.Commands;
@@ -17,8 +17,8 @@ namespace GiTracker.ViewModels
         private IEnumerable<IRepo> _repos;
         private DelegateCommand _updateReposCommand;
 
-        public RepoListViewModel(Loader loader,
-            Loader listLoader,
+        public RepoListViewModel(ILoader loader,
+            ILoader listLoader,
             IProgressService progressService,
             INavigationService navigationService,
             IRepoService repoService)
@@ -65,7 +65,7 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        private async Task LoadReposAsync(Loader loader)
+        private async Task LoadReposAsync(ILoader loader)
         {
             Repos = null;
 

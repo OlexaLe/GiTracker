@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GiTracker.Helpers;
 using GiTracker.Models;
 using GiTracker.Resources.Strings;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Issues;
 using GiTracker.Services.Progress;
 using Prism.Commands;
@@ -20,7 +20,7 @@ namespace GiTracker.ViewModels
         private IRepo _repo;
         private DelegateCommand _updateIssuesCommand;
 
-        public IssueListViewModel(Loader loader, Loader listLoader, IProgressService progressService,
+        public IssueListViewModel(ILoader loader, ILoader listLoader, IProgressService progressService,
             INavigationService navigationService,
             IIssueService issueService)
             : base(loader, listLoader, progressService, navigationService)
@@ -60,7 +60,7 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        private async Task LoadIssuesAsync(Loader loader)
+        private async Task LoadIssuesAsync(ILoader loader)
         {
             try
             {

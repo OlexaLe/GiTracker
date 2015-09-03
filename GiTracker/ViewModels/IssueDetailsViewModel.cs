@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using GiTracker.Helpers;
 using GiTracker.Resources.Strings;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Progress;
 using Prism.Commands;
 using Prism.Navigation;
@@ -15,7 +15,7 @@ namespace GiTracker.ViewModels
         private IssueViewModel _issue;
         private ICommand _openInBrowserCommand;
 
-        public IssueDetailsViewModel(Loader loader, IProgressService progressService,
+        public IssueDetailsViewModel(ILoader loader, IProgressService progressService,
             INavigationService navigationService)
             : base(loader, progressService, navigationService)
         {

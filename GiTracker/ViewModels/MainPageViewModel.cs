@@ -15,16 +15,15 @@ namespace GiTracker.ViewModels
         public MainPageViewModel(IUnityContainer container)
         {
             Container = container;
-            PresentedViewModelType = typeof (IssueList);
+            PresentedViewModelType = typeof (RepoList);
         }
 
         public Type PresentedViewModelType { get; private set; }
-
         public IUnityContainer Container { get; private set; }
 
         public IEnumerable<SlideMenuItem> SlideMenu { get; } = new List<SlideMenuItem>
         {
-            new SlideMenuItem {Title = Resources.Strings.SlideMenu.Repositories, ScreenView = typeof (IssueList)},
+            new SlideMenuItem {Title = Resources.Strings.SlideMenu.Repositories, ScreenView = typeof (RepoList)},
             new SlideMenuItem {Title = Resources.Strings.SlideMenu.About, ScreenView = typeof (IssueList)}
         };
 

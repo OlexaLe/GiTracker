@@ -74,6 +74,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginPage.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings\RepoList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepoList.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Strings\Shared.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,6 +107,7 @@
     <Compile Include="ViewModels\IssueListViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\RepoListViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\IssueDetails.xaml.cs">
       <DependentUpon>IssueDetails.xaml</DependentUpon>
@@ -120,6 +126,9 @@
     <Compile Include="Services\Database\IDatabaseService.cs" />
     <Compile Include="Services\Database\ISQLite.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Views\RepoList.xaml.cs">
+      <DependentUpon>RepoList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -205,6 +214,10 @@
       <LastGenOutput>LoginPage.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings\RepoList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RepoList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
@@ -239,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\IssueList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RepoList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

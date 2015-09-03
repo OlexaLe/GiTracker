@@ -24,6 +24,7 @@ namespace GiTracker
         {
             Container.RegisterInstance(Container);
 
+            Container.RegisterTypeForNavigation<RepoList, RepoListViewModel>();
             Container.RegisterTypeForNavigation<IssueList, IssueListViewModel>();
             Container.RegisterTypeForNavigation<IssueDetails, IssueDetailsViewModel>();
 

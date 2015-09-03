@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GiTracker.Models
+namespace GiTracker.Models.GitHub
 {
     public class GitHubUser : IUser
     {

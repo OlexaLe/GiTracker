@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GiTracker.Models;
+using GiTracker.Models.GitHub;
 
 namespace GiTracker.Services.Api
 {

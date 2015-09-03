@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GiTracker.Models
+namespace GiTracker.Models.GitHub
 {
     public class GitHubIssue : IIssue
     {

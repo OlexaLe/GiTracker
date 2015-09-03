@@ -13,7 +13,7 @@ namespace GiTracker.Tests.ViewModels
         {
             // Arrange
             var vm = new MainPageViewModel(null);
-            var expectedScreen = typeof (IssueList);
+            var expectedScreen = typeof (RepoList);
 
             // Act
 

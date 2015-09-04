@@ -16,6 +16,7 @@ namespace GiTracker.Tests.Services
             // Arrange
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(d => d.ShowMessageAsync(It.IsAny<string>()));
+
             var tcs = new TaskCompletionSource<object>();
             tcs.SetCanceled();
 
@@ -29,17 +30,20 @@ namespace GiTracker.Tests.Services
         }
 
         [Test]
-        public async void FailedTaskShouldShowDialog()
+        public async void FailedTaskShowsDialog()
         {
             // Arrange
-            const string failedMessage = "Failed";
-            Func<Task> failedTask = () => { throw new Exception(failedMessage); };
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(d => d.ShowMessageAsync(It.IsAny<string>())).Returns(Task.FromResult<object>(null));
+
+            const string failedMessage = "Failed";
+            var tcs = new TaskCompletionSource<object>();
+            tcs.SetException(new Exception(failedMessage));
+
             var loader = new Loader(dialogService.Object);
 
             // Act
-            await loader.LoadAsync(token => failedTask());
+            await loader.LoadAsync(token => tcs.Task);
 
             // Assert
             dialogService.Verify(s => s.ShowMessageAsync(failedMessage), Times.Once);

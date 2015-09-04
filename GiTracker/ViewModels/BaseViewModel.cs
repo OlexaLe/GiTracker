@@ -1,4 +1,4 @@
-﻿using GiTracker.Helpers;
+﻿using GiTracker.Services.DataLoader;
 using GiTracker.Services.Progress;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -11,16 +11,16 @@ namespace GiTracker.ViewModels
         protected readonly INavigationService NavigationService;
         private string _title;
 
-        protected BaseViewModel(Loader loader, IProgressService progressService,
+        protected BaseViewModel(ILoader loader, IProgressService progressService,
             INavigationService navigationService)
         {
             Loader = loader;
-            Loader.LoadinChanged += (sender, args) => IsLoadingChanged(Loader.IsLoading);
+            Loader.LoadingChanged += (sender, args) => IsLoadingChanged(Loader.IsLoading);
             _progressService = progressService;
             NavigationService = navigationService;
         }
 
-        protected Loader Loader { get; }
+        protected ILoader Loader { get; }
 
         public string Title
         {

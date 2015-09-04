@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GiTracker.Models
+namespace GiTracker.Models.GitHub
 {
     internal class GitHubComment : IComment
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GiTracker.Models;
+using GiTracker.Models.GitHub;
 using GiTracker.Services.Rest;
 
 namespace GiTracker.Services.Api
@@ -19,6 +19,8 @@ namespace GiTracker.Services.Api
 
         private readonly Type IssueListType = typeof (IEnumerable<GitHubIssue>);
 
+        private readonly Type ReposListType = typeof (IEnumerable<GitHubRepo>);
+
         public RestRequest GetIssuesRequest(string repository)
         {
             return new RestRequest
@@ -28,6 +30,17 @@ namespace GiTracker.Services.Api
                 RelativeUrl = $"repos/{repository}/issues",
                 DefaultHeaders = DefaultHeaders,
                 UrlParameters = new Dictionary<string, string> {{"state", "all"}}
+            };
+        }
+
+        public RestRequest GetUserRepositoriesRequest()
+        {
+            return new RestRequest
+            {
+                ReturnValueType = ReposListType,
+                Host = Host,
+                RelativeUrl = "users/foxanna/repos",
+                DefaultHeaders = DefaultHeaders
             };
         }
     }

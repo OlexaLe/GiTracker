@@ -2,9 +2,9 @@
 
 namespace GiTracker.Views
 {
-    public partial class IssueList : TabbedPage
+    public partial class IssueListPage : TabbedPage
     {
-        public IssueList()
+        public IssueListPage()
         {
             InitializeComponent();
         }

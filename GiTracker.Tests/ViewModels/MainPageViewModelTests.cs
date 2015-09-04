@@ -13,7 +13,7 @@ namespace GiTracker.Tests.ViewModels
         {
             // Arrange
             var vm = new MainPageViewModel(null);
-            var expectedScreen = typeof (IssueList);
+            var expectedScreen = typeof (RepoListPage);
 
             // Act
 
@@ -29,7 +29,7 @@ namespace GiTracker.Tests.ViewModels
             var count = 0;
             const int expectedCount = 1;
             vm.PresentedViewModelTypeChanged += (sender, args) => count++;
-            var newPageType = typeof (IssueDetailsViewModel);
+            var newPageType = typeof (IssueDetailsPageViewModel);
 
             // Act
             await vm.SlideMenuItemTapped.Execute(new SlideMenuItem {ScreenView = newPageType});
@@ -43,7 +43,7 @@ namespace GiTracker.Tests.ViewModels
         {
             // Arrange
             var vm = new MainPageViewModel(null);
-            var newPageType = typeof (IssueDetailsViewModel);
+            var newPageType = typeof (IssueDetailsPageViewModel);
 
             // Act
             await vm.SlideMenuItemTapped.Execute(new SlideMenuItem {ScreenView = newPageType});

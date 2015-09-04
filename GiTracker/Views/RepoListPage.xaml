@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="GiTracker.Views.RepoListPage"
+                xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+                xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
+                prism:ViewModelLocator.AutowireViewModel="True">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="RepoListItem">
+                <ViewCell Height="54">
+                    <Grid Padding="{StaticResource ListItemPadding}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="Octicon_Repo_Colored.png"
+                               HeightRequest="{StaticResource IssueIconSize}"
+                               WidthRequest="{StaticResource IssueIconSize}" />
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               Style="{StaticResource MediumSimpleLabelStyle}"
+                               YAlign="Center"
+                               LineBreakMode="TailTruncation" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <controls:NiceListView
+        ItemsSource="{Binding Repos}"
+        ItemClickedCommand="{Binding OpenRepoCommand}"
+        RefreshCommand="{Binding UpdateReposCommand}"
+        IsRefreshing="{Binding IsListLoading, Mode=OneWay}"
+        ItemTemplate="{StaticResource RepoListItem}" />
+
+</views:BasePage>

@@ -16,15 +16,14 @@ namespace GiTracker.Tests.Services
         [SetUp]
         public void Init()
         {
-            var apiProvderMoq = new Mock<IGitApiProvider>();
-            apiProvderMoq.Setup(moq => moq.GetIssuesRequest(It.IsAny<string>())).Returns(restRequest);
+            var apiProviderMoq = new Mock<IGitApiProvider>();
+            apiProviderMoq.Setup(moq => moq.GetIssuesRequest(It.IsAny<string>())).Returns(restRequest);
 
-            _gitApiProvider = apiProvderMoq.Object;
+            _gitApiProvider = apiProviderMoq.Object;
         }
 
         private readonly RestRequest restRequest = new RestRequest();
 
-        private Type IssuesListType => typeof (IEnumerable<IIssue>);
         private const string RestServiceExceptionMessage = "RestServiceExceptionMessage";
         private IGitApiProvider _gitApiProvider;
 

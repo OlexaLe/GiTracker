@@ -1,4 +1,4 @@
-﻿using GiTracker.Helpers;
+﻿using GiTracker.Services.DataLoader;
 using GiTracker.Services.Progress;
 using Prism.Navigation;
 
@@ -8,11 +8,11 @@ namespace GiTracker.ViewModels
     {
         private bool _isListLoading;
 
-        public BaseListViewModel(Loader loader, Loader listLoader, IProgressService progressService,
+        public BaseListViewModel(ILoader loader, ILoader listLoader, IProgressService progressService,
             INavigationService navigationService) : base(loader, progressService, navigationService)
         {
             ListLoader = listLoader;
-            ListLoader.LoadinChanged += (sender, args) => IsListLoading = ListLoader.IsLoading;
+            ListLoader.LoadingChanged += (sender, args) => IsListLoading = ListLoader.IsLoading;
         }
 
         public bool IsListLoading
@@ -21,6 +21,6 @@ namespace GiTracker.ViewModels
             private set { SetProperty(ref _isListLoading, value); }
         }
 
-        protected Loader ListLoader { get; }
+        protected ILoader ListLoader { get; }
     }
 }

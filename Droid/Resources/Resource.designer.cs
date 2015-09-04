@@ -156,10 +156,13 @@ namespace GiTracker.Droid
 			public const int Octicon_PullRequest_White = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int roundedbg = 2130837515;
+			public const int Octicon_Repo_Colored = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int roundedbgdark = 2130837516;
+			public const int roundedbg = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int roundedbgdark = 2130837517;
 			
 			static Drawable()
 			{

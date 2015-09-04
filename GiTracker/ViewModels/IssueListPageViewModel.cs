@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GiTracker.Helpers;
+using GiTracker.Models;
 using GiTracker.Resources.Strings;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Issues;
 using GiTracker.Services.Progress;
 using Prism.Commands;
@@ -10,14 +11,16 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    internal class IssueListViewModel : BaseListViewModel
+    internal class IssueListPageViewModel : BaseListViewModel
     {
+        public const string RepoParameterName = "RepoParameterName";
         private readonly IIssueService _issueService;
         private IEnumerable<IssueViewModel> _issues;
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
+        private IRepo _repo;
         private DelegateCommand _updateIssuesCommand;
 
-        public IssueListViewModel(Loader loader, Loader listLoader, IProgressService progressService,
+        public IssueListPageViewModel(ILoader loader, ILoader listLoader, IProgressService progressService,
             INavigationService navigationService,
             IIssueService issueService)
             : base(loader, listLoader, progressService, navigationService)
@@ -44,6 +47,9 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
+            _repo = parameters[RepoParameterName] as IRepo;
+            Title = _repo.Name;
+
             await LoadIssuesAsync(Loader);
         }
 
@@ -54,7 +60,7 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        private async Task LoadIssuesAsync(Loader loader)
+        private async Task LoadIssuesAsync(ILoader loader)
         {
             try
             {
@@ -64,7 +70,7 @@ namespace GiTracker.ViewModels
                 await loader.LoadAsync(async cancellationToken =>
                 {
                     var issues =
-                        await _issueService.GetIssuesAsync("XamarinGarage/GiTracker", cancellationToken);
+                        await _issueService.GetIssuesAsync(_repo.Path, cancellationToken);
 
                     _issues = issues.Select(issue => new IssueViewModel(issue)).ToList();
                 });
@@ -88,8 +94,8 @@ namespace GiTracker.ViewModels
 
         private void OpenIssueDetails(IssueViewModel issueViewModel)
         {
-            NavigationService.Navigate<IssueDetailsViewModel>(
-                new NavigationParameters {{IssueDetailsViewModel.IssueParameterName, issueViewModel}}, false);
+            NavigationService.Navigate<IssueDetailsPageViewModel>(
+                new NavigationParameters {{IssueDetailsPageViewModel.IssueParameterName, issueViewModel}}, false);
         }
     }
 }

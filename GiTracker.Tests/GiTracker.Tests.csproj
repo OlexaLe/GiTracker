@@ -110,12 +110,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Helpers\LoaderTests.cs" />
+    <Compile Include="Services\LoaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IssueServiceTests.cs" />
+    <Compile Include="Services\RepoServiceTests.cs" />
     <Compile Include="ViewModels\AboutPageViewModelTests.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModelTests.cs" />
     <Compile Include="ViewModels\MainPageViewModelTests.cs" />
+    <Compile Include="ViewModels\RepoListViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiTracker\GiTracker.csproj">

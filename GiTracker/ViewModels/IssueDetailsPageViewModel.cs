@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using GiTracker.Helpers;
 using GiTracker.Resources.Strings;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Device;
 using GiTracker.Services.Progress;
 using Prism.Commands;
@@ -9,14 +9,16 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    public class IssueDetailsViewModel : BaseViewModel
+    public class IssueDetailsPageViewModel : BaseViewModel
     {
         public const string IssueParameterName = "IssueParameterName";
         private readonly IDeviceService _deviceService;
         private IssueViewModel _issue;
         private ICommand _openInBrowserCommand;
 
-        public IssueDetailsViewModel(IDeviceService deviceService, Loader loader, IProgressService progressService,
+        public IssueDetailsPageViewModel(IDeviceService deviceService,
+            ILoader loader,
+            IProgressService progressService,
             INavigationService navigationService)
             : base(loader, progressService, navigationService)
         {

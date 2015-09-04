@@ -16,12 +16,12 @@ namespace GiTracker.Tests.Services
         [SetUp]
         public void Init()
         {
-            var apiProvderMoq = new Mock<IGitApiProvider>();
-            apiProvderMoq.Setup(moq => moq.Host).Returns(Host);
-            apiProvderMoq.Setup(moq => moq.GetIssuesUrl(It.IsAny<string>())).Returns(IssuesUrl);
-            apiProvderMoq.Setup(moq => moq.IssueListType).Returns(IssuesListType);
+            var apiProviderMoq = new Mock<IGitApiProvider>();
+            apiProviderMoq.Setup(moq => moq.Host).Returns(Host);
+            apiProviderMoq.Setup(moq => moq.GetIssuesUrl(It.IsAny<string>())).Returns(IssuesUrl);
+            apiProviderMoq.Setup(moq => moq.IssueListType).Returns(IssuesListType);
 
-            _gitApiProvider = apiProvderMoq.Object;
+            _gitApiProvider = apiProviderMoq.Object;
         }
 
         private string Host => "TestHost";

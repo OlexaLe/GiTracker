@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using GiTracker.Services.Dialogs;
 
-namespace GiTracker.Helpers
+namespace GiTracker.Services.DataLoader
 {
-    public class Loader
+    public class Loader : ILoader
     {
         private readonly IDialogService _dialogService;
         private bool _isLoading;
@@ -24,11 +24,11 @@ namespace GiTracker.Helpers
                 if (_isLoading == value) return;
 
                 _isLoading = value;
-                LoadinChanged?.Invoke(this, EventArgs.Empty);
+                LoadingChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
-        public event EventHandler LoadinChanged;
+        public event EventHandler LoadingChanged;
 
         public async Task LoadAsync(Func<CancellationToken, Task> taskFactory)
         {
@@ -39,6 +39,9 @@ namespace GiTracker.Helpers
             try
             {
                 await taskFactory(_loadingCTS.Token);
+            }
+            catch (OperationCanceledException)
+            {
             }
             catch (Exception e)
             {

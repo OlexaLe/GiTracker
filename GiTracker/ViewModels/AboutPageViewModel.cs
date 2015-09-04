@@ -1,5 +1,5 @@
 ﻿using System;
-using GiTracker.Helpers;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Device;
 using GiTracker.Services.Progress;
 using Prism.Navigation;
@@ -13,7 +13,9 @@ namespace GiTracker.ViewModels
         private Command _emailUsCommand;
         private string _version;
 
-        public AboutPageViewModel(IDeviceService deviceService, Loader loader, IProgressService progressService,
+        public AboutPageViewModel(IDeviceService deviceService,
+            ILoader loader,
+            IProgressService progressService,
             INavigationService navigationService)
             : base(loader, progressService, navigationService)
         {

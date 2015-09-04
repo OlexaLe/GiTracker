@@ -3,7 +3,7 @@
 <pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="GiTracker.Views.IssueDetails"
+    x:Class="GiTracker.Views.IssueDetailsPage"
     xmlns:pages="clr-namespace:GiTracker.Views"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:controls="clr-namespace:GiTracker.Controls"

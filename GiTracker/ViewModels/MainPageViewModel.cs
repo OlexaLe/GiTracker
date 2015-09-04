@@ -15,7 +15,7 @@ namespace GiTracker.ViewModels
         public MainPageViewModel(IUnityContainer container)
         {
             Container = container;
-            PresentedViewModelType = typeof (RepoList);
+            PresentedViewModelType = typeof (RepoListPage);
         }
 
         public Type PresentedViewModelType { get; private set; }
@@ -23,7 +23,7 @@ namespace GiTracker.ViewModels
 
         public IEnumerable<SlideMenuItem> SlideMenu { get; } = new List<SlideMenuItem>
         {
-            new SlideMenuItem {Title = Resources.Strings.SlideMenu.Repositories, ScreenView = typeof (RepoList)},
+            new SlideMenuItem {Title = Resources.Strings.SlideMenu.Repositories, ScreenView = typeof (RepoListPage)},
             new SlideMenuItem {Title = Resources.Strings.SlideMenu.About, ScreenView = typeof (AboutPage)}
         };
 

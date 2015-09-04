@@ -2,7 +2,7 @@
 
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            x:Class="GiTracker.Views.IssueList"
+            x:Class="GiTracker.Views.IssueListPage"
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             xmlns:converters="clr-namespace:GiTracker.Converters"
             xmlns:localization="clr-namespace:GiTracker.Resources.Strings"

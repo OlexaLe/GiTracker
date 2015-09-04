@@ -11,7 +11,7 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    internal class IssueListViewModel : BaseListViewModel
+    internal class IssueListPageViewModel : BaseListViewModel
     {
         public const string RepoParameterName = "RepoParameterName";
         private readonly IIssueService _issueService;
@@ -20,7 +20,7 @@ namespace GiTracker.ViewModels
         private IRepo _repo;
         private DelegateCommand _updateIssuesCommand;
 
-        public IssueListViewModel(ILoader loader, ILoader listLoader, IProgressService progressService,
+        public IssueListPageViewModel(ILoader loader, ILoader listLoader, IProgressService progressService,
             INavigationService navigationService,
             IIssueService issueService)
             : base(loader, listLoader, progressService, navigationService)
@@ -94,8 +94,8 @@ namespace GiTracker.ViewModels
 
         private void OpenIssueDetails(IssueViewModel issueViewModel)
         {
-            NavigationService.Navigate<IssueDetailsViewModel>(
-                new NavigationParameters {{IssueDetailsViewModel.IssueParameterName, issueViewModel}}, false);
+            NavigationService.Navigate<IssueDetailsPageViewModel>(
+                new NavigationParameters {{IssueDetailsPageViewModel.IssueParameterName, issueViewModel}}, false);
         }
     }
 }

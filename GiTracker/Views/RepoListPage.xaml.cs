@@ -1,8 +1,8 @@
 ﻿namespace GiTracker.Views
 {
-    public partial class IssueDetails : BasePage
+    public partial class RepoListPage : BasePage
     {
-        public IssueDetails()
+        public RepoListPage()
         {
             InitializeComponent();
         }

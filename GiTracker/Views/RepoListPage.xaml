@@ -2,10 +2,9 @@
 
 <views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                x:Class="GiTracker.Views.RepoList"
+                x:Class="GiTracker.Views.RepoListPage"
                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                 xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
-                xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
                 xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
                 prism:ViewModelLocator.AutowireViewModel="True">
 

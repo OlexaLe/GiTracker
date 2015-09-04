@@ -21,7 +21,7 @@ namespace GiTracker.Tests.ViewModels
             Uri calledUri = null;
             var deviceService = new Mock<IDeviceService>();
             deviceService.Setup(d => d.OpenUri(It.IsAny<Uri>())).Callback<Uri>(uri => calledUri = uri);
-            var vm = new IssueDetailsViewModel(deviceService.Object, new Loader(null), null, null);
+            var vm = new IssueDetailsPageViewModel(deviceService.Object, new Loader(null), null, null);
 
             var issue = new IssueViewModel(new GitHubIssue {WebPage = expectedIssuePage});
             vm.Issue = issue;
@@ -39,9 +39,9 @@ namespace GiTracker.Tests.ViewModels
             // Arrange
             const int expectedIssueNumber = 42;
             var expectedPageTitle = string.Format(IssueDetails.IssueNumber, expectedIssueNumber);
-            var vm = new IssueDetailsViewModel(null, new Loader(null), null, null);
+            var vm = new IssueDetailsPageViewModel(null, new Loader(null), null, null);
             var issue = new IssueViewModel(new GitHubIssue {Number = expectedIssueNumber});
-            var parameters = new NavigationParameters {{IssueDetailsViewModel.IssueParameterName, issue}};
+            var parameters = new NavigationParameters {{IssueDetailsPageViewModel.IssueParameterName, issue}};
 
             // Act
             vm.OnNavigatedTo(parameters);

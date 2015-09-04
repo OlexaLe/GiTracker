@@ -48,7 +48,7 @@ namespace GiTracker.Tests.ViewModels
         public void CallsBaseLoaderWhenNavigated()
         {
             // Arrange
-            var repoListViewModel = new RepoListViewModel(_loader, _listLoader, _progressService,
+            var repoListViewModel = new RepoListPageViewModel(_loader, _listLoader, _progressService,
                 _navigationService,
                 _repoService);
 
@@ -64,7 +64,7 @@ namespace GiTracker.Tests.ViewModels
         public async void CallsListLoaderWhenUpdatedByUser()
         {
             // Arrange
-            var repoListViewModel = new RepoListViewModel(_loader, _listLoader, _progressService,
+            var repoListViewModel = new RepoListPageViewModel(_loader, _listLoader, _progressService,
                 _navigationService,
                 _repoService);
 
@@ -80,7 +80,7 @@ namespace GiTracker.Tests.ViewModels
         public async void IssuesListIsNavigatedWithCorrectRepoParam()
         {
             // Arrange
-            var repoListViewModel = new RepoListViewModel(_loader, _listLoader, _progressService,
+            var repoListViewModel = new RepoListPageViewModel(_loader, _listLoader, _progressService,
                 _navigationService,
                 _repoService);
             var repo = Mock.Of<IRepo>(moq => moq.Name == "name" && moq.Path == "path");
@@ -89,15 +89,15 @@ namespace GiTracker.Tests.ViewModels
             await repoListViewModel.OpenRepoCommand.Execute(repo);
 
             // Assert
-            Mock.Get(_navigationService).Verify(moq => moq.Navigate<IssueListViewModel>(
-                new NavigationParameters {{IssueListViewModel.RepoParameterName, repo}}, false, true), Times.Once);
+            Mock.Get(_navigationService).Verify(moq => moq.Navigate<IssueListPageViewModel>(
+                new NavigationParameters {{IssueListPageViewModel.RepoParameterName, repo}}, false, true), Times.Once);
         }
 
         [Test]
         public void RepoListContainsAllReposLoaded()
         {
             // Arrange
-            var repoListViewModel = new RepoListViewModel(_loader, _listLoader, _progressService,
+            var repoListViewModel = new RepoListPageViewModel(_loader, _listLoader, _progressService,
                 _navigationService,
                 _repoService);
 

@@ -6,19 +6,18 @@ using GiTracker.Services.Device;
 using GiTracker.Services.Progress;
 using Prism.Commands;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace GiTracker.ViewModels
 {
-    public class IssueDetailsViewModel : BaseViewModel
+    public class IssueDetailsPageViewModel : BaseViewModel
     {
         public const string IssueParameterName = "IssueParameterName";
         private readonly IDeviceService _deviceService;
         private IssueViewModel _issue;
         private ICommand _openInBrowserCommand;
 
-        public IssueDetailsViewModel(IDeviceService deviceService, 
-            ILoader loader, 
+        public IssueDetailsPageViewModel(IDeviceService deviceService,
+            ILoader loader,
             IProgressService progressService,
             INavigationService navigationService)
             : base(loader, progressService, navigationService)

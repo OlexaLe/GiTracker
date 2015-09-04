@@ -10,14 +10,14 @@ using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
-    internal class RepoListViewModel : BaseListViewModel
+    internal class RepoListPageViewModel : BaseListViewModel
     {
         private readonly IRepoService _repoService;
         private DelegateCommand<IRepo> _openRepoCommand;
         private IEnumerable<IRepo> _repos;
         private DelegateCommand _updateReposCommand;
 
-        public RepoListViewModel(ILoader loader,
+        public RepoListPageViewModel(ILoader loader,
             ILoader listLoader,
             IProgressService progressService,
             INavigationService navigationService,
@@ -80,8 +80,8 @@ namespace GiTracker.ViewModels
 
         private void OpenRepo(IRepo repo)
         {
-            NavigationService.Navigate<IssueListViewModel>(
-                new NavigationParameters {{IssueListViewModel.RepoParameterName, repo}}, false);
+            NavigationService.Navigate<IssueListPageViewModel>(
+                new NavigationParameters {{IssueListPageViewModel.RepoParameterName, repo}}, false);
         }
     }
 }

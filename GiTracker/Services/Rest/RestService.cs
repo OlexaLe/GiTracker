@@ -42,7 +42,7 @@ namespace GiTracker.Services.Rest
 
         private async Task<string> GetRequestUrl(string host, string relativeUrl, Dictionary<string, string> parameters)
         {
-            var queryString = parameters != null ? $"?{await BuildParametersString(parameters)}" : "";
+            var queryString = parameters != null ? $"?{await BuildParametersString(parameters)}" : string.Empty;
             return $"{host}{relativeUrl}{queryString}";
         }
 

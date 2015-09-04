@@ -11,6 +11,24 @@ namespace GiTracker.Tests.Services
     public class LoaderTests
     {
         [Test]
+        public async void CancelledTaskDoesNotShowDialog()
+        {
+            // Arrange
+            var dialogService = new Mock<IDialogService>();
+            dialogService.Setup(d => d.ShowMessageAsync(It.IsAny<string>()));
+            var tcs = new TaskCompletionSource<object>();
+            tcs.SetCanceled();
+
+            var loader = new Loader(dialogService.Object);
+
+            // Act
+            await loader.LoadAsync(token => tcs.Task);
+
+            // Assert
+            dialogService.Verify(s => s.ShowMessageAsync(It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
         public async void FailedTaskShouldShowDialog()
         {
             // Arrange

@@ -40,6 +40,9 @@ namespace GiTracker.Services.DataLoader
             {
                 await taskFactory(_loadingCTS.Token);
             }
+            catch (OperationCanceledException)
+            {
+            }
             catch (Exception e)
             {
                 await _dialogService.ShowMessageAsync(e.Message);

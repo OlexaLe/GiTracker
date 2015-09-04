@@ -1,7 +1,7 @@
 ﻿using System;
-using GiTracker.Helpers;
-using GiTracker.Models;
+using GiTracker.Models.GitHub;
 using GiTracker.Resources.Strings;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Device;
 using GiTracker.ViewModels;
 using Moq;

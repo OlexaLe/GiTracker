@@ -17,13 +17,11 @@ namespace GiTracker.Tests.Services
         public void Init()
         {
             var apiProviderMoq = new Mock<IGitApiProvider>();
-            apiProviderMoq.Setup(moq => moq.Host).Returns(Host);
-            apiProviderMoq.Setup(moq => moq.ReposUrl).Returns(ReposUrl);
-            apiProviderMoq.Setup(moq => moq.ReposListType).Returns(ReposListType);
-
+            apiProviderMoq.Setup(moq => moq.GetUserRepositoriesRequest()).Returns(RepoRequest);
             _gitApiProvider = apiProviderMoq.Object;
         }
 
+        private readonly RestRequest RepoRequest = new RestRequest();
         private string Host => "TestHost";
         private string ReposUrl => "TestUrl";
         private Type ReposListType => typeof (IEnumerable<IRepo>);
@@ -37,7 +35,7 @@ namespace GiTracker.Tests.Services
             var repoList = new List<IRepo>();
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(Host, ReposUrl, ReposListType, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(RepoRequest, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(repoList);
 
             var repoService = new RepoService(restServiceMoq.Object, _gitApiProvider);
@@ -45,12 +43,7 @@ namespace GiTracker.Tests.Services
             // Act
             var repos = await repoService.GetReposAsync(CancellationToken.None);
 
-            // Assert
-            Mock.Get(_gitApiProvider).Verify(moq => moq.Host, Times.Once);
-            Mock.Get(_gitApiProvider).Verify(moq => moq.ReposUrl, Times.Once);
-            Mock.Get(_gitApiProvider).Verify(moq => moq.ReposListType, Times.Once);
-
-            restServiceMoq.Verify(moq => moq.GetAsync(Host, ReposUrl, ReposListType, It.IsAny<CancellationToken>()),
+            restServiceMoq.Verify(moq => moq.GetAsync(RepoRequest, It.IsAny<CancellationToken>()),
                 Times.Once);
 
             Assert.AreEqual(repos, repoList);
@@ -62,7 +55,7 @@ namespace GiTracker.Tests.Services
         {
             // Arrange
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(Host, ReposUrl, ReposListType, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(RepoRequest, It.IsAny<CancellationToken>()))
                 .ThrowsAsync(new Exception(RestServiceExceptionMessage));
 
             var repoService = new RepoService(restServiceMoq.Object, _gitApiProvider);

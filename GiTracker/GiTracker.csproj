@@ -112,6 +112,7 @@
     <Compile Include="Services\Repos\IRepoService.cs" />
     <Compile Include="Services\Repos\RepoService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
+    <Compile Include="Services\Rest\RestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="ViewModels\BaseListViewModel.cs" />
     <Compile Include="ViewModels\AboutPageViewModel.cs" />

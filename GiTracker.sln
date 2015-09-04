@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiTracker", "GiTracker\GiTracker.csproj", "{DBA61B77-5A24-44F6-B051-5CEA93F3EC30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiTracker.iOS", "iOS\GiTracker.iOS.csproj", "{9E315B31-B6A0-4720-A093-52DB8EBCBC09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiTracker.Touch", "iOS\GiTracker.Touch.csproj", "{9E315B31-B6A0-4720-A093-52DB8EBCBC09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiTracker.Droid", "Droid\GiTracker.Droid.csproj", "{A33AA480-E540-4B74-B6EA-0EA97FA5ACAB}"
 EndProject

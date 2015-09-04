@@ -23,8 +23,7 @@ namespace GiTracker.Services.Repos
         {
             var repos =
                 await
-                    _restService.GetAsync(_gitApiProvider.Host, _gitApiProvider.ReposUrl,
-                        _gitApiProvider.ReposListType, cancellationToken)
+                    _restService.GetAsync(_gitApiProvider.GetUserRepositoriesRequest(), cancellationToken)
                         .ConfigureAwait(false);
 
             return repos as IEnumerable<IRepo>;

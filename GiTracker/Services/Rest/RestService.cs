@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -9,14 +9,16 @@ namespace GiTracker.Services.Rest
 {
     internal class RestService : IRestService
     {
-        private const string UserAgent = "XamarinGarage";
-
-        public async Task<object> GetAsync(string host, string url, Type responseType,
-            CancellationToken cancellationToken)
+        public async Task<object> GetAsync(RestRequest request, CancellationToken cancellationToken)
         {
-            using (var client = CreateHttpClient(host))
+            using (var client = CreateHttpClient(request.DefaultHeaders))
             {
-                using (var response = await client.GetAsync(url, cancellationToken).ConfigureAwait(false))
+                using (
+                    var response =
+                        await
+                            client.GetAsync(
+                                await GetRequestUrl(request.Host, request.RelativeUrl, request.UrlParameters),
+                                cancellationToken).ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
@@ -24,23 +26,30 @@ namespace GiTracker.Services.Rest
                         throw new Exception(response.ToString());
 
                     var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    return JsonConvert.DeserializeObject(data, responseType);
+                    return JsonConvert.DeserializeObject(data, request.ReturnValueType);
                 }
             }
         }
 
-        public async Task<T> GetAsync<T>(string host, string url, CancellationToken cancellationToken)
+        private HttpClient CreateHttpClient(Dictionary<string, string> headerParams)
         {
-            var response = await GetAsync(host, url, typeof (T), cancellationToken);
-            return (T) response;
+            var httpClient = new HttpClient();
+            foreach (var headerParam in headerParams)
+                httpClient.DefaultRequestHeaders.Add(headerParam.Key, headerParam.Value);
+
+            return httpClient;
         }
 
-        private HttpClient CreateHttpClient(string host)
+        private async Task<string> GetRequestUrl(string host, string relativeUrl, Dictionary<string, string> parameters)
         {
-            var httpClient = new HttpClient {BaseAddress = new Uri(host)};
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
-            return httpClient;
+            var queryString = parameters != null ? $"?{await BuildParametersString(parameters)}" : string.Empty;
+            return $"{host}{relativeUrl}{queryString}";
+        }
+
+        private Task<string> BuildParametersString(Dictionary<string, string> parameters)
+        {
+            var content = new FormUrlEncodedContent(parameters);
+            return content.ReadAsStringAsync();
         }
     }
 }

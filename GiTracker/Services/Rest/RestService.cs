@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -18,6 +19,31 @@ namespace GiTracker.Services.Rest
                         await
                             client.GetAsync(
                                 await GetRequestUrl(request.Host, request.RelativeUrl, request.UrlParameters),
+                                cancellationToken).ConfigureAwait(false))
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+
+                    if (!response.IsSuccessStatusCode)
+                        throw new Exception(response.ToString());
+
+                    var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject(data, request.ReturnValueType);
+                }
+            }
+        }
+
+        public async Task<object> PostAsync(RestRequest request, object requestBody, CancellationToken cancellationToken)
+        {
+            using (var client = CreateHttpClient(request.DefaultHeaders))
+            {
+                var jsonString = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                using (
+                    var response =
+                        await
+                            client.PostAsync(
+                                await GetRequestUrl(request.Host, request.RelativeUrl, request.UrlParameters),
+                                content,
                                 cancellationToken).ConfigureAwait(false))
                 {
                     cancellationToken.ThrowIfCancellationRequested();

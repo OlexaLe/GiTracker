@@ -10,6 +10,8 @@ namespace GiTracker.Services.Api
         private const string UserAgent = "XamarinGarage";
         private const string Host = "https://api.github.com/";
 
+        private readonly Type _commentType = typeof (GitHubComment);
+
         private readonly Dictionary<string, string> DefaultHeaders =
             new Dictionary<string, string>
             {
@@ -40,6 +42,17 @@ namespace GiTracker.Services.Api
                 ReturnValueType = ReposListType,
                 Host = Host,
                 RelativeUrl = "users/foxanna/repos",
+                DefaultHeaders = DefaultHeaders
+            };
+        }
+
+        public RestRequest CreateCommentRequest(string repository, int issueId)
+        {
+            return new RestRequest
+            {
+                ReturnValueType = _commentType,
+                Host = Host,
+                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
                 DefaultHeaders = DefaultHeaders
             };
         }

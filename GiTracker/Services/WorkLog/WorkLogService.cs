@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using GiTracker.Models;
 using GiTracker.Services.Api;
 using GiTracker.Services.Rest;
 
@@ -17,13 +19,19 @@ namespace GiTracker.Services.WorkLog
             _gitApiProvider = gitApiProvider;
         }
 
-        public async Task LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
+        public async Task<IComment> LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
             CancellationToken cancellationToken)
         {
-            var issues =
+            var request = _gitApiProvider.CreateCommentRequest(repo, issueId);
+            var bodyString = string.Format(Constants.LogWorkFormat, logTime.Hours, logTime.Minutes, logDate.Day,
+                logDate.Month);
+            var body = new Dictionary<string, string> {{"body", bodyString}};
+
+            var comment =
                 await
-                    _restService.GetAsync(_gitApiProvider.CreateCommentRequest(repo, issueId), cancellationToken)
+                    _restService.PostAsync(request, body, cancellationToken)
                         .ConfigureAwait(false);
+            return (IComment) comment;
         }
     }
 }

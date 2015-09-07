@@ -114,6 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IssueServiceTests.cs" />
     <Compile Include="Services\RepoServiceTests.cs" />
+    <Compile Include="Services\WorkLogServiceTests.cs" />
     <Compile Include="ViewModels\AboutPageViewModelTests.cs" />
     <Compile Include="ViewModels\IssueDetailsViewModelTests.cs" />
     <Compile Include="ViewModels\LogWorkPageViewModelTests.cs" />

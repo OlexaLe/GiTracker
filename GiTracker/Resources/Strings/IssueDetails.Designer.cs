@@ -116,7 +116,7 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log work.
+        ///   Looks up a localized string similar to Log time.
         /// </summary>
         public static string LogWork {
             get {

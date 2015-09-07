@@ -15,9 +15,6 @@
     <Page.Resources>
         <ResourceDictionary>
             <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
-            <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
-            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
-            <converters:IssueStatusToTextConverter x:Key="IssueStatusToTextConverter" />
         </ResourceDictionary>
     </Page.Resources>
 

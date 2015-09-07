@@ -42,6 +42,11 @@
     <Compile Include="Converters\IssueStatusToTextConverter.cs" />
     <Compile Include="Converters\IssueStatusToIconConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Resources\Strings\LogWork.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogWork.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\DataLoader\ILoader.cs" />
     <Compile Include="Services\DataLoader\Loader.cs" />
     <Compile Include="Models\GitHub\GitHubComment.cs" />
@@ -241,6 +246,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LoginPage.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings\LogWork.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogWork.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\RepoList.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

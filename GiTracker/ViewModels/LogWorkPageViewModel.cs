@@ -1,4 +1,5 @@
 ﻿using GiTracker.Models;
+using GiTracker.Resources.Strings;
 using GiTracker.Services.DataLoader;
 using GiTracker.Services.Progress;
 using GiTracker.Services.WorkLog;
@@ -11,7 +12,7 @@ namespace GiTracker.ViewModels
         public const string IssueParameterName = "IssueParameterName";
         public const string RepoParameterName = "RepoParameterName";
         private readonly IWorkLogService _workLogService;
-        private IIssue _issue;
+        private IssueViewModel _issue;
         private IRepo _repo;
 
         public LogWorkPageViewModel(ILoader loader,
@@ -21,9 +22,11 @@ namespace GiTracker.ViewModels
             : base(loader, progressService, navigationService)
         {
             _workLogService = workLogService;
+
+            Title = LogWork.Title;
         }
 
-        public IIssue Issue
+        public IssueViewModel Issue
         {
             get { return _issue; }
             private set { SetProperty(ref _issue, value); }
@@ -33,7 +36,7 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            Issue = parameters[IssueParameterName] as IIssue;
+            Issue = new IssueViewModel(parameters[IssueParameterName] as IIssue);
             _repo = parameters[RepoParameterName] as IRepo;
         }
     }

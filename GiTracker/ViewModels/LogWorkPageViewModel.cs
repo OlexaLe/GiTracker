@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Windows.Input;
 using GiTracker.Models;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.DataLoader;
@@ -25,8 +24,9 @@ namespace GiTracker.ViewModels
         };
 
         private readonly IWorkLogService _workLogService;
+        private DateTime _date;
         private IssueViewModel _issue;
-        private ICommand _logCommand;
+        private DelegateCommand _logCommand;
         private IRepo _repo;
         private TimeSpan _timeSpan;
         private string _timeSpent;
@@ -40,6 +40,7 @@ namespace GiTracker.ViewModels
             _workLogService = workLogService;
 
             Title = LogWork.Title;
+            Date = DateTime.Now;
         }
 
         public IssueViewModel Issue
@@ -55,15 +56,23 @@ namespace GiTracker.ViewModels
             {
                 SetProperty(ref _timeSpent, value);
                 OnPropertyChanged(() => IsTimeValid);
+                LogCommand.RaiseCanExecuteChanged();
             }
         }
 
-        public ICommand LogCommand =>
-            _logCommand ?? (_logCommand = new DelegateCommand(Log));
+        public DateTime Date
+        {
+            get { return _date; }
+            set { SetProperty(ref _date, value); }
+        }
+
+        public DelegateCommand LogCommand =>
+            _logCommand ??
+            (_logCommand = new DelegateCommand(Log, () => IsTimeValid));
 
         public bool IsTimeValid
             =>
-                string.IsNullOrEmpty(TimeSpent) ||
+                !string.IsNullOrEmpty(TimeSpent) &&
                 TimeSpan.TryParseExact(Regex.Replace(TimeSpent.ToLower().Trim(), @"\s+", " "), _timeSpentFormats,
                     CultureInfo.CurrentCulture, out _timeSpan);
 
@@ -79,7 +88,7 @@ namespace GiTracker.ViewModels
             await
                 Loader.LoadAsync(
                     cancellationToken =>
-                        _workLogService.LogTimeAsync(_repo.Path, Issue.Issue.Id, DateTime.Now, _timeSpan,
+                        _workLogService.LogTimeAsync(_repo.Path, Issue.Issue.Id, Date, _timeSpan,
                             cancellationToken));
         }
     }

@@ -130,7 +130,8 @@
     <value>m</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>Time spent</value>
+    <value>Time spent
+(e.g. 2h 20m)</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Log time</value>

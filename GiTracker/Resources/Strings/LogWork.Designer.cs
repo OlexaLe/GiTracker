@@ -98,7 +98,8 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time spent.
+        ///   Looks up a localized string similar to Time spent
+        ///(e.g. 2h 20m).
         /// </summary>
         internal static string Time {
             get {

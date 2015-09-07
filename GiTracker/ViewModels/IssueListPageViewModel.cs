@@ -95,7 +95,11 @@ namespace GiTracker.ViewModels
         private void OpenIssueDetails(IssueViewModel issueViewModel)
         {
             NavigationService.Navigate<IssueDetailsPageViewModel>(
-                new NavigationParameters {{IssueDetailsPageViewModel.IssueParameterName, issueViewModel}}, false);
+                new NavigationParameters
+                {
+                    {IssueDetailsPageViewModel.IssueParameterName, issueViewModel.Issue},
+                    {IssueDetailsPageViewModel.RepoParameterName, _repo}
+                }, false);
         }
     }
 }

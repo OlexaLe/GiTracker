@@ -116,6 +116,15 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log work.
+        /// </summary>
+        public static string LogWork {
+            get {
+                return ResourceManager.GetString("LogWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to at {0:g}.
         /// </summary>
         public static string TimeAt {

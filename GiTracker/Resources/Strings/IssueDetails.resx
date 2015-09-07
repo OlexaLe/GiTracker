@@ -135,6 +135,9 @@
   <data name="IssueStatus_OpenPullRequest" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="LogWork" xml:space="preserve">
+    <value>Log work</value>
+  </data>
   <data name="TimeAt" xml:space="preserve">
     <value>at {0:g}</value>
   </data>

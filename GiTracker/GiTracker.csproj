@@ -34,6 +34,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Controls\IssueLabelsList.cs" />
+    <Compile Include="Controls\IssueStatusControl.cs" />
     <Compile Include="Controls\NiceLabel.cs" />
     <Compile Include="Controls\NiceListView.cs" />
     <Compile Include="Controls\ImageWithLabel.cs" />

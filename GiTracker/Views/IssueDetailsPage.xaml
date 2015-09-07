@@ -32,24 +32,7 @@
 
             <StackLayout Orientation="Horizontal">
 
-                <Grid BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
-                      Padding="6">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image
-                        Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}, ConverterParameter=White}"
-                        HeightRequest="20"
-                        WidthRequest="20" />
-
-                    <Label Grid.Column="1"
-                           Text="{Binding Status, Converter={StaticResource IssueStatusToTextConverter}}"
-                           TextColor="White"
-                           Style="{StaticResource SmallSimpleLabelStyle}" />
-                </Grid>
+                <controls:IssueStatusControl IssueStatus="{Binding Status}" />
 
                 <Label Text="{Binding Title}"
                        Style="{StaticResource LargeSimpleLabelStyle}" />

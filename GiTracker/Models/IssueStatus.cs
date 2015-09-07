@@ -5,6 +5,7 @@
         Open,
         Closed,
         OpenPullRequest,
-        ClosedPullRequest
+        ClosedPullRequest,
+        None
     }
 }

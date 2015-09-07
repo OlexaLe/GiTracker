@@ -6,5 +6,6 @@ namespace GiTracker.Services.Api
     {
         RestRequest GetIssuesRequest(string repository);
         RestRequest GetUserRepositoriesRequest();
+        RestRequest CreateCommentRequest(string repository, int issueId);
     }
 }

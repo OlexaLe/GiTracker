@@ -32,7 +32,7 @@ namespace GiTracker.ViewModels
         public IssueViewModel Issue
         {
             get { return _issue; }
-            private set { SetProperty(ref _issue, value); }
+            set { SetProperty(ref _issue, value); }
         }
 
         public ICommand OpenInBrowserCommand =>

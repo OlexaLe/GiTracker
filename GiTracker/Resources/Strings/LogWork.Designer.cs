@@ -23,24 +23,24 @@ namespace GiTracker.Resources.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class IssueDetails {
+    internal class LogWork {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IssueDetails() {
+        internal LogWork() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.IssueDetails", typeof(IssueDetails).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.LogWork", typeof(LogWork).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -52,7 +52,7 @@ namespace GiTracker.Resources.Strings {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -62,92 +62,57 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} opened this issue.
+        ///   Looks up a localized string similar to Date.
         /// </summary>
-        public static string CreatedBy {
+        internal static string Date {
             get {
-                return ResourceManager.GetString("CreatedBy", resourceCulture);
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Issue #{0}.
+        ///   Looks up a localized string similar to h.
         /// </summary>
-        public static string IssueNumber {
+        internal static string Hours {
             get {
-                return ResourceManager.GetString("IssueNumber", resourceCulture);
+                return ResourceManager.GetString("Hours", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Closed.
+        ///   Looks up a localized string similar to Log.
         /// </summary>
-        public static string IssueStatus_Closed {
+        internal static string Log {
             get {
-                return ResourceManager.GetString("IssueStatus_Closed", resourceCulture);
+                return ResourceManager.GetString("Log", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merged.
+        ///   Looks up a localized string similar to m.
         /// </summary>
-        public static string IssueStatus_ClosedPullRequest {
+        internal static string Minutes {
             get {
-                return ResourceManager.GetString("IssueStatus_ClosedPullRequest", resourceCulture);
+                return ResourceManager.GetString("Minutes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open.
+        ///   Looks up a localized string similar to Time spent
+        ///(e.g. 2h 20m).
         /// </summary>
-        public static string IssueStatus_Open {
+        internal static string Time {
             get {
-                return ResourceManager.GetString("IssueStatus_Open", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open.
-        /// </summary>
-        public static string IssueStatus_OpenPullRequest {
-            get {
-                return ResourceManager.GetString("IssueStatus_OpenPullRequest", resourceCulture);
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Log time.
         /// </summary>
-        public static string LogWork {
+        internal static string Title {
             get {
-                return ResourceManager.GetString("LogWork", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to at {0:g}.
-        /// </summary>
-        public static string TimeAt {
-            get {
-                return ResourceManager.GetString("TimeAt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown.
-        /// </summary>
-        public static string Unknown {
-            get {
-                return ResourceManager.GetString("Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View in browser.
-        /// </summary>
-        public static string ViewInBrowser {
-            get {
-                return ResourceManager.GetString("ViewInBrowser", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

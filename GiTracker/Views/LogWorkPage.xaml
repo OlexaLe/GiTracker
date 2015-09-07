@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="GiTracker.Views.LogWorkPage"
+                xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
+                xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
+                xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
+                prism:ViewModelLocator.AutowireViewModel="True"
+                Padding="{StaticResource PagePadding}">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.ColumnSpan="2">
+
+            <StackLayout Orientation="Horizontal"
+                         BindingContext="{Binding Issue}">
+
+                <controls:IssueStatusControl IssueStatus="{Binding Status}" />
+
+                <Label Text="{Binding Title}"
+                       Style="{StaticResource LargeSimpleLabelStyle}" />
+
+            </StackLayout>
+        </StackLayout>
+
+        <Label Grid.Row="1"
+               YAlign="Center"
+               Text="{x:Static localization:LogWork.Date}" />
+
+        <DatePicker Grid.Row="1"
+                    Grid.Column="1"
+                    Date="{Binding Date}" />
+
+        <Label Grid.Row="2"
+               YAlign="Center"
+               Text="{x:Static localization:LogWork.Time}" />
+
+        <Entry Grid.Row="2"
+               Grid.Column="1"
+               Text="{Binding TimeSpent}" />
+
+        <StackLayout Grid.Row="3"
+                     Grid.ColumnSpan="2">
+            <Button
+                Text="{x:Static localization:LogWork.Log}"
+                Command="{Binding LogCommand}" />
+        </StackLayout>
+
+    </Grid>
+</views:BasePage>

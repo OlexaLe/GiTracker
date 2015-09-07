@@ -6,6 +6,7 @@ namespace GiTracker.Services.WorkLog
 {
     public interface IWorkLogService
     {
-        Task LogTimeAsync(int issueId, DateTime logDate, TimeSpan logTime, CancellationToken cancellationToken);
+        Task LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
+            CancellationToken cancellationToken);
     }
 }

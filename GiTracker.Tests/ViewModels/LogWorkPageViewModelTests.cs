@@ -1,6 +1,12 @@
-﻿using GiTracker.Resources.Strings;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using GiTracker.Models;
+using GiTracker.Resources.Strings;
 using GiTracker.Services.DataLoader;
+using GiTracker.Services.WorkLog;
 using GiTracker.ViewModels;
+using Moq;
 using NUnit.Framework;
 
 namespace GiTracker.Tests.ViewModels
@@ -150,6 +156,42 @@ namespace GiTracker.Tests.ViewModels
 
             // Assert
             Assert.IsTrue(logWorkPageViewModel.IsTimeValid);
+        }
+
+        [Test]
+        public async void WorkLogServiceIsCalledCorrectly()
+        {
+            // Arrange
+            var wokrLogServiceMoq = new Mock<IWorkLogService>();
+            wokrLogServiceMoq.Setup(
+                moq =>
+                    moq.LogTimeAsync(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<DateTime>(), It.IsAny<TimeSpan>(),
+                        It.IsAny<CancellationToken>())).Returns(Task.FromResult<object>(null));
+
+            var loaderMoq = new Mock<ILoader>();
+            loaderMoq.Setup(moq => moq.LoadAsync(It.IsAny<Func<CancellationToken, Task>>()))
+                .Returns((Func<CancellationToken, Task> factory) => factory(It.IsAny<CancellationToken>()));
+
+            const string timeSpent = "2h 20m";
+            const int issueId = 5;
+            const string repoPath = "test";
+            var date = DateTime.Now.Date;
+            var timeSpan = TimeSpan.FromMinutes(140);
+
+            var viewModel = new LogWorkPageViewModel(loaderMoq.Object, null, null, wokrLogServiceMoq.Object);
+            viewModel.TimeSpent = timeSpent;
+            viewModel.Issue = new IssueViewModel(Mock.Of<IIssue>(issue => issue.Id == issueId));
+            viewModel._repo = Mock.Of<IRepo>(repo => repo.Path == repoPath);
+            viewModel.Date = date;
+
+            // Act
+            await viewModel.LogCommand.Execute();
+
+            // Assert
+            wokrLogServiceMoq.Verify(
+                moq =>
+                    moq.LogTimeAsync(repoPath, issueId, date, timeSpan,
+                        It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

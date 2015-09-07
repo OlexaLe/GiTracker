@@ -27,7 +27,7 @@ namespace GiTracker.ViewModels
         private DateTime _date;
         private IssueViewModel _issue;
         private DelegateCommand _logCommand;
-        private IRepo _repo;
+        internal IRepo _repo;
         private TimeSpan _timeSpan;
         private string _timeSpent;
 
@@ -46,7 +46,7 @@ namespace GiTracker.ViewModels
         public IssueViewModel Issue
         {
             get { return _issue; }
-            private set { SetProperty(ref _issue, value); }
+            internal set { SetProperty(ref _issue, value); }
         }
 
         public string TimeSpent
@@ -85,6 +85,8 @@ namespace GiTracker.ViewModels
 
         private async void Log()
         {
+            if (!LogCommand.CanExecute()) return;
+
             await
                 Loader.LoadAsync(
                     cancellationToken =>

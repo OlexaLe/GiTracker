@@ -34,11 +34,6 @@ namespace GiTracker.Tests.Services
             object actualLog = null;
 
             var restMoq = new Mock<IRestService>();
-            //restMoq.Setup(
-            //    r =>
-            //        r.PostAsync(It.IsAny<RestRequest>(), It.Is<object>(p => expectedLog != p),
-            //            It.IsAny<CancellationToken>()));
-
             restMoq.Setup(r => r.PostAsync(It.IsAny<RestRequest>(), It.IsAny<object>(),
                 It.IsAny<CancellationToken>()))
                 .Callback<RestRequest, object, CancellationToken>((request, body, token) => { actualLog = body; })

@@ -65,11 +65,11 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        private async Task LoadReposAsync(ILoader loader)
+        private Task LoadReposAsync(ILoader loader)
         {
             Repos = null;
 
-            await loader.LoadAsync(async cancellationToken =>
+            return loader.LoadAsync(async cancellationToken =>
             {
                 var repos =
                     await _repoService.GetReposAsync(cancellationToken);

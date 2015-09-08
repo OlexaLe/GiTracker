@@ -59,25 +59,19 @@ namespace GiTracker.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        private async Task LoadIssuesAsync(ILoader loader)
+        private Task LoadIssuesAsync(ILoader loader)
         {
-            try
-            {
-                _issues = null;
-                TriggerIssuesPropertyChanged();
+            _issues = null;
+            TriggerIssuesPropertyChanged();
 
-                await loader.LoadAsync(async cancellationToken =>
-                {
-                    var issues =
-                        await _issueService.GetIssuesAsync(_repo.Path, cancellationToken);
-
-                    _issues = issues.Select(issue => new IssueViewModel(issue)).ToList();
-                });
-            }
-            finally
+            return loader.LoadAsync(async cancellationToken =>
             {
+                var issues =
+                    await _issueService.GetIssuesAsync(_repo.Path, cancellationToken);
+
+                _issues = issues.Select(issue => new IssueViewModel(issue)).ToList();
                 TriggerIssuesPropertyChanged();
-            }
+            });
         }
 
         private void TriggerIssuesPropertyChanged()

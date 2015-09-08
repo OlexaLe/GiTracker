@@ -13,9 +13,6 @@ namespace GiTracker.ViewModels
 {
     public class LogWorkPageViewModel : BaseViewModel
     {
-        public const string IssueParameterName = "IssueParameterName";
-        public const string RepoParameterName = "RepoParameterName";
-
         private readonly string[] _timeSpentFormats =
         {
             $@"m\{LogWork.Minutes}",
@@ -79,8 +76,8 @@ namespace GiTracker.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            Issue = new IssueViewModel(parameters[IssueParameterName] as IIssue);
-            _repo = parameters[RepoParameterName] as IRepo;
+            Issue = new IssueViewModel(parameters[Constants.IssueParameterName] as IIssue);
+            _repo = parameters[Constants.RepoParameterName] as IRepo;
         }
 
         private async void Log()

@@ -81,7 +81,7 @@ namespace GiTracker.ViewModels
         private void OpenRepo(IRepo repo)
         {
             NavigationService.Navigate<IssueListPageViewModel>(
-                new NavigationParameters {{IssueListPageViewModel.RepoParameterName, repo}}, false);
+                new NavigationParameters {{Constants.RepoParameterName, repo}}, false);
         }
     }
 }

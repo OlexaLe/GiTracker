@@ -13,7 +13,6 @@ namespace GiTracker.ViewModels
 {
     internal class IssueListPageViewModel : BaseListViewModel
     {
-        public const string RepoParameterName = "RepoParameterName";
         private readonly IIssueService _issueService;
         private IEnumerable<IssueViewModel> _issues;
         private DelegateCommand<IssueViewModel> _openIssueDetailsCommand;
@@ -47,7 +46,7 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            _repo = parameters[RepoParameterName] as IRepo;
+            _repo = parameters[Constants.RepoParameterName] as IRepo;
             Title = _repo.Name;
 
             await LoadIssuesAsync(Loader);
@@ -97,8 +96,8 @@ namespace GiTracker.ViewModels
             NavigationService.Navigate<IssueDetailsPageViewModel>(
                 new NavigationParameters
                 {
-                    {IssueDetailsPageViewModel.IssueParameterName, issueViewModel.Issue},
-                    {IssueDetailsPageViewModel.RepoParameterName, _repo}
+                    {Constants.IssueParameterName, issueViewModel.Issue},
+                    {Constants.RepoParameterName, _repo}
                 }, false);
         }
     }

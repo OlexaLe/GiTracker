@@ -12,8 +12,6 @@ namespace GiTracker.ViewModels
 {
     public class IssueDetailsPageViewModel : BaseViewModel
     {
-        public const string IssueParameterName = "IssueParameterName";
-        public const string RepoParameterName = "RepoParameterName";
         private readonly IDeviceService _deviceService;
         private IssueViewModel _issue;
         private ICommand _logWorkCommand;
@@ -49,8 +47,8 @@ namespace GiTracker.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            Issue = new IssueViewModel(parameters[IssueParameterName] as IIssue);
-            _repo = parameters[RepoParameterName] as IRepo;
+            Issue = new IssueViewModel(parameters[Constants.IssueParameterName] as IIssue);
+            _repo = parameters[Constants.RepoParameterName] as IRepo;
 
             Title = string.Format(IssueDetails.IssueNumber, Issue?.Number);
         }
@@ -62,8 +60,8 @@ namespace GiTracker.ViewModels
             NavigationService.Navigate<LogWorkPageViewModel>(
                 new NavigationParameters
                 {
-                    {LogWorkPageViewModel.IssueParameterName, Issue.Issue},
-                    {LogWorkPageViewModel.RepoParameterName, _repo}
+                    {Constants.IssueParameterName, Issue.Issue},
+                    {Constants.RepoParameterName, _repo}
                 }, false);
         }
 

@@ -46,8 +46,8 @@ namespace GiTracker.Tests.ViewModels
             var repo = Mock.Of<IRepo>(moq => moq.Path == expectedRepoPath);
             var parameters = new NavigationParameters
             {
-                {IssueDetailsPageViewModel.IssueParameterName, issue},
-                {IssueDetailsPageViewModel.RepoParameterName, repo}
+                {Constants.IssueParameterName, issue},
+                {Constants.RepoParameterName, repo}
             };
 
             // Act

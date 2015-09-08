@@ -12,12 +12,11 @@ namespace GiTracker.ViewModels
 {
     public class IssueDetailsPageViewModel : BaseViewModel
     {
-        public const string IssueParameterName = "IssueParameterName";
-        public const string RepoParameterName = "RepoParameterName";
         private readonly IDeviceService _deviceService;
         private IssueViewModel _issue;
         private ICommand _logWorkCommand;
         private ICommand _openInBrowserCommand;
+        private ICommand _openWorkLogsCommand;
         private IRepo _repo;
 
         public IssueDetailsPageViewModel(IDeviceService deviceService,
@@ -41,12 +40,15 @@ namespace GiTracker.ViewModels
         public ICommand LogWorkCommand =>
             _logWorkCommand ?? (_logWorkCommand = new DelegateCommand(LogWork));
 
+        public ICommand OpenWorkLogsCommand
+            => _openWorkLogsCommand ?? (_openWorkLogsCommand = new DelegateCommand(OpenWorkLogs));
+
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
-            Issue = new IssueViewModel(parameters[IssueParameterName] as IIssue);
-            _repo = parameters[RepoParameterName] as IRepo;
+            Issue = new IssueViewModel(parameters[Constants.IssueParameterName] as IIssue);
+            _repo = parameters[Constants.RepoParameterName] as IRepo;
 
             Title = string.Format(IssueDetails.IssueNumber, Issue?.Number);
         }
@@ -58,8 +60,18 @@ namespace GiTracker.ViewModels
             NavigationService.Navigate<LogWorkPageViewModel>(
                 new NavigationParameters
                 {
-                    {LogWorkPageViewModel.IssueParameterName, Issue.Issue},
-                    {LogWorkPageViewModel.RepoParameterName, _repo}
+                    {Constants.IssueParameterName, Issue.Issue},
+                    {Constants.RepoParameterName, _repo}
+                }, false);
+        }
+
+        private void OpenWorkLogs()
+        {
+            NavigationService.Navigate<WorkLogsPageViewModel>(
+                new NavigationParameters
+                {
+                    {Constants.IssueParameterName, Issue.Issue},
+                    {Constants.RepoParameterName, _repo}
                 }, false);
         }
     }

@@ -31,6 +31,7 @@ namespace GiTracker
             Container.RegisterTypeForNavigation<IssueListPage, IssueListPageViewModel>();
             Container.RegisterTypeForNavigation<IssueDetailsPage, IssueDetailsPageViewModel>();
             Container.RegisterTypeForNavigation<LogWorkPage, LogWorkPageViewModel>();
+            Container.RegisterTypeForNavigation<WorkLogsPage, WorkLogsPageViewModel>();
 
             Container.RegisterType<ILoader, Loader>();
             Container.RegisterType<IRepoService, RepoService>();

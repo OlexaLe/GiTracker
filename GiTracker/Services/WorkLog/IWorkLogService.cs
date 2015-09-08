@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using GiTracker.Models;
 
 namespace GiTracker.Services.WorkLog
 {
     public interface IWorkLogService
     {
-        Task<IComment> LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
+        Task<WorkLogItem> LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
             CancellationToken cancellationToken);
+
+        Task<IEnumerable<WorkLogItem>> GetLogsAsync(string repo, int issueId, CancellationToken cancellationToken);
     }
 }

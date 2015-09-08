@@ -147,4 +147,7 @@
   <data name="ViewInBrowser" xml:space="preserve">
     <value>View in browser</value>
   </data>
+  <data name="WorkLogs" xml:space="preserve">
+    <value>Time logs</value>
+  </data>
 </root>

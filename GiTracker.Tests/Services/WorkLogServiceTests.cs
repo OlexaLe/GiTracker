@@ -17,7 +17,7 @@ namespace GiTracker.Tests.Services
         public void Init()
         {
             var apiProviderMoq = new Mock<IGitApiProvider>();
-            apiProviderMoq.Setup(moq => moq.CreateCommentRequest(It.IsAny<string>(), It.IsAny<int>()))
+            apiProviderMoq.Setup(moq => moq.GetCreateCommentRequest(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(_restRequest);
 
             _gitApiProvider = apiProviderMoq.Object;
@@ -30,7 +30,7 @@ namespace GiTracker.Tests.Services
         public async void LogTimeFormat()
         {
             // Arrange
-            var expectedLog = new Dictionary<string, string> {{"body", "2h 3m logged on 2/1 via #GiTracker"}};
+            var expectedLog = new Dictionary<string, string> {{"body", "2h 3m logged on 2/1/2015 via #GiTracker"}};
             object actualLog = null;
 
             var restMoq = new Mock<IRestService>();

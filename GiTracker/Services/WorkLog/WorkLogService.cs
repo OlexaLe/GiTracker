@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GiTracker.Models;
@@ -19,19 +20,29 @@ namespace GiTracker.Services.WorkLog
             _gitApiProvider = gitApiProvider;
         }
 
-        public async Task<IComment> LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
+        public async Task<WorkLogItem> LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
             CancellationToken cancellationToken)
         {
-            var request = _gitApiProvider.CreateCommentRequest(repo, issueId);
-            var bodyString = string.Format(Constants.LogWorkFormat, logTime.Hours, logTime.Minutes, logDate.Day,
-                logDate.Month);
+            var request = _gitApiProvider.GetCreateCommentRequest(repo, issueId);
+            var bodyString = WorkLogFormatHelper.GetCommentBody(logDate, logTime);
             var body = new Dictionary<string, string> {{"body", bodyString}};
 
             var comment =
                 await
                     _restService.PostAsync(request, body, cancellationToken)
-                        .ConfigureAwait(false);
-            return (IComment) comment;
+                        .ConfigureAwait(false) as IComment;
+
+            return new WorkLogItem {Creator = comment.Author, Date = logDate, Time = logTime};
+        }
+
+        public async Task<IEnumerable<WorkLogItem>> GetLogsAsync(string repo, int issueId,
+            CancellationToken cancellationToken)
+        {
+            var request = _gitApiProvider.GetLoadCommentsRequest(repo, issueId);
+            var comments =
+                await _restService.GetAsync(request, cancellationToken).ConfigureAwait(false) as IEnumerable<IComment>;
+            var workLogs = comments.Where(WorkLogFormatHelper.IsWorkLog).Select(WorkLogFormatHelper.ExtractWorkLogItem);
+            return workLogs;
         }
     }
 }

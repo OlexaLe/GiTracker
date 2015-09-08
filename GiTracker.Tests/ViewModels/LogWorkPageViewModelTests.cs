@@ -166,7 +166,7 @@ namespace GiTracker.Tests.ViewModels
             wokrLogServiceMoq.Setup(
                 moq =>
                     moq.LogTimeAsync(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<DateTime>(), It.IsAny<TimeSpan>(),
-                        It.IsAny<CancellationToken>())).Returns(Task.FromResult<IComment>(null));
+                        It.IsAny<CancellationToken>())).Returns(Task.FromResult<WorkLogItem>(null));
 
             var loaderMoq = new Mock<ILoader>();
             loaderMoq.Setup(moq => moq.LoadAsync(It.IsAny<Func<CancellationToken, Task>>()))

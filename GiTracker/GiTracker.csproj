@@ -126,6 +126,8 @@
     <Compile Include="Services\Rest\RestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="Services\WorkLog\IWorkLogService.cs" />
+    <Compile Include="Services\WorkLog\WorkLogFormatHelper.cs" />
+    <Compile Include="Services\WorkLog\WorkLogItem.cs" />
     <Compile Include="Services\WorkLog\WorkLogService.cs" />
     <Compile Include="ViewModels\BaseListViewModel.cs" />
     <Compile Include="ViewModels\AboutPageViewModel.cs" />

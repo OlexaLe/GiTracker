@@ -6,13 +6,22 @@
                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                 xmlns:controls="clr-namespace:GiTracker.Controls;assembly=GiTracker"
                 xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
+                xmlns:localization="clr-namespace:GiTracker.Resources.Strings;assembly=GiTracker"
+                xmlns:converters="clr-namespace:GiTracker.Converters;assembly=GiTracker"
                 prism:ViewModelLocator.AutowireViewModel="True">
 
     <Page.Resources>
         <ResourceDictionary>
+            <converters:WorkLogItemToLabelConverter x:Key="WorkLogItemToLabelConverter" />
+
             <DataTemplate x:Key="WorkLogListItem">
                 <ViewCell>
-                    <Grid Padding="{StaticResource ListItemPadding}" />
+                    <ContentView Padding="{StaticResource ListItemPadding}">
+
+                        <controls:ImageWithLabel ImageUrl="{Binding Creator.AvatarUrl}"
+                                                 Text="{Binding ., Converter={StaticResource WorkLogItemToLabelConverter}}"
+                                                 SecondaryText="{Binding Date, StringFormat={x:Static localization:WorkLogs.At}}" />
+                    </ContentView>
                 </ViewCell>
             </DataTemplate>
         </ResourceDictionary>

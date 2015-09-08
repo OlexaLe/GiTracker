@@ -62,11 +62,29 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to at {0:d}.
+        /// </summary>
+        internal static string At {
+            get {
+                return ResourceManager.GetString("At", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #{0} work logs.
         /// </summary>
         internal static string IssueTitle {
             get {
                 return ResourceManager.GetString("IssueTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} logged {1}.
+        /// </summary>
+        internal static string Logged {
+            get {
+                return ResourceManager.GetString("Logged", resourceCulture);
             }
         }
         

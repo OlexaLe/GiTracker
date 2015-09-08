@@ -42,6 +42,7 @@
     <Compile Include="Converters\IssueStatusToTextConverter.cs" />
     <Compile Include="Converters\IssueStatusToIconConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Converters\WorkLogItemToLabelConverter.cs" />
     <Compile Include="Resources\Strings\LogWork.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

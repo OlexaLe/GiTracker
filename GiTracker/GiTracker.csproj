@@ -47,6 +47,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LogWork.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings\WorkLogs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLogs.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\DataLoader\ILoader.cs" />
     <Compile Include="Services\DataLoader\Loader.cs" />
     <Compile Include="Models\GitHub\GitHubComment.cs" />
@@ -130,6 +135,7 @@
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\LogWorkPageViewModel.cs" />
+    <Compile Include="ViewModels\WorkLogsPageViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -157,6 +163,9 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Views\RepoListPage.xaml.cs">
       <DependentUpon>RepoListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkLogsPage.xaml.cs">
+      <DependentUpon>WorkLogsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -265,6 +274,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings\WorkLogs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLogs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -307,6 +320,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\LogWorkPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\WorkLogsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

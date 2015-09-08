@@ -78,6 +78,8 @@ namespace GiTracker.ViewModels
             base.OnNavigatedTo(parameters);
             Issue = new IssueViewModel(parameters[Constants.IssueParameterName] as IIssue);
             _repo = parameters[Constants.RepoParameterName] as IRepo;
+
+            Title = string.Format(LogWork.IssueTitle, Issue.Number);
         }
 
         private async void Log()

@@ -123,6 +123,9 @@
   <data name="Hours" xml:space="preserve">
     <value>h</value>
   </data>
+  <data name="IssueTitle" xml:space="preserve">
+    <value>Log time for #{0}</value>
+  </data>
   <data name="Log" xml:space="preserve">
     <value>Log</value>
   </data>

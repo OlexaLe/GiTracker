@@ -80,6 +80,15 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log time for #{0}.
+        /// </summary>
+        internal static string IssueTitle {
+            get {
+                return ResourceManager.GetString("IssueTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log.
         /// </summary>
         internal static string Log {

@@ -18,6 +18,7 @@ namespace GiTracker.ViewModels
         private IssueViewModel _issue;
         private ICommand _logWorkCommand;
         private ICommand _openInBrowserCommand;
+        private ICommand _openWorkLogsCommand;
         private IRepo _repo;
 
         public IssueDetailsPageViewModel(IDeviceService deviceService,
@@ -41,6 +42,9 @@ namespace GiTracker.ViewModels
         public ICommand LogWorkCommand =>
             _logWorkCommand ?? (_logWorkCommand = new DelegateCommand(LogWork));
 
+        public ICommand OpenWorkLogsCommand
+            => _openWorkLogsCommand ?? (_openWorkLogsCommand = new DelegateCommand(OpenWorkLogs));
+
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
@@ -60,6 +64,16 @@ namespace GiTracker.ViewModels
                 {
                     {LogWorkPageViewModel.IssueParameterName, Issue.Issue},
                     {LogWorkPageViewModel.RepoParameterName, _repo}
+                }, false);
+        }
+
+        private void OpenWorkLogs()
+        {
+            NavigationService.Navigate<WorkLogsPageViewModel>(
+                new NavigationParameters
+                {
+                    {Constants.IssueParameterName, Issue.Issue},
+                    {Constants.RepoParameterName, _repo}
                 }, false);
         }
     }

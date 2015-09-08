@@ -51,6 +51,8 @@
         <StackLayout Grid.Row="1">
             <Button Command="{Binding LogWorkCommand}"
                     Text="{x:Static localization:IssueDetails.LogWork}" />
+            <Button Command="{Binding OpenWorkLogsCommand}"
+                    Text="{x:Static localization:IssueDetails.WorkLogs}" />
         </StackLayout>
 
         <!--TODO: think of moving this to tool bar items-->

@@ -23,7 +23,7 @@ namespace GiTracker.Resources.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class IssueDetails {
+    internal class IssueDetails {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,7 +37,7 @@ namespace GiTracker.Resources.Strings {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.IssueDetails", typeof(IssueDetails).GetTypeInfo().Assembly);
@@ -52,7 +52,7 @@ namespace GiTracker.Resources.Strings {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to {0} opened this issue.
         /// </summary>
-        public static string CreatedBy {
+        internal static string CreatedBy {
             get {
                 return ResourceManager.GetString("CreatedBy", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Issue #{0}.
         /// </summary>
-        public static string IssueNumber {
+        internal static string IssueNumber {
             get {
                 return ResourceManager.GetString("IssueNumber", resourceCulture);
             }
@@ -82,7 +82,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
-        public static string IssueStatus_Closed {
+        internal static string IssueStatus_Closed {
             get {
                 return ResourceManager.GetString("IssueStatus_Closed", resourceCulture);
             }
@@ -91,7 +91,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Merged.
         /// </summary>
-        public static string IssueStatus_ClosedPullRequest {
+        internal static string IssueStatus_ClosedPullRequest {
             get {
                 return ResourceManager.GetString("IssueStatus_ClosedPullRequest", resourceCulture);
             }
@@ -100,7 +100,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string IssueStatus_Open {
+        internal static string IssueStatus_Open {
             get {
                 return ResourceManager.GetString("IssueStatus_Open", resourceCulture);
             }
@@ -109,7 +109,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string IssueStatus_OpenPullRequest {
+        internal static string IssueStatus_OpenPullRequest {
             get {
                 return ResourceManager.GetString("IssueStatus_OpenPullRequest", resourceCulture);
             }
@@ -118,7 +118,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Log time.
         /// </summary>
-        public static string LogWork {
+        internal static string LogWork {
             get {
                 return ResourceManager.GetString("LogWork", resourceCulture);
             }
@@ -127,7 +127,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to at {0:g}.
         /// </summary>
-        public static string TimeAt {
+        internal static string TimeAt {
             get {
                 return ResourceManager.GetString("TimeAt", resourceCulture);
             }
@@ -136,7 +136,7 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Unknown.
         /// </summary>
-        public static string Unknown {
+        internal static string Unknown {
             get {
                 return ResourceManager.GetString("Unknown", resourceCulture);
             }
@@ -145,9 +145,18 @@ namespace GiTracker.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to View in browser.
         /// </summary>
-        public static string ViewInBrowser {
+        internal static string ViewInBrowser {
             get {
                 return ResourceManager.GetString("ViewInBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time logs.
+        /// </summary>
+        internal static string WorkLogs {
+            get {
+                return ResourceManager.GetString("WorkLogs", resourceCulture);
             }
         }
     }

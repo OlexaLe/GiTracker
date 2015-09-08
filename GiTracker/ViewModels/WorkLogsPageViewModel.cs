@@ -23,5 +23,15 @@ namespace GiTracker.ViewModels
 
             Title = WorkLogs.Title;
         }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            _issue = parameters[Constants.IssueParameterName] as IIssue;
+            _repo = parameters[Constants.RepoParameterName] as IRepo;
+
+            Title = string.Format(WorkLogs.IssueTitle, _issue?.Number);
+        }
     }
 }

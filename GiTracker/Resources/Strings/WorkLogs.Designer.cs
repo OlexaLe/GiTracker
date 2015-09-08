@@ -62,6 +62,15 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #{0} work logs.
+        /// </summary>
+        internal static string IssueTitle {
+            get {
+                return ResourceManager.GetString("IssueTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work logs.
         /// </summary>
         internal static string Title {

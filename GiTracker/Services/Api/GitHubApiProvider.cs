@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using GiTracker.Models.GitHub;
 using GiTracker.Services.Rest;
 
@@ -18,8 +19,24 @@ namespace GiTracker.Services.Api
             };
 
         private readonly Type IssueListType = typeof (IEnumerable<GitHubIssue>);
-
         private readonly Type ReposListType = typeof (IEnumerable<GitHubRepo>);
+        private readonly Type UserType = typeof (GitHubUser);
+
+        private string _basicAuthentication;
+
+        public RestRequest GetLoginRequest(string username, string password)
+        {
+            var plainTextBytes = Encoding.UTF8.GetBytes($"{username}:{password}");
+            _basicAuthentication = Convert.ToBase64String(plainTextBytes);
+            DefaultHeaders["Authorization"] = $"Basic {_basicAuthentication}";
+            return new RestRequest
+            {
+                ReturnValueType = UserType,
+                Host = Host,
+                RelativeUrl = "user",
+                DefaultHeaders = DefaultHeaders
+            };
+        }
 
         public RestRequest GetIssuesRequest(string repository)
         {

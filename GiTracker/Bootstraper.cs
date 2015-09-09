@@ -1,4 +1,5 @@
 ﻿using GiTracker.Services.Api;
+using GiTracker.Services.Credential;
 using GiTracker.Services.Database;
 using GiTracker.Services.DataLoader;
 using GiTracker.Services.Device;
@@ -21,7 +22,7 @@ namespace GiTracker
     {
         protected override Page CreateMainPage()
         {
-            return Container.Resolve<MainPage>();
+            return Container.Resolve<LoginPage>();
         }
 
         protected override void RegisterTypes()
@@ -44,8 +45,8 @@ namespace GiTracker
             Container.RegisterType<IDeviceService, DeviceService>();
             Container.RegisterType<ILoginService, LoginService>();
             Container.RegisterType<IWorkLogService, WorkLogService>();
-
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
+            Container.RegisterInstance<ICredentialService>(new CredentialService());
         }
     }
 }

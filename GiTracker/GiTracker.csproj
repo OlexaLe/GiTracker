@@ -53,6 +53,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkLogs.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Credential\CredentialService.cs" />
+    <Compile Include="Services\Credential\ICredentialService.cs" />
     <Compile Include="Services\DataLoader\ILoader.cs" />
     <Compile Include="Services\DataLoader\Loader.cs" />
     <Compile Include="Models\GitHub\GitHubComment.cs" />

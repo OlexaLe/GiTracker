@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GiTracker.Controls.ImageWithLabel"
+             x:Name="content">
+
+    <Grid
+        BindingContext="{x:Reference content}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.RowSpan="2"
+               Style="{StaticResource AvatarStyle}"
+               Source="{Binding ImageUrl}" />
+
+        <Label Grid.Column="1"
+               Text="{Binding Text}"
+               YAlign="Center"
+               Style="{StaticResource SmallSimpleLabelStyle}" />
+
+        <Label Grid.Column="1"
+               Grid.Row="1"
+               Text="{Binding SecondaryText}"
+               YAlign="Center"
+               Style="{StaticResource SmallSimpleLabelStyle}" />
+    </Grid>
+</ContentView>

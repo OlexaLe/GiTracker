@@ -6,18 +6,18 @@
              x:Class="GiTracker.Controls.IssueStatusControl"
              x:Name="content">
 
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
+            <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
+            <converters:IssueStatusToTextConverter x:Key="IssueStatusToTextConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <Grid
         BindingContext="{x:Reference content}"
         Padding="6"
         BackgroundColor="{Binding IssueStatus, Converter={StaticResource IssueStatusToColorConverter}}">
-
-        <Grid.Resources>
-            <ResourceDictionary>
-                <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
-                <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
-                <converters:IssueStatusToTextConverter x:Key="IssueStatusToTextConverter" />
-            </ResourceDictionary>
-        </Grid.Resources>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

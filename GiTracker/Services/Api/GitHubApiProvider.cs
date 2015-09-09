@@ -20,9 +20,9 @@ namespace GiTracker.Services.Api
                 ["Accept"] = "application/json"
             };
 
-        private readonly Type IssueListType = typeof (IEnumerable<GitHubIssue>);
-        private readonly Type ReposListType = typeof (IEnumerable<GitHubRepo>);
-        private readonly Type UserType = typeof (GitHubUser);
+        private readonly Type _issueListType = typeof (IEnumerable<GitHubIssue>);
+        private readonly Type _reposListType = typeof (IEnumerable<GitHubRepo>);
+        private readonly Type _userType = typeof (GitHubUser);
 
         private string _basicAuthentication;
 
@@ -30,13 +30,13 @@ namespace GiTracker.Services.Api
         {
             var plainTextBytes = Encoding.UTF8.GetBytes($"{username}:{password}");
             _basicAuthentication = Convert.ToBase64String(plainTextBytes);
-            DefaultHeaders["Authorization"] = $"Basic {_basicAuthentication}";
+            _defaultHeaders["Authorization"] = $"Basic {_basicAuthentication}";
             return new RestRequest
             {
-                ReturnValueType = UserType,
+                ReturnValueType = _userType,
                 Host = Host,
                 RelativeUrl = "user",
-                DefaultHeaders = DefaultHeaders
+                DefaultHeaders = _defaultHeaders
             };
         }
 

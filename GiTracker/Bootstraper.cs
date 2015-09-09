@@ -8,6 +8,7 @@ using GiTracker.Services.Login;
 using GiTracker.Services.Progress;
 using GiTracker.Services.Repos;
 using GiTracker.Services.Rest;
+using GiTracker.Services.WorkLog;
 using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
@@ -30,6 +31,8 @@ namespace GiTracker
             Container.RegisterTypeForNavigation<RepoListPage, RepoListPageViewModel>();
             Container.RegisterTypeForNavigation<IssueListPage, IssueListPageViewModel>();
             Container.RegisterTypeForNavigation<IssueDetailsPage, IssueDetailsPageViewModel>();
+            Container.RegisterTypeForNavigation<LogWorkPage, LogWorkPageViewModel>();
+            Container.RegisterTypeForNavigation<WorkLogsPage, WorkLogsPageViewModel>();
 
             Container.RegisterType<ILoader, Loader>();
             Container.RegisterType<IRepoService, RepoService>();
@@ -40,6 +43,7 @@ namespace GiTracker
             Container.RegisterType<IProgressService, ProgressService>();
             Container.RegisterType<IDeviceService, DeviceService>();
             Container.RegisterType<ILoginService, LoginService>();
+            Container.RegisterType<IWorkLogService, WorkLogService>();
 
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
         }

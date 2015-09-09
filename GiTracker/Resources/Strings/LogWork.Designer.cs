@@ -23,14 +23,14 @@ namespace GiTracker.Resources.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class IssueDetails {
+    internal class LogWork {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IssueDetails() {
+        internal LogWork() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace GiTracker.Resources.Strings {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.IssueDetails", typeof(IssueDetails).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GiTracker.Resources.Strings.LogWork", typeof(LogWork).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,101 +62,66 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} opened this issue.
+        ///   Looks up a localized string similar to Date.
         /// </summary>
-        internal static string CreatedBy {
+        internal static string Date {
             get {
-                return ResourceManager.GetString("CreatedBy", resourceCulture);
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Issue #{0}.
+        ///   Looks up a localized string similar to h.
         /// </summary>
-        internal static string IssueNumber {
+        internal static string Hours {
             get {
-                return ResourceManager.GetString("IssueNumber", resourceCulture);
+                return ResourceManager.GetString("Hours", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Closed.
+        ///   Looks up a localized string similar to Log time for #{0}.
         /// </summary>
-        internal static string IssueStatus_Closed {
+        internal static string IssueTitle {
             get {
-                return ResourceManager.GetString("IssueStatus_Closed", resourceCulture);
+                return ResourceManager.GetString("IssueTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merged.
+        ///   Looks up a localized string similar to Log.
         /// </summary>
-        internal static string IssueStatus_ClosedPullRequest {
+        internal static string Log {
             get {
-                return ResourceManager.GetString("IssueStatus_ClosedPullRequest", resourceCulture);
+                return ResourceManager.GetString("Log", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open.
+        ///   Looks up a localized string similar to m.
         /// </summary>
-        internal static string IssueStatus_Open {
+        internal static string Minutes {
             get {
-                return ResourceManager.GetString("IssueStatus_Open", resourceCulture);
+                return ResourceManager.GetString("Minutes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open.
+        ///   Looks up a localized string similar to Time spent
+        ///(e.g. 2h 20m).
         /// </summary>
-        internal static string IssueStatus_OpenPullRequest {
+        internal static string Time {
             get {
-                return ResourceManager.GetString("IssueStatus_OpenPullRequest", resourceCulture);
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Log time.
         /// </summary>
-        internal static string LogWork {
+        internal static string Title {
             get {
-                return ResourceManager.GetString("LogWork", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to at {0:g}.
-        /// </summary>
-        internal static string TimeAt {
-            get {
-                return ResourceManager.GetString("TimeAt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown.
-        /// </summary>
-        internal static string Unknown {
-            get {
-                return ResourceManager.GetString("Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View in browser.
-        /// </summary>
-        internal static string ViewInBrowser {
-            get {
-                return ResourceManager.GetString("ViewInBrowser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Time logs.
-        /// </summary>
-        internal static string WorkLogs {
-            get {
-                return ResourceManager.GetString("WorkLogs", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

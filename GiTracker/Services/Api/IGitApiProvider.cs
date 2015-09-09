@@ -7,5 +7,7 @@ namespace GiTracker.Services.Api
         RestRequest GetLoginRequest(string username, string password);
         RestRequest GetIssuesRequest(string repository);
         RestRequest GetUserRepositoriesRequest();
+        RestRequest GetCreateCommentRequest(string repository, int issueId);
+        RestRequest GetLoadCommentsRequest(string repository, int issueId);
     }
 }

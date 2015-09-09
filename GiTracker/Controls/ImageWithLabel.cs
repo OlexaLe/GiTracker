@@ -80,7 +80,9 @@ namespace GiTracker.Controls
         private static void OnImageUrlPropertyChanged(BindableObject bindable, string oldvalue, string newvalue)
         {
             var control = bindable as ImageWithLabel;
-            control._image.Source = new UriImageSource {Uri = new Uri(newvalue)};
+            control._image.Source = !string.IsNullOrEmpty(newvalue)
+                ? new UriImageSource {Uri = new Uri(newvalue)}
+                : null;
         }
 
         private static void OnTextPropertyChanged(BindableObject bindable, string oldvalue, string newvalue)

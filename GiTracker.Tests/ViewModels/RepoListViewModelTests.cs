@@ -90,7 +90,7 @@ namespace GiTracker.Tests.ViewModels
 
             // Assert
             Mock.Get(_navigationService).Verify(moq => moq.Navigate<IssueListPageViewModel>(
-                new NavigationParameters {{IssueListPageViewModel.RepoParameterName, repo}}, false, true), Times.Once);
+                new NavigationParameters {{Constants.RepoParameterName, repo}}, false, true), Times.Once);
         }
 
         [Test]

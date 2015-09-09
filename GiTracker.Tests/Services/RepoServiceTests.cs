@@ -17,14 +17,11 @@ namespace GiTracker.Tests.Services
         public void Init()
         {
             var apiProviderMoq = new Mock<IGitApiProvider>();
-            apiProviderMoq.Setup(moq => moq.GetUserRepositoriesRequest()).Returns(RepoRequest);
+            apiProviderMoq.Setup(moq => moq.GetUserRepositoriesRequest()).Returns(_repoRequest);
             _gitApiProvider = apiProviderMoq.Object;
         }
 
-        private readonly RestRequest RepoRequest = new RestRequest();
-        private string Host => "TestHost";
-        private string ReposUrl => "TestUrl";
-        private Type ReposListType => typeof (IEnumerable<IRepo>);
+        private readonly RestRequest _repoRequest = new RestRequest();
         private const string RestServiceExceptionMessage = "RestServiceExceptionMessage";
         private IGitApiProvider _gitApiProvider;
 
@@ -35,7 +32,7 @@ namespace GiTracker.Tests.Services
             var repoList = new List<IRepo>();
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(RepoRequest, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<RestRequest>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(repoList);
 
             var repoService = new RepoService(restServiceMoq.Object, _gitApiProvider);
@@ -43,7 +40,8 @@ namespace GiTracker.Tests.Services
             // Act
             var repos = await repoService.GetReposAsync(CancellationToken.None);
 
-            restServiceMoq.Verify(moq => moq.GetAsync(RepoRequest, It.IsAny<CancellationToken>()),
+            // Assert
+            restServiceMoq.Verify(moq => moq.GetAsync(_repoRequest, It.IsAny<CancellationToken>()),
                 Times.Once);
 
             Assert.AreEqual(repos, repoList);
@@ -55,7 +53,7 @@ namespace GiTracker.Tests.Services
         {
             // Arrange
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(RepoRequest, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(_repoRequest, It.IsAny<CancellationToken>()))
                 .ThrowsAsync(new Exception(RestServiceExceptionMessage));
 
             var repoService = new RepoService(restServiceMoq.Object, _gitApiProvider);

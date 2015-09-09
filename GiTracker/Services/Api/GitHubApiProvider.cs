@@ -10,12 +10,14 @@ namespace GiTracker.Services.Api
     {
         private const string UserAgent = "XamarinGarage";
         private const string Host = "https://api.github.com/";
+        private readonly Type _commentsListType = typeof (IEnumerable<GitHubComment>);
+        private readonly Type _commentType = typeof (GitHubComment);
 
-        private readonly Dictionary<string, string> DefaultHeaders =
+        private readonly Dictionary<string, string> _defaultHeaders =
             new Dictionary<string, string>
             {
-                {"User-Agent", UserAgent},
-                {"Accept", "application/json"}
+                ["User-Agent"] = UserAgent,
+                ["Accept"] = "application/json"
             };
 
         private readonly Type IssueListType = typeof (IEnumerable<GitHubIssue>);
@@ -42,10 +44,10 @@ namespace GiTracker.Services.Api
         {
             return new RestRequest
             {
-                ReturnValueType = IssueListType,
+                ReturnValueType = _issueListType,
                 Host = Host,
                 RelativeUrl = $"repos/{repository}/issues",
-                DefaultHeaders = DefaultHeaders,
+                DefaultHeaders = _defaultHeaders,
                 UrlParameters = new Dictionary<string, string> {{"state", "all"}}
             };
         }
@@ -54,10 +56,32 @@ namespace GiTracker.Services.Api
         {
             return new RestRequest
             {
-                ReturnValueType = ReposListType,
+                ReturnValueType = _reposListType,
                 Host = Host,
                 RelativeUrl = "users/foxanna/repos",
-                DefaultHeaders = DefaultHeaders
+                DefaultHeaders = _defaultHeaders
+            };
+        }
+
+        public RestRequest GetCreateCommentRequest(string repository, int issueId)
+        {
+            return new RestRequest
+            {
+                ReturnValueType = _commentType,
+                Host = Host,
+                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
+                DefaultHeaders = _defaultHeaders
+            };
+        }
+
+        public RestRequest GetLoadCommentsRequest(string repository, int issueId)
+        {
+            return new RestRequest
+            {
+                ReturnValueType = _commentsListType,
+                Host = Host,
+                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
+                DefaultHeaders = _defaultHeaders
             };
         }
     }

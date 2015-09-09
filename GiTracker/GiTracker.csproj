@@ -34,6 +34,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Controls\IssueLabelsList.cs" />
+    <Compile Include="Controls\IssueStatusControl.cs" />
     <Compile Include="Controls\NiceLabel.cs" />
     <Compile Include="Controls\NiceListView.cs" />
     <Compile Include="Controls\ImageWithLabel.cs" />
@@ -41,6 +42,17 @@
     <Compile Include="Converters\IssueStatusToTextConverter.cs" />
     <Compile Include="Converters\IssueStatusToIconConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Converters\WorkLogItemToLabelConverter.cs" />
+    <Compile Include="Resources\Strings\LogWork.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogWork.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings\WorkLogs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLogs.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\DataLoader\ILoader.cs" />
     <Compile Include="Services\DataLoader\Loader.cs" />
     <Compile Include="Models\GitHub\GitHubComment.cs" />
@@ -114,6 +126,10 @@
     <Compile Include="Services\Rest\IRestService.cs" />
     <Compile Include="Services\Rest\RestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
+    <Compile Include="Services\WorkLog\IWorkLogService.cs" />
+    <Compile Include="Services\WorkLog\WorkLogFormatHelper.cs" />
+    <Compile Include="Services\WorkLog\WorkLogItem.cs" />
+    <Compile Include="Services\WorkLog\WorkLogService.cs" />
     <Compile Include="ViewModels\BaseListViewModel.cs" />
     <Compile Include="ViewModels\AboutPageViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -121,6 +137,8 @@
     <Compile Include="ViewModels\IssueListPageViewModel.cs" />
     <Compile Include="ViewModels\IssueViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\LogWorkPageViewModel.cs" />
+    <Compile Include="ViewModels\WorkLogsPageViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +153,9 @@
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LogWorkPage.xaml.cs">
+      <DependentUpon>LogWorkPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +166,9 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Views\RepoListPage.xaml.cs">
       <DependentUpon>RepoListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkLogsPage.xaml.cs">
+      <DependentUpon>WorkLogsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -223,7 +247,7 @@
       <LastGenOutput>Enums.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\IssueDetails.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>IssueDetails.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\IssueList.resx">
@@ -234,6 +258,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LoginPage.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings\LogWork.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogWork.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings\RepoList.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -249,6 +277,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings\WorkLogs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLogs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -289,7 +321,18 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LogWorkPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\WorkLogsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

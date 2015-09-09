@@ -15,9 +15,6 @@
     <Page.Resources>
         <ResourceDictionary>
             <converters:TextToVisibilityConverter x:Key="TextToVisibilityConverter" />
-            <converters:IssueStatusToColorConverter x:Key="IssueStatusToColorConverter" />
-            <converters:IssueStatusToIconConverter x:Key="IssueStatusToIconConverter" />
-            <converters:IssueStatusToTextConverter x:Key="IssueStatusToTextConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -25,30 +22,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackLayout BindingContext="{Binding Issue}">
 
             <StackLayout Orientation="Horizontal">
 
-                <Grid BackgroundColor="{Binding Status, Converter={StaticResource IssueStatusToColorConverter}}"
-                      Padding="6">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image
-                        Source="{Binding Status, Converter={StaticResource IssueStatusToIconConverter}, ConverterParameter=White}"
-                        HeightRequest="20"
-                        WidthRequest="20" />
-
-                    <Label Grid.Column="1"
-                           Text="{Binding Status, Converter={StaticResource IssueStatusToTextConverter}}"
-                           TextColor="White"
-                           Style="{StaticResource SmallSimpleLabelStyle}" />
-                </Grid>
+                <controls:IssueStatusControl IssueStatus="{Binding Status}" />
 
                 <Label Text="{Binding Title}"
                        Style="{StaticResource LargeSimpleLabelStyle}" />
@@ -67,8 +48,15 @@
 
         </StackLayout>
 
+        <StackLayout Grid.Row="1">
+            <Button Command="{Binding LogWorkCommand}"
+                    Text="{x:Static localization:IssueDetails.LogWork}" />
+            <Button Command="{Binding OpenWorkLogsCommand}"
+                    Text="{x:Static localization:IssueDetails.WorkLogs}" />
+        </StackLayout>
+
         <!--TODO: think of moving this to tool bar items-->
-        <controls:NiceLabel Grid.Row="1"
+        <controls:NiceLabel Grid.Row="2"
                             Text="{x:Static localization:IssueDetails.ViewInBrowser}"
                             HorizontalOptions="EndAndExpand"
                             Style="{StaticResource SmallSimpleLabelStyle}"

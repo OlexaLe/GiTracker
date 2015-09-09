@@ -1,4 +1,5 @@
 ﻿using System;
+using GiTracker.Models;
 using GiTracker.Models.GitHub;
 using GiTracker.Resources.Strings;
 using GiTracker.Services.DataLoader;
@@ -38,10 +39,16 @@ namespace GiTracker.Tests.ViewModels
         {
             // Arrange
             const int expectedIssueNumber = 42;
+            const string expectedRepoPath = "test";
             var expectedPageTitle = string.Format(IssueDetails.IssueNumber, expectedIssueNumber);
             var vm = new IssueDetailsPageViewModel(null, new Loader(null), null, null);
-            var issue = new IssueViewModel(new GitHubIssue {Number = expectedIssueNumber});
-            var parameters = new NavigationParameters {{IssueDetailsPageViewModel.IssueParameterName, issue}};
+            var issue = Mock.Of<IIssue>(moq => moq.Number == expectedIssueNumber);
+            var repo = Mock.Of<IRepo>(moq => moq.Path == expectedRepoPath);
+            var parameters = new NavigationParameters
+            {
+                {Constants.IssueParameterName, issue},
+                {Constants.RepoParameterName, repo}
+            };
 
             // Act
             vm.OnNavigatedTo(parameters);

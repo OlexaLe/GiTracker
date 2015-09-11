@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using GiTracker.Models;
 using GiTracker.Services.Api;
 using GiTracker.Services.Credential;
@@ -23,7 +22,6 @@ namespace GiTracker.Tests.Services
 
         private IGitApiProvider _gitApiProvider;
         private readonly RestRequest _userRequest = new RestRequest();
-        private readonly Dictionary<string, string> _credential = new Dictionary<string, string>();
 
         private readonly string _testName = "testname";
         private readonly string _testPassword = "testpassword";
@@ -49,7 +47,7 @@ namespace GiTracker.Tests.Services
             // Assert
             credentialServiceMoq.Verify(moq => moq.SetBasicCredential(_testName, _testPassword),
                 Times.Once);
-            
+
             Assert.AreEqual(user, userResponce);
         }
 
@@ -57,7 +55,7 @@ namespace GiTracker.Tests.Services
         public async void GetUserCallsIRestService()
         {
             // Arrange
-            var user = new Mock<IUser>();
+            var user = new Mock<IUser>().Object;
 
             var restServiceMoq = new Mock<IRestService>();
             restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<RestRequest>(), It.IsAny<CancellationToken>()))

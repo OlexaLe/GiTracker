@@ -114,6 +114,7 @@
     <Compile Include="Services\LoaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IssueServiceTests.cs" />
+    <Compile Include="Services\LoginServiceTest.cs" />
     <Compile Include="Services\RepoServiceTests.cs" />
     <Compile Include="Services\WorkLogFormatHelperTests.cs" />
     <Compile Include="Services\WorkLogServiceTests.cs" />

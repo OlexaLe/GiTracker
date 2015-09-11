@@ -110,6 +110,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Services\CredentialServiceTest.cs" />
     <Compile Include="Services\LoaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IssueServiceTests.cs" />

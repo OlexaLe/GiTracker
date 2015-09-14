@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GiTracker.Models.GitHub;
+using GiTracker.Services.Credential;
 using GiTracker.Services.Rest;
 
 namespace GiTracker.Services.Api
@@ -11,16 +12,16 @@ namespace GiTracker.Services.Api
         private const string Host = "https://api.github.com/";
         private readonly Type _commentsListType = typeof (IEnumerable<GitHubComment>);
         private readonly Type _commentType = typeof (GitHubComment);
-
-        private readonly Dictionary<string, string> _defaultHeaders =
-            new Dictionary<string, string>
-            {
-                ["User-Agent"] = UserAgent,
-                ["Accept"] = "application/json"
-            };
+        private readonly ICredentialService _credentialService;
 
         private readonly Type _issueListType = typeof (IEnumerable<GitHubIssue>);
         private readonly Type _reposListType = typeof (IEnumerable<GitHubRepo>);
+        private readonly Type _userType = typeof (GitHubUser);
+
+        public GitHubApiProvider(ICredentialService credentialService)
+        {
+            _credentialService = credentialService;
+        }
 
         public RestRequest GetIssuesRequest(string repository)
         {
@@ -29,7 +30,7 @@ namespace GiTracker.Services.Api
                 ReturnValueType = _issueListType,
                 Host = Host,
                 RelativeUrl = $"repos/{repository}/issues",
-                DefaultHeaders = _defaultHeaders,
+                DefaultHeaders = DefaultHeaders(),
                 UrlParameters = new Dictionary<string, string> {{"state", "all"}}
             };
         }
@@ -41,7 +42,7 @@ namespace GiTracker.Services.Api
                 ReturnValueType = _reposListType,
                 Host = Host,
                 RelativeUrl = "users/foxanna/repos",
-                DefaultHeaders = _defaultHeaders
+                DefaultHeaders = DefaultHeaders()
             };
         }
 
@@ -52,7 +53,7 @@ namespace GiTracker.Services.Api
                 ReturnValueType = _commentType,
                 Host = Host,
                 RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
-                DefaultHeaders = _defaultHeaders
+                DefaultHeaders = DefaultHeaders()
             };
         }
 
@@ -63,8 +64,27 @@ namespace GiTracker.Services.Api
                 ReturnValueType = _commentsListType,
                 Host = Host,
                 RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
-                DefaultHeaders = _defaultHeaders
+                DefaultHeaders = DefaultHeaders()
             };
+        }
+
+        public RestRequest GetUserRequest()
+        {
+            return new RestRequest
+            {
+                ReturnValueType = _userType,
+                Host = Host,
+                RelativeUrl = "user",
+                DefaultHeaders = DefaultHeaders()
+            };
+        }
+
+        private Dictionary<string, string> DefaultHeaders()
+        {
+            var credentialHeaders = _credentialService.Credential();
+            credentialHeaders["User-Agent"] = UserAgent;
+            credentialHeaders["Accept"] = "application/json";
+            return credentialHeaders;
         }
     }
 }

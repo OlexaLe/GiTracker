@@ -9,6 +9,7 @@ namespace GiTracker.ViewModels
     {
         private readonly IProgressService _progressService;
         protected readonly INavigationService NavigationService;
+
         private string _title;
 
         protected BaseViewModel(ILoader loader, IProgressService progressService,

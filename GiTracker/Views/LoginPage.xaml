@@ -9,8 +9,8 @@
                 prism:ViewModelLocator.AutowireViewModel="True"
                 Title="{x:Static localization:Shared.AppName}">
     <StackLayout>
-        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}" />
-        <Entry IsPassword="True" Placeholder="{x:Static localization:LoginPage.Password}" />
-        <Button Text="{x:Static localization:LoginPage.Login}" />
+        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}" Text="{Binding Login}" />
+        <Entry IsPassword="True" Placeholder="{x:Static localization:LoginPage.Password}" Text="{Binding Password}" />
+        <Button Text="{x:Static localization:LoginPage.Login}" Command="{Binding LoginCommand}" />
     </StackLayout>
 </views:BasePage>

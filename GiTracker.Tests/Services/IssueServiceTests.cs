@@ -17,12 +17,12 @@ namespace GiTracker.Tests.Services
         public void Init()
         {
             var apiProviderMoq = new Mock<IGitApiProvider>();
-            apiProviderMoq.Setup(moq => moq.GetIssuesRequest(It.IsAny<string>())).Returns(restRequest);
+            apiProviderMoq.Setup(moq => moq.GetIssuesRequest(It.IsAny<string>())).Returns(_restRequest);
 
             _gitApiProvider = apiProviderMoq.Object;
         }
 
-        private readonly RestRequest restRequest = new RestRequest();
+        private readonly RestRequest _restRequest = new RestRequest();
 
         private const string RestServiceExceptionMessage = "RestServiceExceptionMessage";
         private IGitApiProvider _gitApiProvider;
@@ -34,7 +34,7 @@ namespace GiTracker.Tests.Services
             var issuesList = new List<IIssue>();
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(restRequest, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(_restRequest, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(issuesList);
 
             var issueService = new IssueService(restServiceMoq.Object, _gitApiProvider);
@@ -45,7 +45,7 @@ namespace GiTracker.Tests.Services
             // Assert
             Mock.Get(_gitApiProvider).Verify(moq => moq.GetIssuesRequest(It.IsAny<string>()), Times.Once);
 
-            restServiceMoq.Verify(moq => moq.GetAsync(restRequest, It.IsAny<CancellationToken>()),
+            restServiceMoq.Verify(moq => moq.GetAsync(_restRequest, It.IsAny<CancellationToken>()),
                 Times.Once);
 
             Assert.AreEqual(issues, issuesList);
@@ -57,7 +57,7 @@ namespace GiTracker.Tests.Services
         {
             // Arrange
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(restRequest, It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(_restRequest, It.IsAny<CancellationToken>()))
                 .Throws(new Exception(RestServiceExceptionMessage));
 
             var issueService = new IssueService(restServiceMoq.Object, _gitApiProvider);

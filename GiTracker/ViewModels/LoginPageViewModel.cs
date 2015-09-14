@@ -1,4 +1,5 @@
-﻿using GiTracker.Services.DataLoader;
+﻿using System.Threading.Tasks;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Login;
 using GiTracker.Services.Progress;
 using Prism.Navigation;
@@ -20,25 +21,48 @@ namespace GiTracker.ViewModels
             : base(loader, progressService, navigationService)
         {
             _loginService = loginService;
+            Inactive = false;
         }
 
         public string Login
         {
             get { return _login; }
-            set { SetProperty(ref _login, value); }
+            set
+            {
+                SetProperty(ref _login, value);
+                Inactive = CheckPosibilityOfLogin();
+            }
         }
 
         public string Password
         {
             get { return _password; }
-            set { SetProperty(ref _password, value); }
+            set
+            {
+                SetProperty(ref _password, value);
+                Inactive = CheckPosibilityOfLogin();
+            }
         }
 
-        public Command LoginCommand => _loginCommand ?? (_loginCommand = new Command(DoLogin));
-
-        private async void DoLogin()
+        public Command LoginCommand => _loginCommand ?? (_loginCommand = new Command(async () =>
         {
-            await Loader.LoadAsync(async cancellationToken => { await _loginService.LoginAsync(Login, Password); });
+            Inactive = false;
+            await DoLogin();
+            Inactive = true;
+        }, () => Inactive));
+
+        private Task DoLogin()
+        {
+            return Loader.LoadAsync(async cancellationToken => { await _loginService.LoginAsync(Login, Password); });
+        }
+
+        private bool CheckPosibilityOfLogin() =>
+            !string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password);
+
+        protected override void ChangeCanExecute()
+        {
+            base.ChangeCanExecute();
+            LoginCommand.ChangeCanExecute();
         }
     }
 }

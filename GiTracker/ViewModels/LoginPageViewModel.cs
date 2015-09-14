@@ -21,7 +21,6 @@ namespace GiTracker.ViewModels
         {
             Loader.LoadingChanged += (sender, args) => LoginCommand.RaiseCanExecuteChanged();
             _loginService = loginService;
-            LoginCommand.RaiseCanExecuteChanged();
         }
 
         public string Login

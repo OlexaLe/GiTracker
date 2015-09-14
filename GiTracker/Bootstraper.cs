@@ -22,7 +22,7 @@ namespace GiTracker
     {
         protected override Page CreateMainPage()
         {
-            return Container.Resolve<LoginPage>();
+            return Container.Resolve<MainPage>();
         }
 
         protected override void RegisterTypes()

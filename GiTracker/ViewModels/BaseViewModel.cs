@@ -9,6 +9,8 @@ namespace GiTracker.ViewModels
     {
         private readonly IProgressService _progressService;
         protected readonly INavigationService NavigationService;
+
+        private bool _inactive = true;
         private string _title;
 
         protected BaseViewModel(ILoader loader, IProgressService progressService,
@@ -26,6 +28,20 @@ namespace GiTracker.ViewModels
         {
             get { return _title; }
             protected set { SetProperty(ref _title, value); }
+        }
+
+        public bool Inactive
+        {
+            get { return _inactive; }
+            set
+            {
+                if (_inactive != value)
+                {
+                    _inactive = value;
+                    ChangeCanExecute();
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
@@ -46,6 +62,10 @@ namespace GiTracker.ViewModels
             {
                 _progressService.DismissProgress();
             }
+        }
+
+        protected virtual void ChangeCanExecute()
+        {
         }
     }
 }

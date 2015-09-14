@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using GiTracker.Services.DataLoader;
+﻿using GiTracker.Services.DataLoader;
 using GiTracker.Services.Login;
 using GiTracker.Services.Progress;
+using Prism.Commands;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace GiTracker.ViewModels
 {
@@ -11,7 +10,7 @@ namespace GiTracker.ViewModels
     {
         private readonly ILoginService _loginService;
         private string _login;
-        private Command _loginCommand;
+        private DelegateCommand _loginCommand;
         private string _password;
 
         public LoginPageViewModel(ILoader loader,
@@ -20,8 +19,9 @@ namespace GiTracker.ViewModels
             ILoginService loginService)
             : base(loader, progressService, navigationService)
         {
+            Loader.LoadingChanged += (sender, args) => LoginCommand.RaiseCanExecuteChanged();
             _loginService = loginService;
-            Inactive = false;
+            LoginCommand.RaiseCanExecuteChanged();
         }
 
         public string Login
@@ -30,7 +30,7 @@ namespace GiTracker.ViewModels
             set
             {
                 SetProperty(ref _login, value);
-                Inactive = CheckPosibilityOfLogin();
+                LoginCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -40,29 +40,20 @@ namespace GiTracker.ViewModels
             set
             {
                 SetProperty(ref _password, value);
-                Inactive = CheckPosibilityOfLogin();
+                LoginCommand.RaiseCanExecuteChanged();
             }
         }
 
-        public Command LoginCommand => _loginCommand ?? (_loginCommand = new Command(async () =>
-        {
-            Inactive = false;
-            await DoLogin();
-            Inactive = true;
-        }, () => Inactive));
+        public DelegateCommand LoginCommand
+            =>
+                _loginCommand ??
+                (_loginCommand =
+                    new DelegateCommand(DoLogin,
+                        () => !string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password) && !Loader.IsLoading));
 
-        private Task DoLogin()
+        private async void DoLogin()
         {
-            return Loader.LoadAsync(async cancellationToken => { await _loginService.LoginAsync(Login, Password); });
-        }
-
-        private bool CheckPosibilityOfLogin() =>
-            !string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password);
-
-        protected override void ChangeCanExecute()
-        {
-            base.ChangeCanExecute();
-            LoginCommand.ChangeCanExecute();
+            await Loader.LoadAsync(async cancellationToken => { await _loginService.LoginAsync(Login, Password); });
         }
     }
 }

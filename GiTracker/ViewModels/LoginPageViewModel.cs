@@ -1,13 +1,16 @@
-﻿using GiTracker.Services.DataLoader;
+﻿using GiTracker.Models.Events;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Login;
 using GiTracker.Services.Progress;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
     internal class LoginPageViewModel : BaseViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly ILoginService _loginService;
         private string _login;
         private DelegateCommand _loginCommand;
@@ -16,11 +19,13 @@ namespace GiTracker.ViewModels
         public LoginPageViewModel(ILoader loader,
             IProgressService progressService,
             INavigationService navigationService,
-            ILoginService loginService)
+            ILoginService loginService,
+            IEventAggregator eventAggregator)
             : base(loader, progressService, navigationService)
         {
             Loader.LoadingChanged += (sender, args) => LoginCommand.RaiseCanExecuteChanged();
             _loginService = loginService;
+            _eventAggregator = eventAggregator;
         }
 
         public string Login
@@ -52,7 +57,11 @@ namespace GiTracker.ViewModels
 
         private async void DoLogin()
         {
-            await Loader.LoadAsync(async cancellationToken => { await _loginService.LoginAsync(Login, Password); });
+            await Loader.LoadAsync(async cancellationToken =>
+            {
+                await _loginService.LoginAsync(Login, Password);
+                _eventAggregator.GetEvent<LoginEvent>().Publish(null);
+            });
         }
     }
 }

@@ -6,5 +6,6 @@ namespace GiTracker.Services.Credential
     {
         void SetBasicCredential(string username, string password);
         Dictionary<string, string> Credential();
+        bool HasCredential();
     }
 }

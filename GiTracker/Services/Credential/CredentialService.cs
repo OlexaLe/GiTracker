@@ -18,5 +18,10 @@ namespace GiTracker.Services.Credential
             var plainTextBytes = Encoding.UTF8.GetBytes($"{username}:{password}");
             _basicAuthentication = Convert.ToBase64String(plainTextBytes);
         }
+
+        public bool HasCredential()
+        {
+            return !string.IsNullOrEmpty(_basicAuthentication);
+        }
     }
 }

@@ -20,24 +20,33 @@ namespace GiTracker.Tests.Services
         [Test]
         public void CreateRequestCallICredentialService()
         {
+            // Arrange
             var credentialMoq = new Mock<ICredentialService>();
             credentialMoq.Setup(moq => moq.Credential()).Returns(Credential);
 
             var apiProvider = new GitHubApiProvider(credentialMoq.Object);
-            apiProvider.GetUserRequest();
 
+            // Act
+            var request = apiProvider.GetUserRequest();
+            var headers = request.DefaultHeaders;
+
+            // Assert
             credentialMoq.Verify(moq => moq.Credential(), Times.Once);
         }
 
         [Test]
         public void CreateRequestIsContainCredential()
         {
+            // Arrange
             var credentialMoq = new Mock<ICredentialService>();
             credentialMoq.Setup(moq => moq.Credential()).Returns(Credential);
 
             var apiProvider = new GitHubApiProvider(credentialMoq.Object);
+
+            // Act
             var request = apiProvider.GetUserRequest();
 
+            // Assert
             Assert.IsTrue(request.DefaultHeaders.ContainsKey(credentialKey));
             Assert.IsTrue(request.DefaultHeaders.ContainsValue(credentialValue));
         }

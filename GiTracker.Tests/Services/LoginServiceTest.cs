@@ -21,7 +21,7 @@ namespace GiTracker.Tests.Services
         }
 
         private IGitApiProvider _gitApiProvider;
-        private readonly RestRequest _userRequest = new RestRequest();
+        private readonly IRestRequest _userRequest = Mock.Of<IRestRequest>();
 
         private readonly string _testName = "testname";
         private readonly string _testPassword = "testpassword";
@@ -34,7 +34,7 @@ namespace GiTracker.Tests.Services
             var user = new Mock<IUser>().Object;
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<RestRequest>(), It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(user);
 
             var credentialServiceMoq = new Mock<ICredentialService>();
@@ -58,7 +58,7 @@ namespace GiTracker.Tests.Services
             var user = new Mock<IUser>().Object;
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<RestRequest>(), It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(user);
 
             var credentialServiceMoq = new Mock<ICredentialService>();

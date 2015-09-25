@@ -173,14 +173,14 @@ namespace GiTracker.Tests.ViewModels
                 .Returns((Func<CancellationToken, Task> factory) => factory(It.IsAny<CancellationToken>()));
 
             const string timeSpent = "2h 20m";
-            const int issueId = 5;
+            const int issueNumber = 5;
             const string repoPath = "test";
             var date = DateTime.Now.Date;
             var timeSpan = TimeSpan.FromMinutes(140);
 
             var viewModel = new LogWorkPageViewModel(loaderMoq.Object, null, null, wokrLogServiceMoq.Object);
             viewModel.TimeSpent = timeSpent;
-            viewModel.Issue = new IssueViewModel(Mock.Of<IIssue>(issue => issue.Id == issueId));
+            viewModel.Issue = new IssueViewModel(Mock.Of<IIssue>(issue => issue.Number == issueNumber));
             viewModel._repo = Mock.Of<IRepo>(repo => repo.Path == repoPath);
             viewModel.Date = date;
 
@@ -190,7 +190,7 @@ namespace GiTracker.Tests.ViewModels
             // Assert
             wokrLogServiceMoq.Verify(
                 moq =>
-                    moq.LogTimeAsync(repoPath, issueId, date, timeSpan,
+                    moq.LogTimeAsync(repoPath, issueNumber, date, timeSpan,
                         It.IsAny<CancellationToken>()), Times.Once);
         }
     }

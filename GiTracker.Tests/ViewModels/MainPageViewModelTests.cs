@@ -12,7 +12,7 @@ namespace GiTracker.Tests.ViewModels
         public void DefaultPresentedViewModelTypeIsIssueList()
         {
             // Arrange
-            var vm = new MainPageViewModel(null);
+            var vm = new MainPageViewModel(null, null);
             var expectedScreen = typeof (RepoListPage);
 
             // Act
@@ -25,7 +25,7 @@ namespace GiTracker.Tests.ViewModels
         public async void PresentedViewModelTypeEventTriggeredOnRequest()
         {
             // Arrange
-            var vm = new MainPageViewModel(null);
+            var vm = new MainPageViewModel(null, null);
             var count = 0;
             const int expectedCount = 1;
             vm.PresentedViewModelTypeChanged += (sender, args) => count++;
@@ -42,7 +42,7 @@ namespace GiTracker.Tests.ViewModels
         public async void PresentedViewModelTypeShouldChange()
         {
             // Arrange
-            var vm = new MainPageViewModel(null);
+            var vm = new MainPageViewModel(null, null);
             var newPageType = typeof (IssueDetailsPageViewModel);
 
             // Act

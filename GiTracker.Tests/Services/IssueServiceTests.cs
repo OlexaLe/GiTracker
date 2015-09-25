@@ -22,7 +22,7 @@ namespace GiTracker.Tests.Services
             _gitApiProvider = apiProviderMoq.Object;
         }
 
-        private readonly RestRequest _restRequest = new RestRequest();
+        private readonly IRestRequest _restRequest = Mock.Of<IRestRequest>();
 
         private const string RestServiceExceptionMessage = "RestServiceExceptionMessage";
         private IGitApiProvider _gitApiProvider;

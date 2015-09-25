@@ -58,7 +58,7 @@ namespace GiTracker.ViewModels
             return loader.LoadAsync(async cancellationToken =>
             {
                 var logs =
-                    await _workLogService.GetLogsAsync(_repo.Path, _issue.Id, cancellationToken);
+                    await _workLogService.GetLogsAsync(_repo.Path, _issue.Number, cancellationToken);
 
                 WorkLogs = logs;
             });

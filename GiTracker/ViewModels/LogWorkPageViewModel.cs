@@ -89,7 +89,7 @@ namespace GiTracker.ViewModels
             await
                 Loader.LoadAsync(
                     cancellationToken =>
-                        _workLogService.LogTimeAsync(_repo.Path, Issue.Issue.Id, Date, _timeSpan,
+                        _workLogService.LogTimeAsync(_repo.Path, Issue.Issue.Number, Date, _timeSpan,
                             cancellationToken));
         }
     }

@@ -40,21 +40,21 @@ namespace GiTracker.Services.Api
             };
         }
 
-        public IRestRequest GetCreateCommentRequest(string repository, int issueId)
+        public IRestRequest GetCreateCommentRequest(string repository, int issueNumber)
         {
             return new GitHubRestRequest(_credentialService)
             {
                 ReturnValueType = _commentType,
-                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments"
+                RelativeUrl = $"repos/{repository}/issues/{issueNumber}/comments"
             };
         }
 
-        public IRestRequest GetLoadCommentsRequest(string repository, int issueId)
+        public IRestRequest GetLoadCommentsRequest(string repository, int issueNumber)
         {
             return new GitHubRestRequest(_credentialService)
             {
                 ReturnValueType = _commentsListType,
-                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments"
+                RelativeUrl = $"repos/{repository}/issues/{issueNumber}/comments"
             };
         }
 

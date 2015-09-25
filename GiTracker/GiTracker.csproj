@@ -49,6 +49,8 @@
     <Compile Include="Converters\WorkLogItemToLabelConverter.cs" />
     <Compile Include="Models\Events\LoginEvent.cs" />
     <Compile Include="Models\Events\LogoutEvent.cs" />
+    <Compile Include="Models\GitHub\GitHubError.cs" />
+    <Compile Include="Models\IGitError.cs" />
     <Compile Include="Resources\Strings\LogWork.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkLogs.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Api\GitHubRestRequest.cs" />
     <Compile Include="Services\Credential\CredentialService.cs" />
     <Compile Include="Services\Credential\ICredentialService.cs" />
     <Compile Include="Services\DataLoader\ILoader.cs" />
@@ -132,7 +135,7 @@
     <Compile Include="Services\Repos\IRepoService.cs" />
     <Compile Include="Services\Repos\RepoService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
-    <Compile Include="Services\Rest\RestRequest.cs" />
+    <Compile Include="Services\Rest\IRestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="Services\WorkLog\IWorkLogService.cs" />
     <Compile Include="Services\WorkLog\WorkLogFormatHelper.cs" />

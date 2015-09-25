@@ -1,4 +1,4 @@
-﻿using GiTracker.Models.Events;
+﻿using GiTracker.Events;
 using GiTracker.Services.Api;
 using GiTracker.Services.Credential;
 using GiTracker.Services.Database;

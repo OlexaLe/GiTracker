@@ -47,8 +47,8 @@
     <Compile Include="Converters\IssueStatusToIconConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\WorkLogItemToLabelConverter.cs" />
-    <Compile Include="Models\Events\LoginEvent.cs" />
-    <Compile Include="Models\Events\LogoutEvent.cs" />
+    <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Events\LogoutEvent.cs" />
     <Compile Include="Models\GitHub\GitHubError.cs" />
     <Compile Include="Models\IGitError.cs" />
     <Compile Include="Resources\Strings\LogWork.Designer.cs">

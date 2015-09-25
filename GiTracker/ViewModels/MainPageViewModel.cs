@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using GiTracker.Events;
 using GiTracker.Models;
-using GiTracker.Models.Events;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
 using Prism.Commands;

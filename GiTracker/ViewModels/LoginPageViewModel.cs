@@ -1,4 +1,4 @@
-﻿using GiTracker.Models.Events;
+﻿using GiTracker.Events;
 using GiTracker.Services.DataLoader;
 using GiTracker.Services.Login;
 using GiTracker.Services.Progress;

@@ -52,13 +52,6 @@ namespace GiTracker.ViewModels
             await LoadIssuesAsync(Loader);
         }
 
-        public override void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            Loader.CancelLoading();
-
-            base.OnNavigatedFrom(parameters);
-        }
-
         private Task LoadIssuesAsync(ILoader loader)
         {
             _issues = null;

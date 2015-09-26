@@ -7,10 +7,17 @@
                 xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
                 xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
                 prism:ViewModelLocator.AutowireViewModel="True"
-                Title="{x:Static localization:Shared.AppName}">
-    <StackLayout>
-        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}" Text="{Binding Login}" />
-        <Entry IsPassword="True" Placeholder="{x:Static localization:LoginPage.Password}" Text="{Binding Password}" />
-        <Button Text="{x:Static localization:LoginPage.Login}" Command="{Binding LoginCommand}" />
+                Title="{x:Static localization:Shared.AppName}"
+                Padding="{StaticResource PagePadding}">
+
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}"
+               Text="{Binding Login}" />
+        <Entry IsPassword="True"
+               Placeholder="{x:Static localization:LoginPage.Password}"
+               Text="{Binding Password}" />
+        <Button Text="{x:Static localization:LoginPage.Login}"
+                Command="{Binding LoginCommand}" />
     </StackLayout>
+
 </views:BasePage>

@@ -27,6 +27,12 @@
         </ResourceDictionary>
     </Page.Resources>
 
+    <Page.ToolbarItems>
+        <ToolbarItem Command="{Binding LogWorkCommand}"
+                     Icon="ToolBar_Add.png"
+                     Text="{x:Static localization:IssueDetails.LogWork}" />
+    </Page.ToolbarItems>
+
     <controls:NiceListView
         ItemsSource="{Binding WorkLogs}"
         RefreshCommand="{Binding UpdateWorkLogsCommand}"

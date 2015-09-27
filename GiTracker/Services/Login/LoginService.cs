@@ -21,12 +21,12 @@ namespace GiTracker.Services.Login
             _credentialsService = credentialsService;
         }
 
-        public async Task<IUser> LoginAsync(string username, string password)
+        public async Task<IUser> LoginAsync(string username, string password, CancellationToken cancellationToken)
         {
             _credentialsService.SetCredentials(username, password);
             var user =
                 await
-                    _restService.GetAsync(_gitApiProvider.GetUserRequest(), CancellationToken.None)
+                    _restService.GetAsync(_gitApiProvider.GetUserRequest(), cancellationToken)
                         .ConfigureAwait(false);
 
             return user as IUser;

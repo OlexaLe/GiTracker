@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using GiTracker.Models;
 
 namespace GiTracker.Services.Login
 {
     internal interface ILoginService
     {
-        Task<IUser> LoginAsync(string username, string password);
+        Task<IUser> LoginAsync(string username, string password, CancellationToken cancellationToken);
     }
 }

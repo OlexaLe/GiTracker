@@ -59,7 +59,7 @@ namespace GiTracker.ViewModels
         {
             await Loader.LoadAsync(async cancellationToken =>
             {
-                await _loginService.LoginAsync(Login, Password);
+                await _loginService.LoginAsync(Login, Password, cancellationToken);
                 _eventAggregator.GetEvent<LoginEvent>().Publish(null);
             });
         }

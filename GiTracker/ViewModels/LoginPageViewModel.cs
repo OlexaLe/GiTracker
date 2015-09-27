@@ -16,6 +16,8 @@ namespace GiTracker.ViewModels
         private DelegateCommand _loginCommand;
         private string _password;
 
+        private bool _showPassword;
+
         public LoginPageViewModel(ILoader loader,
             IProgressService progressService,
             INavigationService navigationService,
@@ -54,6 +56,16 @@ namespace GiTracker.ViewModels
                 (_loginCommand =
                     new DelegateCommand(DoLogin,
                         () => !string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password) && !Loader.IsLoading));
+
+        public bool ShowPassword
+        {
+            get { return _showPassword; }
+            set
+            {
+                _showPassword = value;
+                OnPropertyChanged();
+            }
+        }
 
         private async void DoLogin()
         {

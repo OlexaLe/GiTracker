@@ -18,5 +18,10 @@ namespace GiTracker.Views
         {
             LoginButton.Command.Execute(LoginButton.CommandParameter);
         }
+
+        private void OnSwitchLabelTapped(object sender, EventArgs e)
+        {
+            ShowPasswordSwitch.IsToggled = !ShowPasswordSwitch.IsToggled;
+        }
     }
 }

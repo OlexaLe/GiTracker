@@ -12,11 +12,15 @@
 
     <StackLayout VerticalOptions="CenterAndExpand">
         <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}"
-               Text="{Binding Login}" />
-        <Entry IsPassword="True"
+               Text="{Binding Login}"
+               Completed="LoginEntry_OnCompleted" />
+        <Entry x:Name="PasswordEntry"
+               IsPassword="True"
                Placeholder="{x:Static localization:LoginPage.Password}"
-               Text="{Binding Password}" />
-        <Button Text="{x:Static localization:LoginPage.Login}"
+               Text="{Binding Password}"
+               Completed="PasswordEntry_OnCompleted" />
+        <Button x:Name="LoginButton"
+                Text="{x:Static localization:LoginPage.Login}"
                 Command="{Binding LoginCommand}" />
     </StackLayout>
 

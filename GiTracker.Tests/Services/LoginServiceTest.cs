@@ -37,7 +37,7 @@ namespace GiTracker.Tests.Services
             restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(user);
 
-            var credentialServiceMoq = new Mock<ICredentialService>();
+            var credentialServiceMoq = new Mock<ICredentialsService>();
 
             var loginService = new LoginService(restServiceMoq.Object, _gitApiProvider, credentialServiceMoq.Object);
 
@@ -45,7 +45,7 @@ namespace GiTracker.Tests.Services
             var userResponce = await loginService.LoginAsync(_testName, _testPassword);
 
             // Assert
-            credentialServiceMoq.Verify(moq => moq.SetBasicCredential(_testName, _testPassword),
+            credentialServiceMoq.Verify(moq => moq.SetCredentials(_testName, _testPassword),
                 Times.Once);
 
             Assert.AreEqual(user, userResponce);
@@ -61,7 +61,7 @@ namespace GiTracker.Tests.Services
             restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(user);
 
-            var credentialServiceMoq = new Mock<ICredentialService>();
+            var credentialServiceMoq = new Mock<ICredentialsService>();
 
             var loginService = new LoginService(restServiceMoq.Object, _gitApiProvider, credentialServiceMoq.Object);
 

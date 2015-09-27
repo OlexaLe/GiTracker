@@ -10,11 +10,11 @@ namespace GiTracker.Services.Api
     {
         private const string UserAgent = "XamarinGarage";
 
-        private readonly ICredentialService _credentialService;
+        private readonly ICredentialsService _credentialsService;
 
-        public GitHubRestRequest(ICredentialService credentialService)
+        public GitHubRestRequest(ICredentialsService credentialsService)
         {
-            _credentialService = credentialService;
+            _credentialsService = credentialsService;
         }
 
         public Type ReturnValueType { get; set; }
@@ -23,15 +23,11 @@ namespace GiTracker.Services.Api
         public string RelativeUrl { get; set; }
         public Dictionary<string, string> UrlParameters { get; set; }
 
-        public Dictionary<string, string> DefaultHeaders
+        public Dictionary<string, string> DefaultHeaders => new Dictionary<string, string>
         {
-            get
-            {
-                var credentialHeaders = _credentialService.Credential();
-                credentialHeaders["User-Agent"] = UserAgent;
-                credentialHeaders["Accept"] = "application/json";
-                return credentialHeaders;
-            }
-        }
+            ["Authorization"] = $"Basic {_credentialsService.BasicAuthenticationToken}",
+            ["User-Agent"] = UserAgent,
+            ["Accept"] = "application/json"
+        };
     }
 }

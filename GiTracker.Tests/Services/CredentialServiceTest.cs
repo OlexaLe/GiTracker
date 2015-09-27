@@ -16,13 +16,13 @@ namespace GiTracker.Tests.Services
         public void CheckingBase64Credential()
         {
             // Arrange
-            var credentialService = new CredentialService();
+            var credentialService = new CredentialsService();
             var plainTextBytes = Encoding.UTF8.GetBytes($"{_testName}:{_testPassword}");
             var basicAuthentication = Convert.ToBase64String(plainTextBytes);
-            credentialService.SetBasicCredential(_testName, _testPassword);
+            credentialService.SetCredentials(_testName, _testPassword);
 
             // Act
-            var credential = credentialService.Credential();
+            var credential = credentialService.Credentials;
 
             // Assert
             Assert.AreEqual(credential,

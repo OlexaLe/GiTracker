@@ -34,8 +34,8 @@ namespace GiTracker
 
         protected override Page CreateMainPage()
         {
-            var credentialService = Container.Resolve<ICredentialService>();
-            return credentialService.HasCredential()
+            var credentialsService = Container.Resolve<ICredentialsService>();
+            return credentialsService.HasCredentials
                 ? (Page) Container.Resolve<MainPage>()
                 : Container.Resolve<LoginPage>();
         }
@@ -61,7 +61,7 @@ namespace GiTracker
             Container.RegisterType<ILoginService, LoginService>();
             Container.RegisterType<IWorkLogService, WorkLogService>();
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
-            Container.RegisterInstance<ICredentialService>(new CredentialService());
+            Container.RegisterInstance<ICredentialsService>(new CredentialsService());
 
             var eventCgr = Container.Resolve<IEventAggregator>();
             eventCgr.GetEvent<LoginEvent>().Subscribe(ShowMainPage);

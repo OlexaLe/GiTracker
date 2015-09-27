@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using GiTracker.Services.Api;
 using GiTracker.Services.Credential;
 using Moq;
@@ -9,46 +9,42 @@ namespace GiTracker.Tests.Services
     [TestFixture]
     public class GitHubProviderTest
     {
-        private readonly string credentialKey = "TestCredential";
-        private readonly string credentialValue = "TestCredentialValue";
-
-        private Dictionary<string, string> Credential => new Dictionary<string, string>
+        [SetUp]
+        public void SetUp()
         {
-            {credentialKey, credentialValue}
-        };
+            _credentialsServiceMoq = new Mock<ICredentialsService>();
+            _credentialsServiceMoq.Setup(moq => moq.BasicAuthenticationToken).Returns(_basicAuthenticationToken);
+        }
+
+        private readonly string _basicAuthenticationToken = "TestBasicAuthenticationToken";
+
+        private Mock<ICredentialsService> _credentialsServiceMoq;
 
         [Test]
-        public void CreateRequestCallICredentialService()
+        public void CreateRequestCallsICredentialsServiceBasicAuthenticationToken()
         {
             // Arrange
-            var credentialMoq = new Mock<ICredentialService>();
-            credentialMoq.Setup(moq => moq.Credential()).Returns(Credential);
-
-            var apiProvider = new GitHubApiProvider(credentialMoq.Object);
+            var apiProvider = new GitHubApiProvider(_credentialsServiceMoq.Object);
 
             // Act
             var request = apiProvider.GetUserRequest();
             var headers = request.DefaultHeaders;
 
             // Assert
-            credentialMoq.Verify(moq => moq.Credential(), Times.Once);
+            _credentialsServiceMoq.Verify(moq => moq.BasicAuthenticationToken, Times.AtLeastOnce);
         }
 
         [Test]
         public void CreateRequestIsContainCredential()
         {
             // Arrange
-            var credentialMoq = new Mock<ICredentialService>();
-            credentialMoq.Setup(moq => moq.Credential()).Returns(Credential);
-
-            var apiProvider = new GitHubApiProvider(credentialMoq.Object);
+            var apiProvider = new GitHubApiProvider(_credentialsServiceMoq.Object);
 
             // Act
             var request = apiProvider.GetUserRequest();
 
             // Assert
-            Assert.IsTrue(request.DefaultHeaders.ContainsKey(credentialKey));
-            Assert.IsTrue(request.DefaultHeaders.ContainsValue(credentialValue));
+            Assert.IsTrue(request.DefaultHeaders.Values.Any(value => value.Contains(_basicAuthenticationToken)));
         }
     }
 }

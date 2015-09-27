@@ -51,11 +51,12 @@
 
         <Entry Grid.Row="2"
                Grid.Column="1"
-               Text="{Binding TimeSpent}" />
+               Text="{Binding TimeSpent}"
+               Completed="TimeSpentEntry_OnCompleted"/>
 
         <StackLayout Grid.Row="3"
                      Grid.ColumnSpan="2">
-            <Button
+            <Button x:Name="LogButton"
                 Text="{x:Static localization:LogWork.Log}"
                 Command="{Binding LogCommand}" />
         </StackLayout>

@@ -36,7 +36,7 @@ namespace GiTracker.Services.Api
             return new GitHubRestRequest(_credentialsService)
             {
                 ReturnValueType = _reposListType,
-                RelativeUrl = "users/foxanna/repos"
+                RelativeUrl = "user/repos"
             };
         }
 

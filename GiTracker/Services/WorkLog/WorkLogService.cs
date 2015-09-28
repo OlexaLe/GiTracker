@@ -20,10 +20,10 @@ namespace GiTracker.Services.WorkLog
             _gitApiProvider = gitApiProvider;
         }
 
-        public async Task<WorkLogItem> LogTimeAsync(string repo, int issueId, DateTime logDate, TimeSpan logTime,
+        public async Task<WorkLogItem> LogTimeAsync(string repo, int issueNumber, DateTime logDate, TimeSpan logTime,
             CancellationToken cancellationToken)
         {
-            var request = _gitApiProvider.GetCreateCommentRequest(repo, issueId);
+            var request = _gitApiProvider.GetCreateCommentRequest(repo, issueNumber);
             var bodyString = WorkLogFormatHelper.GetCommentBody(logDate, logTime);
             var body = new Dictionary<string, string> {{"body", bodyString}};
 
@@ -35,10 +35,10 @@ namespace GiTracker.Services.WorkLog
             return new WorkLogItem {Creator = comment.Author, Date = logDate, Time = logTime};
         }
 
-        public async Task<IEnumerable<WorkLogItem>> GetLogsAsync(string repo, int issueId,
+        public async Task<IEnumerable<WorkLogItem>> GetLogsAsync(string repo, int issueNumber,
             CancellationToken cancellationToken)
         {
-            var request = _gitApiProvider.GetLoadCommentsRequest(repo, issueId);
+            var request = _gitApiProvider.GetLoadCommentsRequest(repo, issueNumber);
             var comments =
                 await _restService.GetAsync(request, cancellationToken).ConfigureAwait(false) as IEnumerable<IComment>;
             var workLogs = comments.Where(WorkLogFormatHelper.IsWorkLog).Select(WorkLogFormatHelper.ExtractWorkLogItem);

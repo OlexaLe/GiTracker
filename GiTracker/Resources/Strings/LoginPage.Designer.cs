@@ -80,6 +80,15 @@ namespace GiTracker.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to show password.
+        /// </summary>
+        internal static string ShowPass {
+            get {
+                return ResourceManager.GetString("ShowPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to username or email.
         /// </summary>
         internal static string UsernameOrEmail {

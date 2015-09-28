@@ -38,6 +38,13 @@
                 <Setter Property="FontSize" Value="Medium" />
             </Style>
 
+          <Style
+                x:Key="MediumSecondaryLabelStyle"
+                TargetType="Label"
+                BaseResourceKey="MediumSimpleLabelStyle">
+            <Setter Property="TextColor" Value="{StaticResource SecondaryDarkTextColor}" />
+          </Style>
+
             <Style
                 x:Key="LargeSimpleLabelStyle"
                 TargetType="Label"

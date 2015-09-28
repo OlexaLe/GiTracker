@@ -21,7 +21,7 @@ namespace GiTracker.Tests.Services
             _gitApiProvider = apiProviderMoq.Object;
         }
 
-        private readonly RestRequest _repoRequest = new RestRequest();
+        private readonly IRestRequest _repoRequest = Mock.Of<IRestRequest>();
         private const string RestServiceExceptionMessage = "RestServiceExceptionMessage";
         private IGitApiProvider _gitApiProvider;
 
@@ -32,7 +32,7 @@ namespace GiTracker.Tests.Services
             var repoList = new List<IRepo>();
 
             var restServiceMoq = new Mock<IRestService>();
-            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<RestRequest>(), It.IsAny<CancellationToken>()))
+            restServiceMoq.Setup(moq => moq.GetAsync(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(repoList);
 
             var repoService = new RepoService(restServiceMoq.Object, _gitApiProvider);

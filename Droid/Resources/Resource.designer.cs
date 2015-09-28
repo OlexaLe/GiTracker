@@ -164,6 +164,9 @@ namespace GiTracker.Droid
 			// aapt resource value: 0x7f02000d
 			public const int roundedbgdark = 2130837517;
 			
+			// aapt resource value: 0x7f02000e
+			public const int ToolBar_Add = 2130837518;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

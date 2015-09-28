@@ -42,11 +42,16 @@
     </Compile>
     <Compile Include="Controls\NiceLabel.cs" />
     <Compile Include="Controls\NiceListView.cs" />
+    <Compile Include="Converters\InvertedBooleanConverter.cs" />
     <Compile Include="Converters\IssueStatusToColorConverter.cs" />
     <Compile Include="Converters\IssueStatusToTextConverter.cs" />
     <Compile Include="Converters\IssueStatusToIconConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\WorkLogItemToLabelConverter.cs" />
+    <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Events\LogoutEvent.cs" />
+    <Compile Include="Models\GitHub\GitHubError.cs" />
+    <Compile Include="Models\IGitError.cs" />
     <Compile Include="Resources\Strings\LogWork.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -57,8 +62,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkLogs.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\Credential\CredentialService.cs" />
-    <Compile Include="Services\Credential\ICredentialService.cs" />
+    <Compile Include="Services\Api\GitHubRestRequest.cs" />
+    <Compile Include="Services\Credential\CredentialsService.cs" />
+    <Compile Include="Services\Credential\ICredentialsService.cs" />
     <Compile Include="Services\DataLoader\ILoader.cs" />
     <Compile Include="Services\DataLoader\Loader.cs" />
     <Compile Include="Models\GitHub\GitHubComment.cs" />
@@ -130,7 +136,7 @@
     <Compile Include="Services\Repos\IRepoService.cs" />
     <Compile Include="Services\Repos\RepoService.cs" />
     <Compile Include="Services\Rest\IRestService.cs" />
-    <Compile Include="Services\Rest\RestRequest.cs" />
+    <Compile Include="Services\Rest\IRestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
     <Compile Include="Services\WorkLog\IWorkLogService.cs" />
     <Compile Include="Services\WorkLog\WorkLogFormatHelper.cs" />

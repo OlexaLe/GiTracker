@@ -22,5 +22,13 @@ namespace GiTracker.ViewModels
         }
 
         protected ILoader ListLoader { get; }
+
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+            Loader.CancelLoading();
+            ListLoader.CancelLoading();
+
+            base.OnNavigatedFrom(parameters);
+        }
     }
 }

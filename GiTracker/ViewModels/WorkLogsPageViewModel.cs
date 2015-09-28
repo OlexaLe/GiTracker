@@ -14,6 +14,7 @@ namespace GiTracker.ViewModels
     {
         private readonly IWorkLogService _workLogService;
         private IIssue _issue;
+        private ICommand _logWorkCommand;
         private IRepo _repo;
         private ICommand _updateReposCommand;
         private IEnumerable<WorkLogItem> _workLogs;
@@ -39,6 +40,9 @@ namespace GiTracker.ViewModels
         public ICommand UpdateWorkLogsCommand =>
             _updateReposCommand ?? (_updateReposCommand = new DelegateCommand(UpdateWorkLogs));
 
+        public ICommand LogWorkCommand =>
+            _logWorkCommand ?? (_logWorkCommand = new DelegateCommand(LogWork));
+
         public override async void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
@@ -58,22 +62,25 @@ namespace GiTracker.ViewModels
             return loader.LoadAsync(async cancellationToken =>
             {
                 var logs =
-                    await _workLogService.GetLogsAsync(_repo.Path, _issue.Id, cancellationToken);
+                    await _workLogService.GetLogsAsync(_repo.Path, _issue.Number, cancellationToken);
 
                 WorkLogs = logs;
             });
         }
 
-        public override void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            Loader.CancelLoading();
-
-            base.OnNavigatedFrom(parameters);
-        }
-
         private async void UpdateWorkLogs()
         {
             await LoadWorkLogsAsync(ListLoader);
+        }
+
+        private void LogWork()
+        {
+            NavigationService.Navigate<LogWorkPageViewModel>(
+                new NavigationParameters
+                {
+                    {Constants.IssueParameterName, _issue},
+                    {Constants.RepoParameterName, _repo}
+                }, false);
         }
     }
 }

@@ -6,11 +6,47 @@
                 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                 xmlns:localization="clr-namespace:GiTracker.Resources.Strings"
                 xmlns:views="clr-namespace:GiTracker.Views;assembly=GiTracker"
+                xmlns:converters="clr-namespace:GiTracker.Converters;assembly=GiTracker"
                 prism:ViewModelLocator.AutowireViewModel="True"
-                Title="{x:Static localization:Shared.AppName}">
-    <StackLayout>
-        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}" Text="{Binding Login}" />
-        <Entry IsPassword="True" Placeholder="{x:Static localization:LoginPage.Password}" Text="{Binding Password}" />
-        <Button Text="{x:Static localization:LoginPage.Login}" Command="{Binding LoginCommand}" />
+                Title="{x:Static localization:Shared.AppName}"
+                Padding="{StaticResource PagePadding}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <StackLayout VerticalOptions="CenterAndExpand">
+
+        <Entry Placeholder="{x:Static localization:LoginPage.UsernameOrEmail}"
+               Text="{Binding Login}"
+               Completed="LoginEntry_OnCompleted" />
+
+        <Entry x:Name="PasswordEntry"
+               IsPassword="{Binding ShowPassword, Converter={StaticResource InvertedBooleanConverter}}"
+               Placeholder="{x:Static localization:LoginPage.Password}"
+               Text="{Binding Password}"
+               Completed="PasswordEntry_OnCompleted" />
+
+        <StackLayout Orientation="Horizontal">
+          
+          <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnSwitchLabelTapped" />
+          </StackLayout.GestureRecognizers>
+
+            <Switch x:Name="ShowPasswordSwitch"
+                    IsToggled="{Binding ShowPassword}"
+                    VerticalOptions="CenterAndExpand" />
+
+            <Label Text="{x:Static localization:LoginPage.ShowPass}"
+                   Style="{StaticResource MediumSecondaryLabelStyle}"
+                   VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+
+        <Button x:Name="LoginButton"
+                Text="{x:Static localization:LoginPage.Login}"
+                Command="{Binding LoginCommand}" />
     </StackLayout>
+
 </views:BasePage>

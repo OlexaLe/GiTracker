@@ -4,10 +4,10 @@ namespace GiTracker.Services.Api
 {
     public interface IGitApiProvider
     {
-        RestRequest GetUserRequest();
-        RestRequest GetIssuesRequest(string repository);
-        RestRequest GetUserRepositoriesRequest();
-        RestRequest GetCreateCommentRequest(string repository, int issueId);
-        RestRequest GetLoadCommentsRequest(string repository, int issueId);
+        IRestRequest GetUserRequest();
+        IRestRequest GetIssuesRequest(string repository);
+        IRestRequest GetUserRepositoriesRequest();
+        IRestRequest GetCreateCommentRequest(string repository, int issueNumber);
+        IRestRequest GetLoadCommentsRequest(string repository, int issueNumber);
     }
 }

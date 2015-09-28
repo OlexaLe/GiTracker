@@ -8,83 +8,63 @@ namespace GiTracker.Services.Api
 {
     internal class GitHubApiProvider : IGitApiProvider
     {
-        private const string UserAgent = "XamarinGarage";
-        private const string Host = "https://api.github.com/";
         private readonly Type _commentsListType = typeof (IEnumerable<GitHubComment>);
         private readonly Type _commentType = typeof (GitHubComment);
-        private readonly ICredentialService _credentialService;
+        private readonly ICredentialsService _credentialsService;
 
         private readonly Type _issueListType = typeof (IEnumerable<GitHubIssue>);
         private readonly Type _reposListType = typeof (IEnumerable<GitHubRepo>);
         private readonly Type _userType = typeof (GitHubUser);
 
-        public GitHubApiProvider(ICredentialService credentialService)
+        public GitHubApiProvider(ICredentialsService credentialsService)
         {
-            _credentialService = credentialService;
+            _credentialsService = credentialsService;
         }
 
-        public RestRequest GetIssuesRequest(string repository)
+        public IRestRequest GetIssuesRequest(string repository)
         {
-            return new RestRequest
+            return new GitHubRestRequest(_credentialsService)
             {
                 ReturnValueType = _issueListType,
-                Host = Host,
                 RelativeUrl = $"repos/{repository}/issues",
-                DefaultHeaders = DefaultHeaders(),
                 UrlParameters = new Dictionary<string, string> {{"state", "all"}}
             };
         }
 
-        public RestRequest GetUserRepositoriesRequest()
+        public IRestRequest GetUserRepositoriesRequest()
         {
-            return new RestRequest
+            return new GitHubRestRequest(_credentialsService)
             {
                 ReturnValueType = _reposListType,
-                Host = Host,
-                RelativeUrl = "users/foxanna/repos",
-                DefaultHeaders = DefaultHeaders()
+                RelativeUrl = "user/repos"
             };
         }
 
-        public RestRequest GetCreateCommentRequest(string repository, int issueId)
+        public IRestRequest GetCreateCommentRequest(string repository, int issueNumber)
         {
-            return new RestRequest
+            return new GitHubRestRequest(_credentialsService)
             {
                 ReturnValueType = _commentType,
-                Host = Host,
-                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
-                DefaultHeaders = DefaultHeaders()
+                RelativeUrl = $"repos/{repository}/issues/{issueNumber}/comments"
             };
         }
 
-        public RestRequest GetLoadCommentsRequest(string repository, int issueId)
+        public IRestRequest GetLoadCommentsRequest(string repository, int issueNumber)
         {
-            return new RestRequest
+            return new GitHubRestRequest(_credentialsService)
             {
                 ReturnValueType = _commentsListType,
-                Host = Host,
-                RelativeUrl = $"repos/{repository}/issues/{issueId}/comments",
-                DefaultHeaders = DefaultHeaders()
+                RelativeUrl = $"repos/{repository}/issues/{issueNumber}/comments"
             };
         }
 
-        public RestRequest GetUserRequest()
+        public IRestRequest GetUserRequest()
         {
-            return new RestRequest
+            return new GitHubRestRequest(_credentialsService)
             {
                 ReturnValueType = _userType,
-                Host = Host,
-                RelativeUrl = "user",
-                DefaultHeaders = DefaultHeaders()
+                RelativeUrl = "user"
             };
-        }
-
-        private Dictionary<string, string> DefaultHeaders()
-        {
-            var credentialHeaders = _credentialService.Credential();
-            credentialHeaders["User-Agent"] = UserAgent;
-            credentialHeaders["Accept"] = "application/json";
-            return credentialHeaders;
         }
     }
 }

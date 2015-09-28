@@ -4,13 +4,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using GiTracker.Models;
 using Newtonsoft.Json;
 
 namespace GiTracker.Services.Rest
 {
     internal class RestService : IRestService
     {
-        public async Task<object> GetAsync(RestRequest request, CancellationToken cancellationToken)
+        public async Task<object> GetAsync(IRestRequest request, CancellationToken cancellationToken)
         {
             using (var client = CreateHttpClient(request.DefaultHeaders))
             {
@@ -23,16 +24,18 @@ namespace GiTracker.Services.Rest
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    if (!response.IsSuccessStatusCode)
-                        throw new Exception(response.ToString());
-
                     var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                    if (!response.IsSuccessStatusCode)
+                        throw new Exception(((IGitError) JsonConvert.DeserializeObject(data, request.ErrorType)).Message);
+
                     return JsonConvert.DeserializeObject(data, request.ReturnValueType);
                 }
             }
         }
 
-        public async Task<object> PostAsync(RestRequest request, object requestBody, CancellationToken cancellationToken)
+        public async Task<object> PostAsync(IRestRequest request, object requestBody,
+            CancellationToken cancellationToken)
         {
             using (var client = CreateHttpClient(request.DefaultHeaders))
             {
@@ -48,10 +51,11 @@ namespace GiTracker.Services.Rest
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    if (!response.IsSuccessStatusCode)
-                        throw new Exception(response.ToString());
-
                     var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                    if (!response.IsSuccessStatusCode)
+                        throw new Exception(((IGitError) JsonConvert.DeserializeObject(data, request.ErrorType)).Message);
+
                     return JsonConvert.DeserializeObject(data, request.ReturnValueType);
                 }
             }

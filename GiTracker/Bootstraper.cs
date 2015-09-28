@@ -1,4 +1,5 @@
-﻿using GiTracker.Services.Api;
+﻿using GiTracker.Events;
+using GiTracker.Services.Api;
 using GiTracker.Services.Credential;
 using GiTracker.Services.Database;
 using GiTracker.Services.DataLoader;
@@ -13,6 +14,7 @@ using GiTracker.Services.WorkLog;
 using GiTracker.ViewModels;
 using GiTracker.Views;
 using Microsoft.Practices.Unity;
+using Prism.Events;
 using Prism.Unity;
 using Xamarin.Forms;
 
@@ -20,9 +22,22 @@ namespace GiTracker
 {
     public class Bootstraper : UnityBootstrapper
     {
+        private void ShowLoginPage(string obj)
+        {
+            App.MainPage = Container.Resolve<LoginPage>();
+        }
+
+        private void ShowMainPage(string obj)
+        {
+            App.MainPage = Container.Resolve<MainPage>();
+        }
+
         protected override Page CreateMainPage()
         {
-            return Container.Resolve<MainPage>();
+            var credentialsService = Container.Resolve<ICredentialsService>();
+            return credentialsService.HasCredentials
+                ? (Page) Container.Resolve<MainPage>()
+                : Container.Resolve<LoginPage>();
         }
 
         protected override void RegisterTypes()
@@ -46,7 +61,11 @@ namespace GiTracker
             Container.RegisterType<ILoginService, LoginService>();
             Container.RegisterType<IWorkLogService, WorkLogService>();
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
-            Container.RegisterInstance<ICredentialService>(new CredentialService());
+            Container.RegisterInstance<ICredentialsService>(new CredentialsService());
+
+            var eventCgr = Container.Resolve<IEventAggregator>();
+            eventCgr.GetEvent<LoginEvent>().Subscribe(ShowMainPage);
+            eventCgr.GetEvent<LogoutEvent>().Subscribe(ShowLoginPage);
         }
     }
 }

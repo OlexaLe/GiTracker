@@ -123,6 +123,9 @@
   <data name="Password" xml:space="preserve">
     <value>password</value>
   </data>
+  <data name="ShowPass" xml:space="preserve">
+    <value>show password</value>
+  </data>
   <data name="UsernameOrEmail" xml:space="preserve">
     <value>username or email</value>
   </data>

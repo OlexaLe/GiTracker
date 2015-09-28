@@ -23,7 +23,7 @@ namespace GiTracker.Tests.Services
             _gitApiProvider = apiProviderMoq.Object;
         }
 
-        private readonly RestRequest _restRequest = new RestRequest();
+        private readonly IRestRequest _restRequest = Mock.Of<IRestRequest>();
         private IGitApiProvider _gitApiProvider;
 
         [Test]
@@ -34,9 +34,9 @@ namespace GiTracker.Tests.Services
             object actualLog = null;
 
             var restMoq = new Mock<IRestService>();
-            restMoq.Setup(r => r.PostAsync(It.IsAny<RestRequest>(), It.IsAny<object>(),
+            restMoq.Setup(r => r.PostAsync(It.IsAny<IRestRequest>(), It.IsAny<object>(),
                 It.IsAny<CancellationToken>()))
-                .Callback<RestRequest, object, CancellationToken>((request, body, token) => { actualLog = body; })
+                .Callback<IRestRequest, object, CancellationToken>((request, body, token) => { actualLog = body; })
                 .ReturnsAsync(new GitHubComment());
 
             var workLogService = new WorkLogService(restMoq.Object, _gitApiProvider);

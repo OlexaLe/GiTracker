@@ -1,26 +1,33 @@
-﻿using GiTracker.Services.DataLoader;
+﻿using GiTracker.Events;
+using GiTracker.Services.DataLoader;
 using GiTracker.Services.Login;
 using GiTracker.Services.Progress;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Navigation;
 
 namespace GiTracker.ViewModels
 {
     internal class LoginPageViewModel : BaseViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly ILoginService _loginService;
         private string _login;
         private DelegateCommand _loginCommand;
         private string _password;
 
+        private bool _showPassword;
+
         public LoginPageViewModel(ILoader loader,
             IProgressService progressService,
             INavigationService navigationService,
-            ILoginService loginService)
+            ILoginService loginService,
+            IEventAggregator eventAggregator)
             : base(loader, progressService, navigationService)
         {
             Loader.LoadingChanged += (sender, args) => LoginCommand.RaiseCanExecuteChanged();
             _loginService = loginService;
+            _eventAggregator = eventAggregator;
         }
 
         public string Login
@@ -50,9 +57,23 @@ namespace GiTracker.ViewModels
                     new DelegateCommand(DoLogin,
                         () => !string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password) && !Loader.IsLoading));
 
+        public bool ShowPassword
+        {
+            get { return _showPassword; }
+            set
+            {
+                _showPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
         private async void DoLogin()
         {
-            await Loader.LoadAsync(async cancellationToken => { await _loginService.LoginAsync(Login, Password); });
+            await Loader.LoadAsync(async cancellationToken =>
+            {
+                await _loginService.LoginAsync(Login, Password, cancellationToken);
+                _eventAggregator.GetEvent<LoginEvent>().Publish(null);
+            });
         }
     }
 }

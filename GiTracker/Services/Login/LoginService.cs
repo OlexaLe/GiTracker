@@ -9,24 +9,24 @@ namespace GiTracker.Services.Login
 {
     internal class LoginService : ILoginService
     {
-        private readonly ICredentialService _credentialService;
+        private readonly ICredentialsService _credentialsService;
         private readonly IGitApiProvider _gitApiProvider;
         private readonly IRestService _restService;
 
         public LoginService(IRestService restService, IGitApiProvider gitApiProvider,
-            ICredentialService credentialService)
+            ICredentialsService credentialsService)
         {
             _restService = restService;
             _gitApiProvider = gitApiProvider;
-            _credentialService = credentialService;
+            _credentialsService = credentialsService;
         }
 
-        public async Task<IUser> LoginAsync(string username, string password)
+        public async Task<IUser> LoginAsync(string username, string password, CancellationToken cancellationToken)
         {
-            _credentialService.SetBasicCredential(username, password);
+            _credentialsService.SetCredentials(username, password);
             var user =
                 await
-                    _restService.GetAsync(_gitApiProvider.GetUserRequest(), CancellationToken.None)
+                    _restService.GetAsync(_gitApiProvider.GetUserRequest(), cancellationToken)
                         .ConfigureAwait(false);
 
             return user as IUser;

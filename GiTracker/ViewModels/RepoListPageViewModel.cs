@@ -58,13 +58,6 @@ namespace GiTracker.ViewModels
             await LoadReposAsync(Loader);
         }
 
-        public override void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            Loader.CancelLoading();
-
-            base.OnNavigatedFrom(parameters);
-        }
-
         private Task LoadReposAsync(ILoader loader)
         {
             Repos = null;

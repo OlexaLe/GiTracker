@@ -63,7 +63,7 @@ namespace GiTracker
             Container.RegisterType<IWorkLogService, WorkLogService>();
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
             Container.RegisterType<ISettingsManager, SettingsManager>();
-            Container.RegisterInstance<ICredentialsService>(new CredentialsService());
+            Container.RegisterType<ICredentialsService, CredentialsService>();
 
             var eventCgr = Container.Resolve<IEventAggregator>();
             eventCgr.GetEvent<LoginEvent>().Subscribe(ShowMainPage);

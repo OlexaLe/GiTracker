@@ -1,24 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using GiTracker.Services.Settings;
 
 namespace GiTracker.Services.Credential
 {
     internal class CredentialsService : ICredentialsService
     {
-        public Dictionary<string, string> Credentials => new Dictionary<string, string>
+        private const string SessionSettingsKey = "SessionSettingsKey";
+        private readonly ISettingsManager _settingsManager;
+
+        private string _basicAuthenticationToken;
+
+        public CredentialsService(ISettingsManager settingsManager)
         {
-            ["Authorization"] = $"Basic {BasicAuthenticationToken}"
-        };
+            _settingsManager = settingsManager;
+        }
 
         public void SetCredentials(string username, string password)
         {
             var plainTextBytes = Encoding.UTF8.GetBytes($"{username}:{password}");
-            BasicAuthenticationToken = Convert.ToBase64String(plainTextBytes);
+            _basicAuthenticationToken = Convert.ToBase64String(plainTextBytes);
+        }
+
+        public void RemoveCredentials()
+        {
+            _settingsManager.RemoveSetting(SessionSettingsKey);
+            _basicAuthenticationToken = string.Empty;
+        }
+
+        public void StoreCredentials()
+        {
+            _settingsManager.AddSetting(SessionSettingsKey, _basicAuthenticationToken);
         }
 
         public bool HasCredentials => !string.IsNullOrEmpty(BasicAuthenticationToken);
 
-        public string BasicAuthenticationToken { get; private set; }
+        public string BasicAuthenticationToken
+            =>
+                _basicAuthenticationToken ??
+                (_basicAuthenticationToken = _settingsManager.ReadSetting(SessionSettingsKey) as string);
     }
 }

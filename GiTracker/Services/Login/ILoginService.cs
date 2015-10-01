@@ -7,5 +7,6 @@ namespace GiTracker.Services.Login
     internal interface ILoginService
     {
         Task<IUser> LoginAsync(string username, string password, CancellationToken cancellationToken);
+        void Logout();
     }
 }

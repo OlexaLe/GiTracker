@@ -13,7 +13,8 @@ namespace GiTracker.Services.Login
         private readonly IGitApiProvider _gitApiProvider;
         private readonly IRestService _restService;
 
-        public LoginService(IRestService restService, IGitApiProvider gitApiProvider,
+        public LoginService(IRestService restService,
+            IGitApiProvider gitApiProvider,
             ICredentialsService credentialsService)
         {
             _restService = restService;
@@ -28,8 +29,14 @@ namespace GiTracker.Services.Login
                 await
                     _restService.GetAsync(_gitApiProvider.GetUserRequest(), cancellationToken)
                         .ConfigureAwait(false);
+            _credentialsService.StoreCredentials();
 
             return user as IUser;
+        }
+
+        public void Logout()
+        {
+            _credentialsService.RemoveCredentials();
         }
     }
 }

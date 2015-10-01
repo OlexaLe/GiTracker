@@ -138,6 +138,8 @@
     <Compile Include="Services\Rest\IRestService.cs" />
     <Compile Include="Services\Rest\IRestRequest.cs" />
     <Compile Include="Services\Rest\RestService.cs" />
+    <Compile Include="Services\Settings\ISettingsManager.cs" />
+    <Compile Include="Services\Settings\SettingsManager.cs" />
     <Compile Include="Services\WorkLog\IWorkLogService.cs" />
     <Compile Include="Services\WorkLog\WorkLogFormatHelper.cs" />
     <Compile Include="Services\WorkLog\WorkLogItem.cs" />

@@ -10,6 +10,7 @@ using GiTracker.Services.Login;
 using GiTracker.Services.Progress;
 using GiTracker.Services.Repos;
 using GiTracker.Services.Rest;
+using GiTracker.Services.Settings;
 using GiTracker.Services.WorkLog;
 using GiTracker.ViewModels;
 using GiTracker.Views;
@@ -61,6 +62,7 @@ namespace GiTracker
             Container.RegisterType<ILoginService, LoginService>();
             Container.RegisterType<IWorkLogService, WorkLogService>();
             Container.RegisterType<IGitApiProvider, GitHubApiProvider>();
+            Container.RegisterType<ISettingsManager, SettingsManager>();
             Container.RegisterInstance<ICredentialsService>(new CredentialsService());
 
             var eventCgr = Container.Resolve<IEventAggregator>();

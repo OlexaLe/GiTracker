@@ -65,9 +65,9 @@ namespace GiTracker
             Container.RegisterType<ISettingsManager, SettingsManager>();
             Container.RegisterType<ICredentialsService, CredentialsService>();
 
-            var eventCgr = Container.Resolve<IEventAggregator>();
-            eventCgr.GetEvent<LoginEvent>().Subscribe(ShowMainPage);
-            eventCgr.GetEvent<LogoutEvent>().Subscribe(ShowLoginPage);
+            var eventAggregator = Container.Resolve<IEventAggregator>();
+            eventAggregator.GetEvent<LoginEvent>().Subscribe(ShowMainPage);
+            eventAggregator.GetEvent<LogoutEvent>().Subscribe(ShowLoginPage);
         }
     }
 }

@@ -110,12 +110,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Services\CredentialServiceTest.cs" />
-    <Compile Include="Services\GitHubProviderTest.cs" />
+    <Compile Include="Services\CredentialServiceTests.cs" />
+    <Compile Include="Services\GitHubProviderTests.cs" />
     <Compile Include="Services\LoaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IssueServiceTests.cs" />
-    <Compile Include="Services\LoginServiceTest.cs" />
+    <Compile Include="Services\LoginServiceTests.cs" />
     <Compile Include="Services\RepoServiceTests.cs" />
     <Compile Include="Services\WorkLogFormatHelperTests.cs" />
     <Compile Include="Services\WorkLogServiceTests.cs" />

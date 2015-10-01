@@ -42,7 +42,7 @@ namespace GiTracker.Tests.Services
             var loginService = new LoginService(restServiceMoq.Object, _gitApiProvider, credentialServiceMoq.Object);
 
             // Act
-            var userResponce = await loginService.LoginAsync(_testName, _testPassword);
+            var userResponce = await loginService.LoginAsync(_testName, _testPassword, CancellationToken.None);
 
             // Assert
             credentialServiceMoq.Verify(moq => moq.SetCredentials(_testName, _testPassword),
@@ -66,7 +66,7 @@ namespace GiTracker.Tests.Services
             var loginService = new LoginService(restServiceMoq.Object, _gitApiProvider, credentialServiceMoq.Object);
 
             // Act
-            var userResponce = await loginService.LoginAsync(_testName, _testPassword);
+            var userResponce = await loginService.LoginAsync(_testName, _testPassword, CancellationToken.None);
 
             // Assert
             restServiceMoq.Verify(moq => moq.GetAsync(_userRequest, It.IsAny<CancellationToken>()),

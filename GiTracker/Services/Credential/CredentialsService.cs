@@ -6,7 +6,7 @@ namespace GiTracker.Services.Credential
 {
     internal class CredentialsService : ICredentialsService
     {
-        private const string SessionSettingsKey = "SessionSettingsKey";
+        internal const string SessionSettingsKey = "SessionSettingsKey";
         private readonly ISettingsManager _settingsManager;
 
         private string _basicAuthenticationToken;
